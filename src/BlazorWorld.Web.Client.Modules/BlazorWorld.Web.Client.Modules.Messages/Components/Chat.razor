@@ -1,0 +1,72 @@
+﻿@inject IStringLocalizer<Resource> Localize
+
+<style>
+    #messages {
+        height: calc(100vh - 230px);
+        overflow-y: scroll;
+    }
+
+        #messages footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0 15px 15px 15px;
+            height: 53px;
+            background-color: #fff;
+        }
+</style>
+
+<ul class="list-unstyled" id="messages">
+    @{
+        if (Messages != null)
+        {
+            if (Messages.ShowPrevious)
+            {
+                <a href="javascript:;"
+                   @onclick="Messages.PreviousAsync"
+                   class="btn btn-primary btn-sm mb-3">
+                    <i class="fas fa-ellipsis-v"></i>
+                    @Localize["More Messages"]
+                </a>
+            }
+
+            foreach (var message in Messages.Data)
+            {
+                <div class="card shadow mb-3">
+                    <div class="card-body">
+                        <div class="media d-block d-md-flex">
+                            <Avatar Class="rounded-circle" UserId="@message.CreatedBy" Size="30" />
+                            <div class="media-body text-md-left ml-md-3 ml-0">
+                                <div class="well">
+                                    <NavLink href=@($"/profile/in/{message.Username}")>@message.Username</NavLink>
+                                    <span class="small">
+                                        <LocalDateTime Date="@message.CreatedDate" />
+                                    </span>
+                                </div>
+                                <div>
+                                    @message.Content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <a id="latest"></a>
+        }
+    }
+</ul>
+
+<form>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" @bind="message">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary"
+                    type="button"
+                    disabled="@(!HubClientService.IsConnected)"
+                    @onclick="SendAsync">
+                Send
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,33 @@
+﻿@inject IStringLocalizer<Resource> Localize
+
+<EditForm OnValidSubmit="SubmitAsync" Model="@Post">
+    <div class="card-header">
+        <Created CreatedBy="@PostUserId" />
+    </div>
+
+    <div class="card-body">
+        <div class="form-group">
+            <InputTextArea class="form-control"
+                           @bind-Value="@Post.Content"
+                           rows="3"
+                           placeholder="@Localize["Text"]" />
+            <ValidationMessage For="@(() => Post.Content)" />
+        </div>
+
+        @{
+            if (!string.IsNullOrEmpty(Id))
+            {
+                <button class="btn btn-danger btn-sm mr-2"
+                        type="button"
+                        @onclick="CancelAsync">
+                    <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
+                </button>
+            }
+        }
+        <button class="btn btn-success btn-sm mr-2"
+                type="submit"
+                value="save">
+            <i class="fa fa-check" aria-hidden="true"></i> @Localize["Save"]
+        </button>
+    </div>
+</EditForm>

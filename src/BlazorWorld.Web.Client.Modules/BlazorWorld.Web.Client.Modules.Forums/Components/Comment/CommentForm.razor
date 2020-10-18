@@ -1,0 +1,20 @@
+﻿@inject IStringLocalizer<Resource> Localize
+
+    <div class="media d-block d-md-flex">
+        <Avatar Class="rounded-circle" UserId="@SignedInUserId" Size="30" />
+        <div class="media-body ml-md-3 ml-0">
+            <EditForm OnValidSubmit="SubmitAsync" Model="@Comment">
+                <InputText class="form-control"
+                           @bind-Value="@Comment.Content"
+                           placeholder="@Localize["Comment"]" />
+                @{
+                    if (!string.IsNullOrEmpty(Id))
+                    {
+                        <span class="small">
+                            <a href="javascript:;" @onclick="CancelAsync">Cancel</a>
+                        </span>
+                    }
+                }
+            </EditForm>
+        </div>
+    </div>

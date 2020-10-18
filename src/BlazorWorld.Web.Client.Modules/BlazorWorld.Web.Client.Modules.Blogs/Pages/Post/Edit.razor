@@ -1,0 +1,55 @@
+﻿@page "/blog/post/edit/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="@($"/blogs")"><i class="fas fa-blog"></i></NavLink>
+            / <NavLink href="@($"/blog/{Blog?.Slug}")">@Blog?.Name</NavLink>
+        </li>
+    </ol>
+</nav>
+
+<div class="card shadow mb-3">
+    <div class="card-body container">
+        <h2 class="h4">@Localize["Edit Post"]</h2>
+
+        <EditForm class="mt-4" OnValidSubmit="SubmitAsync" Model="@Post">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            @{
+                if (!string.IsNullOrEmpty(ValidationMessage))
+                {
+                    <div class="alert alert-danger alert-dismissible row" role="alert">
+                        @Localize[ValidationMessage]
+                    </div>
+                }
+            }
+
+            <div class="form-group row col-md-10">
+                <InputText class="form-control"
+                           @bind-Value="Post.Title"
+                           placeholder="@Localize["Title"]" />
+                <ValidationMessage For="@(() => Post.Title)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <textarea class="form-control"
+                          rows="@Post.Content.StringToRows(4)"
+                          @bind-value="Post.Content"
+                          @bind-value:event="oninput"
+                          placeholder="@Localize["Content"]" />
+                <ValidationMessage For="@(() => Post.Content)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <NavLink href=@($"/blog/post/{Post.Slug}")
+                         class="btn btn-danger btn-sm mr-2">
+                    <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
+                </NavLink>
+                <button type="submit" ref="createButton" id="btnSave" class="btn btn-success btn-sm mr-2" value="save">
+                    <i class="fa fa-check" aria-hidden="true"></i> @Localize["Save"]
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

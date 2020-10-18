@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@inject IStringLocalizer<ShellResource> Localize
+
+@if (ParentObject == null)
+{
+    <span class="spinner-border spinner-border-sm" role="status">
+    </span>
+    <span>
+        @Localize["Loading"]...
+    </span>
+}
+else
+{
+    @Text
+}
+
+@code
+{
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public Object ParentObject { get; set; }
+}

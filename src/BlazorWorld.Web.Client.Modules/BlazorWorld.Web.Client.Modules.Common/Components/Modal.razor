@@ -1,0 +1,30 @@
+﻿@using BlazorWorld.Web.Client.Modules.Common.Resources
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Resource> Localize
+
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">@Localize[Title]</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                @Localize[Text]
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn" @onclick="CancelAsync">@CancelButtonText</button>
+                <button type="button" class="btn btn-danger" @onclick="ConfirmAsync">@ConfirmButtonText</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}

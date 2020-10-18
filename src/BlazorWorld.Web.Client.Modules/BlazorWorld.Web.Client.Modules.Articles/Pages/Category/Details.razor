@@ -1,0 +1,52 @@
+﻿@page "/articles/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="@($"/articles")"><i class="fas fa-newspaper"></i></NavLink>
+            / @Category?.Name
+        </li>
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="h3">@Category?.Name</h1>
+    <RichText Text="@Category?.Description" ParentObject="@Category" />
+    @if (CanEditCategory)
+    {
+        <NavLink href="@($"/articles/category/edit/{Category?.Slug}")" class="btn btn-primary btn-sm mb-3 mr-2">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            @Localize["Edit"]
+        </NavLink>
+    }
+</div>
+
+@if (CanAddArticle)
+{
+    <NavLink href="@($"/article/new/{Category?.Slug}")" class="btn btn-primary btn-sm mb-3 mr-2">
+        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+        @Localize["New Article"]
+    </NavLink>
+}
+
+@if (Articles != null)
+{
+    <div class="d-flex flex-wrap">
+        @foreach (var node in Articles.Data)
+        {
+            var article = Models.Article.Create(node);
+            <ArticleCard Article="@article" />
+        }
+        @{
+            if (Articles.ShowNext)
+            {
+                <button class="btn btn-primary btn-sm mr-2" @onclick="Articles.NextAsync">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    @Localize["More Articles"]
+                </button>
+            }
+        }
+    </div>
+}
+

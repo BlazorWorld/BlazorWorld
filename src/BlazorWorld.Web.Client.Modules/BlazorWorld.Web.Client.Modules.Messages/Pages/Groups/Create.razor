@@ -1,0 +1,12 @@
+﻿@page "/messages/new"
+@using Microsoft.AspNetCore.Components.Forms
+@inject IStringLocalizer<Resource> Localize
+
+<p class="h4">
+    @Localize["New Message"]
+</p>
+
+<EditForm class="mt-4" Model="@Group">
+    <GroupMembers OnUpdateUsers="OnUpdateUsersAsync" />
+    <Chat GroupId="@GroupId" CreateGroupAndSend="CreateGroupAndSendAsync" />
+</EditForm>

@@ -1,0 +1,33 @@
+﻿@page "/blogs"
+@inject IStringLocalizer<Resource> Localize
+
+<h3><i class="fas fa-blog"></i> @Localize["Blogs"]</h3>
+
+@if (CanAddBlog)
+{
+    <div class="btn-group">
+        <NavLink href="/blog/new" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus"></i>
+            @Localize["New Blog"]
+        </NavLink>
+    </div>
+}
+
+@if (Blogs == null)
+{
+    <Loading />
+}
+else
+{
+    @foreach (var blog in Blogs.Items())
+    {
+        <div class="card shadow mt-3">
+            <div class="card-body">
+                <p class="card-text">
+                    <NavLink href=@($"/blog/{blog.Slug}")>@blog.Name</NavLink>.
+                    @blog.Snippet [@blog.ChildCount @Localize["posts"]]
+                </p>
+            </div>
+        </div>
+    }
+}

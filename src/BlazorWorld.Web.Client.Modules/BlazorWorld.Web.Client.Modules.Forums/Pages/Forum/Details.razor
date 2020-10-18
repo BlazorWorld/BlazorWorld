@@ -1,0 +1,104 @@
+﻿@page "/forum/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="@($"/forums/{Forum?.Path}")"><i class="fa fa-comments"></i></NavLink>
+            /
+            @Forum?.Title
+        </li>
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="h3">@Forum?.Title</h1>
+    <RichText Text="@Forum?.Content" ParentObject="@Forum" />
+    @if (CanEditForum)
+    {
+        <NavLink href=@($"/forum/edit/{Forum?.Slug}") class="btn btn-primary btn-sm mb-2 mr-2">
+            <i class="fas fa-pencil-alt"></i> Edit
+        </NavLink>
+    }
+    @if (CanDeleteForum)
+    {
+        <a href="javascript:;"
+            @onclick="Delete"
+            class="btn btn-danger btn-sm mb-2 mr-2">
+            <i class="fas fa-trash-alt"></i> @Localize["Delete"]
+        </a>
+    }
+</div>
+
+<Modal @ref="ConfirmModal"
+       Title="Delete Forum"
+       Text="Do you want to remove this forum?"
+       ConfirmButtonText="Delete"
+       CancelButtonText="Cancel"
+       OnConfirm="DeleteConfirmedAsync" />
+
+@if (CanAddTopic)
+{
+    <NavLink href=@($"/forum/topic/new/{Forum?.Slug}")
+             type="button"
+             class="btn btn-primary btn-sm mb-3">
+        <i class="fas fa-plus"></i>
+        @Localize["New Topic"]
+    </NavLink>
+}
+
+<div class="card shadow mb-3">
+    <div class="card-body">
+        <table class="table" style="margin-bottom: 0px;">
+            <thead>
+                <tr class="d-flex">
+                    <th class="col-md-9 col-sm-9">@Localize["Topic"]</th>
+                    <th class="col-md-2 col-sm-2">@Localize["Started"]</th>
+                    <th class="col-md-1 col-sm-1">@Localize["Posts"]</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Topics != null)
+                    {
+                        foreach (var topic in Topics.Items())
+                        {
+                            <tr class="d-flex">
+                                <td class="col-md-9 col-sm-9">
+                                    <p>
+                                        <strong>
+                                            <NavLink href=@($"/forum/topic/{topic.Id}")>@topic.Title</NavLink>
+                                        </strong>
+                                        <br />
+                                        @topic.Snippet
+                                    </p>
+                                </td>
+                                <td class="col-md-2 col-sm-2">
+                                    <NavLink href=@($"/forum/topic/{topic.Id}")>
+                                        <FromNow Date="@topic.CreatedDate" />
+                                    </NavLink>
+                                </td>
+                                <td class="col-md-1 col-sm-1">
+                                    <NavLink href=@($"/forum/topic/{topic.Id}")>
+                                        @topic.PostCount
+                                    </NavLink>
+                                </td>
+                            </tr>
+                        }
+
+                        if (Topics.ShowNext)
+                        {
+                            <tr>
+                                <a href="javascript:;"
+                                   @onclick="Topics.NextAsync"
+                                   class="btn btn-primary">
+                                    @Localize["More Topics"]
+                                </a>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@inject IStringLocalizer<Resource> Localize
+@{
+    if (!IsEdit)
+    {
+    <div class="media d-block d-md-flex">
+        <Modal @ref="ConfirmModal"
+               Title="Delete Comment"
+               Text="Do you want to remove this comment?"
+               ConfirmButtonText="Delete"
+               CancelButtonText="Cancel"
+               OnConfirm="DeleteConfirmedAsync" />
+        <Avatar Class="rounded-circle" UserId="@Comment?.CreatedBy" Size="30" />
+        <div class="media-body text-md-left ml-md-3 ml-0">
+            <div class="well">
+                <NavLink href=@($"/profile/in/{CommentUserName}")>@CommentUserName</NavLink>
+                <Loading Text="@Comment?.Content" ParentObject="@Comment" />
+            </div>
+            <div class="small">
+                <VoteButtons NodeId="@Comment?.Id" CanVote="@CanVote" Votes="@Comment?.Votes" />
+                @if (CanEditComment)
+                {
+                    <a href="javascript:;" class="mr-2" @onclick="Edit">@Localize["Edit"]</a>
+                }
+                @if (CanDeleteComment)
+                {
+                    <a href="javascript:;" class="mr-2" @onclick="Delete">@Localize["Delete"]</a>
+                }
+                <FromNow Date="@Comment?.CreatedDate" />
+            </div>
+        </div>
+    </div>
+    }
+    else
+    {
+        <CommentForm Id="@Comment?.Id" OnSave="Save" OnCancel="Cancel" />
+    }
+}

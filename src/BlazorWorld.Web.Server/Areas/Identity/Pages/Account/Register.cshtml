@@ -1,0 +1,112 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+    <div class="container">
+
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            </div>
+                            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                @*<div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+            </div>
+        </div>*@
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="form-group">
+                                    <input asp-for="Input.Username" class="form-control form-control-user" placeholder="Username">
+                                    <span asp-validation-for="Input.Username" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Input.Email" class="form-control form-control-user" placeholder="Email">
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" asp-for="Input.Password" class="form-control form-control-user" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" asp-for="Input.ConfirmPassword" class="form-control form-control-user" placeholder="Repeat Password">
+                                    </div>
+                                </div>
+                                @if (Model.InvitationRequired)
+                                {
+                                    <div class="form-group">
+                                        <input asp-for="Input.InvitationCode" class="form-control form-control-user" placeholder="Invitation Code">
+                                        <span asp-validation-for="Input.InvitationCode" class="text-danger"></span>
+                                    </div>
+                                }
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </button>
+                                @*<hr>
+        <a href="index.html" class="btn btn-google btn-user btn-block">
+            <i class="fab fa-google fa-fw"></i> Register with Google
+        </a>
+        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+            <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+        </a>*@
+                            </form>
+                            <hr>
+                            @*<div class="text-center">
+                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            </div>*@
+                            <div class="text-center">
+                                <a class="small" asp-area="Identity" asp-page="/Account/Login">Already have an account? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @*<div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Use another service to register.</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

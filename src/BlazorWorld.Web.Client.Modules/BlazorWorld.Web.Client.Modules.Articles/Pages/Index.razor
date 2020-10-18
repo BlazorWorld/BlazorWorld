@@ -1,0 +1,46 @@
+﻿@page "/articles/"
+@inject IStringLocalizer<Resource> Localize
+
+<h3><i class="fas fa-newspaper"></i> @Localize["Articles"]</h3>
+
+@if (CanAddCategory)
+{
+    <div class="btn-group">
+        <NavLink href="/articles/category/new" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+            @Localize["New Category"]
+        </NavLink>
+    </div>
+}
+
+@if (Articles != null)
+{
+    if (Categories != null)
+    {
+        foreach (var category in Categories)
+        {
+            <hr />
+
+            <h5>
+                <a href="/articles/@category.Slug">@category.Name</a>
+            </h5>
+
+            <div class="d-flex flex-wrap">
+                @foreach (var node in Articles[category.Id].Data)
+                {
+                    var article = Models.Article.Create(node);
+                    <ArticleCard Article="@article" />
+                }
+                @{
+                    if (Articles[category.Id].ShowNext)
+                    {
+                        <button class="btn btn-primary btn-sm mr-2" @onclick="Articles[category.Id].NextAsync">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            @Localize["More Articles"]
+                        </button>
+                    }
+                }
+            </div>
+        }
+    }
+}

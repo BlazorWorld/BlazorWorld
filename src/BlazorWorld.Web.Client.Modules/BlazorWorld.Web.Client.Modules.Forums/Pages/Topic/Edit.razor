@@ -1,0 +1,45 @@
+﻿@page "/forum/topic/edit/{Id}"
+@inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="/forums"><i class="fa fa-comments"></i></NavLink> /
+            <NavLink href=@($"/forum/{Forum?.Slug}")>
+                @Forum?.Title
+            </NavLink>
+        </li>
+    </ol>
+</nav>
+
+<div class="card shadow mb-3">
+    <div class="card-body container">
+        <h2 class="h4">@Localize["Edit Topic"]</h2>
+
+        <EditForm class="mt-4" OnValidSubmit="SubmitAsync" Model="@Topic">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group row col-md-10">
+                <InputText class="form-control"
+                            @bind-Value="@Topic.Title"
+                            placeholder="Title" />
+                <ValidationMessage For="@(() => Topic.Title)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <InputTextArea class="form-control"
+                            @bind-Value="@Topic.Content"
+                            rows="5"
+                            placeholder="Text" />
+                <ValidationMessage For="@(() => Topic.Content)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <NavLink href=@($"/forum/topic/{Topic?.Id}") class="btn btn-danger btn-sm mr-2">
+                    <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
+                </NavLink>
+                <button type="submit" class="btn btn-success btn-sm mr-2" value="save">
+                    <i class="fa fa-check" aria-hidden="true"></i> @Localize["Save"]
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

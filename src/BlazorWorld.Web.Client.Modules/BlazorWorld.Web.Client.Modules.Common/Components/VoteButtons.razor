@@ -1,0 +1,14 @@
+﻿<span class="card-link">
+    @if (CanVote)
+    {
+        <a href="javascript:;" @onclick="UpVoteAsync" class="mr-1"><i class=@($"fa fa-arrow-up {(HasUpVote ? "text-success" : "")}")></i></a>
+        <span class="mr-1">@Votes</span>
+        <a href="javascript:;" @onclick="DownVoteAsync" class="mr-2"><i class=@($"fa fa-arrow-down {(HasDownVote ? "text-danger" : "")}")></i></a>
+    }
+    else
+    {
+        <span class="mr-1"><i class="fa fa-arrow-up"></i></span>
+        <span class="mr-1">@Votes</span>
+        <span class="mr-2"><i class="fa fa-arrow-down"></i></span>
+    }
+</span>

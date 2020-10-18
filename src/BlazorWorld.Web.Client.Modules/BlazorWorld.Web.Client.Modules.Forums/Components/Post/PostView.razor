@@ -1,0 +1,81 @@
+﻿@inject IStringLocalizer<Resource> Localize
+
+@{
+    if (!IsEdit)
+    {
+        <Modal @ref="ConfirmModal"
+               Title="Delete Post"
+               Text="Do you want to remove this post?"
+               ConfirmButtonText="Delete"
+               CancelButtonText="Cancel"
+               OnConfirm="DeleteConfirmedAsync" />
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <Created CreatedBy="@Post?.CreatedBy" CreatedDate="@Post?.CreatedDate" />
+        </div>
+
+        <div class="card-body">
+            @if (CanEditPost)
+            {
+                <a href="javascript:;"
+                   @onclick="Edit"
+                   class="btn btn-primary btn-sm mb-3 mr-2">
+                    <i class="fas fa-pencil-alt"></i> @Localize["Edit"]
+                </a>
+            }
+            @if (CanDeletePost)
+            {
+                <a href="javascript:;"
+                   @onclick="Delete"
+                   class="btn btn-danger btn-sm mb-3 mr-2">
+                    <i class="fas fa-trash-alt"></i> @Localize["Delete"]
+                </a>
+            }
+            <RichText Text="@Post?.Content" ParentObject="@Post" />
+        </div>
+
+        <div class="card-footer">
+            <VoteButtons NodeId="@Post?.Id" CanVote="@CanVote" Votes="@Post?.Votes" />
+            <a href="javascript:;"
+               @onclick="ToggleShowComments"
+               class="card-link">
+                <i class="fas fa-comment"></i> @Localize["Comments"] (@Post?.CommentCount)
+            </a>
+        </div>
+    }
+    else
+    {
+        <PostForm Id="@Id" OnSave="Save" OnCancel="Cancel"></PostForm>
+    }
+
+    if (ShowComments)
+    {
+<ul class="list-group list-group-flush">
+    @if (CanAddComment)
+    {
+        <li class="list-group-item">
+            <CommentForm PostId="@Post?.Id" OnSave="SaveComment" />
+        </li>
+    }
+    @{
+        if (Comments != null)
+        {
+            foreach (var comment in Comments.Items())
+            {
+                <li class="list-group-item">
+                    <CommentView Id="@comment.Id" OnDelete="DeleteComment" />
+                </li>
+            }
+            if (Comments.ShowNext)
+            {
+                <li class="list-group-item">
+                    <a href="javascript:;"
+                       @onclick="Comments.NextAsync">
+                        @Localize["More Comments"]
+                    </a>
+                </li>
+            }
+        }
+    }
+</ul>
+    }
+}

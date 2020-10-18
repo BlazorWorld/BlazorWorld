@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@inject IStringLocalizer<Resource> Localize
+
+    <EditForm EditContext="CurrentEditContext">
+
+        <div class="input-group mb-3">
+            <InputText class="form-control"
+                       @bind-Value="@Username"
+                       placeholder="@Localize["Username"]" />
+            <div class="input-group-append">
+                <button type="button" 
+                        id="btnAdd" 
+                        class="btn btn-outline-secondary" 
+                        @onclick="AddAsync">
+                    @Localize["Add"]
+                </button>
+            </div>
+            <ValidationMessage For="@(() => Username)" />
+        </div>
+
+        @foreach (var member in Members)
+        {
+            <div>@member[1]</div>
+        }
+
+    </EditForm>

@@ -1,0 +1,12 @@
+﻿<span>
+    @{
+        if (ParentObject == null)
+        {
+            <Loading ParentObject="@ParentObject" />
+        }
+        else
+        {
+            @((MarkupString)RenderedText)
+        }
+    }
+</span>

@@ -1,0 +1,58 @@
+{
+  "SecurityAppSettings": {
+    "DefaultRoleUsers": [
+      {
+        "Role": "Admin",
+        "Users": ["admin"]
+      },
+      {
+        "Role": "Manager",
+        "Users": ["admin"]
+      }
+    ],
+    "DefaultPermissions": [
+      "BlazorWorld.Admin:Menu,View,Admin",
+      "BlazorWorld.Articles:Menu,View,Guest",
+      "BlazorWorld.Articles:Admin,View,Admin",
+      "BlazorWorld.Articles:Category,Add,Admin",
+      "BlazorWorld.Articles:Article,View,Guest",
+      "BlazorWorld.Articles:Article,Add,User",
+      "BlazorWorld.Articles:Comment,View,Guest",
+      "BlazorWorld.Articles:Comment,Add,User",
+      "BlazorWorld.Blogs:Menu,View,Guest",
+      "BlazorWorld.Blogs:Blog,View,Guest",
+      "BlazorWorld.Blogs:Blog,Add,User",
+      "BlazorWorld.Blogs:Post,View,Guest",
+      "BlazorWorld.Blogs:Post,Add,User",
+      "BlazorWorld.Blogs:Comment,View,Guest",
+      "BlazorWorld.Blogs:Comment,Add,User",
+      "BlazorWorld.Forums:Menu,View,Guest",
+      "BlazorWorld.Forums:Admin,View,Admin",
+      "BlazorWorld.Forums:Forum,Add,Admin",
+      "BlazorWorld.Forums:Forum,Add,Manager",
+      "BlazorWorld.Forums:Forum,Edit,Admin",
+      "BlazorWorld.Forums:Forum,Edit,Manager",
+      "BlazorWorld.Forums:Forum,Delete,Admin",
+      "BlazorWorld.Forums:Forum,Delete,Manager",
+      "BlazorWorld.Forums:Topic,Add,User",
+      "BlazorWorld.Forums:Topic,Edit,Admin",
+      "BlazorWorld.Forums:Topic,Edit,Manager",
+      "BlazorWorld.Forums:Topic,Delete,Admin",
+      "BlazorWorld.Forums:Topic,Delete,Manager",
+      "BlazorWorld.Forums:Topic,Vote,User",
+      "BlazorWorld.Forums:Post,Add,User",
+      "BlazorWorld.Forums:Post,Edit,Admin",
+      "BlazorWorld.Forums:Post,Edit,Manager",
+      "BlazorWorld.Forums:Post,Delete,Admin",
+      "BlazorWorld.Forums:Post,Delete,Manager",
+      "BlazorWorld.Forums:Post,Vote,User",
+      "BlazorWorld.Forums:Comment,Add,User",
+      "BlazorWorld.Forums:Comment,Edit,Admin",
+      "BlazorWorld.Forums:Comment,Edit,Manager",
+      "BlazorWorld.Forums:Comment,Delete,Admin",
+      "BlazorWorld.Forums:Comment,Delete,Manager",
+      "BlazorWorld.Forums:Comment,Vote,User",
+      "BlazorWorld.Messages:Menu,View,User"
+    ]
+  }
+}

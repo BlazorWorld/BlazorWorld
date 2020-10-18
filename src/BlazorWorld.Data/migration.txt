@@ -1,0 +1,2 @@
+﻿dotnet ef migrations add Initial --context ApplicationDbContext --startup-project ../BlazorWorld.Web.Server
+dotnet tool update --global dotnet-ef

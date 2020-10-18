@@ -1,0 +1,62 @@
+﻿@page "/blog/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="@($"/blogs")"><i class="fas fa-blog"></i></NavLink>
+            / @Blog?.Name
+        </li>
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="h3">@Blog?.Name</h1>
+    <RichText Text="@Blog?.Description" ParentObject="@Blog" />
+    <Created CreatedBy="@Blog?.CreatedBy" />
+    @if (CanEditBlog)
+    {
+        <NavLink href=@($"/blog/edit/{Blog?.Slug}") class="btn btn-primary btn-sm mt-3 mb-2 mr-2">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            @Localize["Edit"]
+        </NavLink>
+    }
+
+    @if (CanAddPost)
+    {
+        <NavLink href=@($"/blog/post/new/{Blog?.Slug}") class="btn btn-primary btn-sm mt-3 mb-2 mr-2">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            @Localize["New Post"]
+        </NavLink>
+    }
+</div>
+
+@if (Posts != null)
+{
+    @foreach (var post in Posts.Data)
+    {
+            <div class="card shadow mb-3">
+                <div class="card-body">
+                    <h5>
+                        <small>
+                            <NavLink href="@($"/blog/post/{post.Slug}")">@post.Title</NavLink>
+                        </small>
+                    </h5>
+                    <small>
+                        <FromNow Date="@post.CreatedDate" />
+                    </small>
+                    <br />
+                    @post.Snippet
+                    <ReadMore Link="@($"/blog/post/{post.Slug}")" />
+                </div>
+            </div>
+    }
+
+    if (Posts.ShowNext)
+    {
+        <button class="btn btn-primary btn-sm mr-2" @onclick="Posts.NextAsync">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            @Localize["More Posts"]
+        </button>
+    }
+}

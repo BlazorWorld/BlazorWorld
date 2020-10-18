@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+	<TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.0-rc.1.*" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0-rc.1.*" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="5.0.0-rc.1.*" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0-rc.1.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\BlazorWorld.Core\BlazorWorld.Core.csproj" />
+    <ProjectReference Include="..\..\BlazorWorld.Web.Client.Shell\BlazorWorld.Web.Client.Shell.csproj" />
+    <ProjectReference Include="..\BlazorWorld.Web.Client.Modules.Common\BlazorWorld.Web.Client.Modules.Common.csproj" />
+  </ItemGroup>
+
+</Project>

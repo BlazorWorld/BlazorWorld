@@ -1,0 +1,39 @@
+﻿@page "/article/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="@($"/articles")"><i class="fas fa-newspaper"></i></NavLink>
+            /
+            <NavLink href="@($"/articles/{Category?.Slug}")">@Category?.Name</NavLink>
+        </li>
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="h3">@Article?.Title</h1>
+    <Created CreatedBy="@Article?.CreatedBy" CreatedDate="@Article?.CreatedDate" />
+    <RichText Text="@Article?.Summary" ParentObject="@Article" />
+    @if (CanEditArticle)
+    {
+        <NavLink href="@($"/article/edit/{Article?.Slug}")" class="btn btn-primary btn-sm mb-2 mr-2">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            @Localize["Edit"]
+        </NavLink>
+    }
+
+    @if (CanDeleteArticle)
+    {
+        <NavLink href="@($"/article/delete/{Article?.Id}")" class="btn btn-danger btn-sm mb-2 mr-2">
+            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+            @Localize["Delete"]
+        </NavLink>
+    }
+</div>
+
+<div class="card shadow mb-3">
+    <div class="card-body">
+        <RichText Text="@Article?.Content" ParentObject="@Article" />
+    </div>
+</div>

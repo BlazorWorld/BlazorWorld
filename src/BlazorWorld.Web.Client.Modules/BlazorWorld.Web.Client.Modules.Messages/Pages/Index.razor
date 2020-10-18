@@ -1,0 +1,29 @@
+﻿@page "/messages"
+@inject IStringLocalizer<Resource> Localize
+
+<h1 class="h3"><i class="fa fa-envelope"></i> @Localize["Messages"]</h1>
+
+<div class="btn-group">
+    <NavLink href="/messages/new" class="btn btn-primary btn-sm">
+        <i class="fas fa-plus"></i>
+        @Localize["New Message"]
+    </NavLink>
+</div>
+
+@if (Groups == null)
+{
+    <Loading />
+}
+else
+{
+    @foreach (var group in Groups)
+    {
+        <div class="card shadow mt-3">
+            <div class="card-body">
+                <NavLink href=@($"/messages/{group.Id}")>
+                    <GroupHeader Group=@group />
+                </NavLink>
+            </div>
+        </div>
+    }
+}

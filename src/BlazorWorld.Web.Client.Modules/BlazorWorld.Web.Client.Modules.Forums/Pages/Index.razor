@@ -1,0 +1,33 @@
+﻿@page "/forums"
+@inject IStringLocalizer<Resource> Localize
+
+<h1 class="h3"><i class="fa fa-comments"></i> @Localize["Forums"]</h1>
+
+@if (CanAddForum)
+{
+    <div class="btn-group">
+        <NavLink href="/forum/new" class="btn btn-primary btn-sm">
+            <i class="fas fa-plus"></i>
+            @Localize["New Forum"]
+        </NavLink>
+    </div>
+}
+
+@if (Forums == null)
+{
+    <Loading />
+}
+else
+{
+    @foreach (var forum in Forums.Items())
+    {
+        <div class="card shadow mt-3">
+            <div class="card-body">
+                <p class="card-text">
+                    <NavLink href=@($"/forum/{forum.Name}")>@forum.Title</NavLink>.
+                    @forum.Snippet [@forum.ChildCount @Localize["topics"]]
+                </p>
+            </div>
+        </div>
+    }
+}

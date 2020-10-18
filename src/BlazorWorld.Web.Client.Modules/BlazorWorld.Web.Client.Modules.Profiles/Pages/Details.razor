@@ -1,0 +1,27 @@
+﻿@page "/profile/in/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<div class="jumbotron">
+    <div class="media">
+        <div class="media-left">
+            <Avatar UserId="@Profile?.CreatedBy" Size="150" />
+        </div>
+        <div class="media-body ml-3">
+            <h1 class="h3 media-heading">@Profile?.Slug</h1>
+            <RichText Text="@Profile?.Headline" ParentObject="@Profile" />
+            @if (CanEditProfile)
+            {
+                <NavLink href=@($"/profile/edit/{Profile?.Slug}") class="btn btn-primary btn-sm mb-2 mr-2">
+                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                    @Localize["Edit"]
+                </NavLink>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="card shadow mb-3">
+    <div class="card-body">
+        <RichText Text="@Profile?.About" ParentObject="@Profile" />
+    </div>
+</div>

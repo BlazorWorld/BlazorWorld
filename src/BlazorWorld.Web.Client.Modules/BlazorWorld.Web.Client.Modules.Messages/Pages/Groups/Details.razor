@@ -1,0 +1,10 @@
+﻿@page "/messages/{Id}"
+@inject IStringLocalizer<Resource> Localize
+
+<div class="card shadow mt-3">
+    <div class="card-body">
+        <GroupHeader Group=@Group />
+    </div>
+</div>
+
+<Chat GroupId="@Id" />

@@ -1,0 +1,36 @@
+﻿@page "/profile/edit/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<div class="card shadow mb-3">
+    <div class="card-body container">
+        <h2 class="h4">@Localize["Edit Profile"]</h2>
+
+        <EditForm class="mt-4" OnValidSubmit="SubmitAsync" Model="@Profile">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group row col-md-10">
+                <InputText class="form-control"
+                           @bind-Value="Profile.Headline"
+                           placeholder="@Localize["Headline"]" />
+                <ValidationMessage For="@(() => Profile.Headline)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <textarea class="form-control"
+                          rows="@Profile.About.StringToRows(4)"
+                          @bind-value="Profile.About"
+                          @bind-value:event="oninput"
+                          placeholder="@Localize["About"]" />
+                <ValidationMessage For="@(() => Profile.About)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <NavLink href="@($"/profile/in/{Profile?.Slug}")"
+                         class="btn btn-danger btn-sm mr-2">
+                    <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
+                </NavLink>
+                <button type="submit" ref="createButton" id="btnSave" class="btn btn-success btn-sm mr-2" value="save">
+                    <i class="fa fa-check" aria-hidden="true"></i> @Localize["Save"]
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

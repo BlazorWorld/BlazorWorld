@@ -1,0 +1,39 @@
+﻿@page "/blog/post/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="@($"/blogs")"><i class="fas fa-blog"></i></NavLink>
+            / <NavLink href="@($"/blog/{Blog?.Slug}")">@Blog?.Name</NavLink>
+        </li>
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="h3">@Post?.Title</h1>
+    <Created CreatedBy="@Post?.CreatedBy" CreatedDate="@Post?.CreatedDate" />
+    @if (CanEditPost)
+    {
+        <div class="btn-group">
+            <NavLink href="@($"/blog/post/edit/{Post?.Slug}")" class="btn btn-primary btn-sm mr-2 mt-3">
+                <i class="fas fa-pencil-alt"></i>
+                @Localize["Edit"]
+            </NavLink>
+        </div>
+    }
+    @if (CanDeletePost)
+    {
+        <div class="btn-group">
+            <NavLink href="@($"/blog/post/delete/{Post?.Slug}")" class="btn btn-danger btn-sm mr-2 mt-3">
+                <i class="fas fa-trash-alt"></i>
+                @Localize["Delete"]
+            </NavLink>
+        </div>
+    }
+</div>
+<div class="card shadow mb-3">
+    <div class="card-body">
+        <RichText Text="@Post?.Content" ParentObject="@Post" />
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@page "/forum/topic/{Id}"
+@inject IStringLocalizer<Resource> Localize
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="/forums"><i class="fa fa-comments"></i></NavLink>
+            /
+            <NavLink href=@($"/forum/{Forum?.Name}")>@Forum?.Title</NavLink>
+        </li>
+    </ol>
+</nav>
+
+<Modal @ref="ConfirmModal"
+       Title="Delete Topic"
+       Text="Do you want to remove this topic?"
+       ConfirmButtonText="Delete"
+       CancelButtonText="Cancel"
+       OnConfirm="DeleteConfirmedAsync" />
+
+<div class="card shadow gedf-card mb-3">
+    <div class="card-header">
+        <Created CreatedBy="@Topic?.CreatedBy" CreatedDate="@Topic?.CreatedDate" />
+    </div>
+    <div class="card-body">
+        <h1 class="h5 card-title">@Topic?.Title</h1>
+        @if (CanEditTopic)
+        {
+            <NavLink href=@($"/forum/topic/edit/{Topic?.Id}")
+                     class="btn btn-primary btn-sm mr-2 mb-2">
+                <i class="fas fa-pencil-alt"></i> @Localize["Edit"]
+            </NavLink>
+        }
+        @if (CanDeleteTopic)
+        {
+            <a href="javascript:;"
+               @onclick="Delete"
+               class="btn btn-danger btn-sm mr-2 mb-2">
+                <i class="fas fa-trash-alt"></i> @Localize["Delete"]
+            </a>
+        }
+        <RichText Text="@Topic?.Content" ParentObject="@Topic" />
+    </div>
+
+    <!--
+    <div>
+        <span class="badge badge-primary mr-2">tag1</span>
+    </div>
+    -->
+    <div class="card-footer">
+        <VoteButtons NodeId="@Topic?.Id" CanVote="@CanVote" Votes="@Topic?.Votes" />
+    </div>
+</div>
+
+@if (CanAddPost)
+{
+    <div shadow class="card mb-3">
+        <PostForm TopicId="@Topic?.Id" OnSave="SavePost"></PostForm>
+    </div>
+}
+
+@{
+    if (Posts != null)
+    {
+        foreach (var post in Posts.Items())
+        {
+            <div class="card shadow mb-3">
+                <PostView Id="@post.Id" OnDelete="DeletePost"></PostView>
+            </div>
+        }
+        if (Posts.ShowNext)
+        {
+            <p>
+                <a href="javascript:;"
+                   @onclick="Posts.NextAsync"
+                   class="btn btn-primary">
+                    @Localize["More Posts"]
+                </a>
+            </p>
+        }
+    }
+}
