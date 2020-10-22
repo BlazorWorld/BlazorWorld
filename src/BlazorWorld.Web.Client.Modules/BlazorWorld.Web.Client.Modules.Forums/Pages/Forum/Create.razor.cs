@@ -15,21 +15,32 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
         protected INodeService NodeService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
+        [Parameter]
+        public string ParentId { get; set; }
         private Models.Forum Forum { get; set; } = new Models.Forum();
+        private Models.Forum ParentForum { get; set; }
         private string ValidationMessage { get; set; } = string.Empty;
         private EditContext _editContext;
         private ValidationMessageStore _messages;
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
             _editContext = new EditContext(Forum);
             _messages = new ValidationMessageStore(_editContext);
             base.OnInitialized();
+
+            if (!string.IsNullOrEmpty(ParentId))
+            {
+                var node = await NodeService.GetAsync(ParentId);
+                if (node != null)
+                    ParentForum = Models.Forum.Create(node);
+            }
         }
 
         protected async Task SubmitAsync()
         {
             Forum.Name = Forum.Title.ToSlug();
+            Forum.ParentId = ParentId;
             var existingForum = await NodeService.GetBySlugAsync(
                 Constants.ForumsModule,
                 Constants.ForumType,

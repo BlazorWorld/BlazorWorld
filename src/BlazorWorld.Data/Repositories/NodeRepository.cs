@@ -27,6 +27,7 @@ namespace BlazorWorld.Data.Repositories
                             (string.IsNullOrEmpty(search.Type) || n.Type == search.Type) &&
                             (string.IsNullOrEmpty(search.Slug) || n.Slug == search.Slug) &&
                             (string.IsNullOrEmpty(search.ParentId) || n.ParentId == search.ParentId) &&
+                            (!search.RootOnly || string.IsNullOrEmpty(n.ParentId)) &&
                             (string.IsNullOrEmpty(search.CategoryId) || n.CategoryId == search.CategoryId) &&
                             (string.IsNullOrEmpty(search.Path) || n.Path.StartsWith(search.Path)) &&
                             (string.IsNullOrEmpty(search.GroupId) || n.GroupId == search.GroupId)

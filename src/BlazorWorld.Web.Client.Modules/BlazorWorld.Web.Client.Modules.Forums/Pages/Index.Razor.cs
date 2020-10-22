@@ -38,7 +38,8 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages
                     OrderBy = new string[]
                     {
                         OrderBy.Title
-                    }
+                    },
+                    RootOnly = true
                 }
             };
             await Forums.InitAsync();

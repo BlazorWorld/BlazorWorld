@@ -25,9 +25,12 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
         private Models.Forum Forum { get; set; }
+        private Models.Forum ParentForum { get; set; }
+        private ForumsModel Forums { get; set; }
         private Models.TopicsModel Topics { get; set; }
         private bool CanEditForum { get; set; } = false;
         private bool CanDeleteForum { get; set; } = false;
+        private bool CanAddForum { get; set; } = false;
         private bool CanAddTopic { get; set; } = false;
         private Modal ConfirmModal { get; set; }
 
@@ -39,6 +42,40 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
                 Slug);
             Forum = Models.Forum.Create(node);
             var createdBy = node.CreatedBy;
+
+            if (!string.IsNullOrEmpty(Forum.ParentId))
+            {
+                var parentNode = await NodeService.GetAsync(Forum.ParentId);
+                if (parentNode != null)
+                    ParentForum = Models.Forum.Create(parentNode);
+            }
+            else
+            {
+                ParentForum = null;
+            }
+
+            Forums = new ForumsModel(NodeService)
+            {
+                NodeSearch = new NodeSearch()
+                {
+                    Module = Constants.ForumsModule,
+                    Type = Constants.ForumType,
+                    OrderBy = new string[]
+                    {
+                        OrderBy.Title
+                    },
+                    ParentId = node.Id
+                }
+            };
+            await Forums.InitAsync();
+            var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
+            CanAddForum = await SecurityService.AllowedAsync(
+                loggedInUserId,
+                null,
+                Constants.ForumsModule,
+                Constants.ForumType,
+                Actions.Add
+            );
             Topics = new TopicsModel(NodeService)
             {
                 NodeSearch = new NodeSearch()
@@ -54,7 +91,6 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
                 }
             };
             await Topics.InitAsync();
-            var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
             CanEditForum = await SecurityService.AllowedAsync(
                 loggedInUserId,
                 createdBy,

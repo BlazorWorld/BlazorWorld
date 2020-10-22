@@ -9,6 +9,7 @@
         public string Path { get; set; }
         public string GroupId { get; set; }
         public string ParentId { get; set; }
+        public bool RootOnly { get; set; } = false;
         public string[] OrderBy { get; set; }
         public int PageSize { get; set; }
     }
