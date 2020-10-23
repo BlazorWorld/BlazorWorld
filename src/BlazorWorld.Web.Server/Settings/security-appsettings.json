@@ -52,7 +52,10 @@
       "BlazorWorld.Forums:Comment,Delete,Admin",
       "BlazorWorld.Forums:Comment,Delete,Manager",
       "BlazorWorld.Forums:Comment,Vote,User",
-      "BlazorWorld.Messages:Menu,View,User"
+      "BlazorWorld.Messages:Menu,View,User",
+      "BlazorWorld.Videos:Menu,View,Guest",
+      "BlazorWorld.Videos:Channel,View,Guest",
+      "BlazorWorld.Videos:Channel,Add,Admin"
     ]
   }
 }

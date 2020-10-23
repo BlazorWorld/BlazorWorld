@@ -107,7 +107,7 @@
         "Icon": "fas fa-video",
         "Link": "/videos",
         "Permission": "BlazorWorld.Videos",
-        "Enabled": false
+        "Enabled": true
       },
       {
         "Order": "12",

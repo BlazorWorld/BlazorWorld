@@ -1,0 +1,23 @@
+﻿@page "/videos/"
+@inject IStringLocalizer<Resource> Localize
+
+<h3><i class="fas fa-video"></i> @Localize["Videos"]</h3>
+
+@if (CanAddChannel)
+{
+    <div class="btn-group">
+        <NavLink href="/videos/channel/new" class="btn btn-primary btn-sm mb-3">
+            <i class="fas fa-plus" aria-hidden="true"></i>
+            @Localize["New Channel"]
+        </NavLink>
+    </div>
+}
+
+@if (Channels != null && Channels.Data != null)
+{
+    foreach (var node in Channels.Data)
+    {
+        var channel = Models.Channel.Create(node);
+        <ChannelCard Channel="channel" />
+    }
+}

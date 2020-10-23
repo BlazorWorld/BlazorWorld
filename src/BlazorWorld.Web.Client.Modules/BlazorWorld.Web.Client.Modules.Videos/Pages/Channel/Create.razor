@@ -1,0 +1,36 @@
+﻿@page "/videos/channel/new/"
+@inject IStringLocalizer<Resource> Localize
+
+<div class="card shadow mb-3">
+    <div class="card-body container">
+        <h2 class="h4">@Localize["New Channel"]</h2>
+
+        <EditForm class="mt-4" OnValidSubmit="SubmitAsync" Model="@Channel">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="form-group row col-md-10">
+                <InputText class="form-control"
+                           @bind-Value="Channel.Name"
+                           placeholder="@Localize["Name"]" />
+                <ValidationMessage For="@(() => Channel.Name)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <textarea class="form-control"
+                          rows="@Channel.Description.StringToRows(4)"
+                          @bind-value="Channel.Description"
+                          @bind-value:event="oninput"
+                          placeholder="@Localize["Description"]" />
+                <ValidationMessage For="@(() => Channel.Description)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <NavLink href="/videos"
+                         class="btn btn-danger btn-sm mr-2">
+                    <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
+                </NavLink>
+                <button type="submit" ref="createButton" id="btnSave" class="btn btn-success btn-sm mr-2" value="save">
+                    <i class="fa fa-check" aria-hidden="true"></i> @Localize["Save"]
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>
