@@ -16,15 +16,24 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
         protected INodeService NodeService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
-        private Models.Channel Channel { get; set; }
+        [Parameter]
+        public string Slug { get; set; }
+        private Models.Channel Channel { get; set; } = new Models.Channel();
         private string ValidationMessage { get; set; } = string.Empty;
         private EditContext _editContext;
         private ValidationMessageStore _messages;
 
-        protected override void OnInitialized()
+        protected override async Task OnParametersSetAsync()
         {
             _editContext = new EditContext(Channel);
             _messages = new ValidationMessageStore(_editContext);
+
+            var node = await NodeService.GetBySlugAsync(
+                Constants.VideosModule,
+                Constants.ChannelType,
+                Slug);
+            Channel = Models.Channel.Create(node);
+
             base.OnInitialized();
         }
 
