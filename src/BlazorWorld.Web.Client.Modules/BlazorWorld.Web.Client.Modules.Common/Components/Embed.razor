@@ -1,0 +1,43 @@
+﻿<div class="text-center">
+    @{ 
+        if (Provider == "youtube" && Extension == "responsive")
+        {
+            <div class="col-md-12 vid">
+                <iframe width="560"
+                    height="315"
+                    src=@($"https://www.youtube.com/embed/{Id}")
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div> 
+        }
+        if (Provider == "youtube" && string.IsNullOrEmpty(Extension))
+        {
+            <iframe width="560"
+                height="315"
+                src=@($"https://www.youtube.com/embed/{Id}")
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        }
+        if (Provider == "imgur")
+        {
+            <blockquote class="imgur-embed-pub"
+                lang="en"
+                data-id=@($"a/{Id}")
+                data-context="false">
+                <br />
+                <a href=@($"https://i.imgur.com/a/{Id}")>View on Imgur</a>
+            </blockquote>
+        }
+        if (Provider == "instagram")
+        {
+            <iframe src=@($"https://www.instagram.com/p/{Id}/embed")
+                width="400"
+                height="480"
+                frameborder="0"
+                scrolling="no"
+                allowtransparency="true"></iframe> 
+        } 
+    }
+</div>

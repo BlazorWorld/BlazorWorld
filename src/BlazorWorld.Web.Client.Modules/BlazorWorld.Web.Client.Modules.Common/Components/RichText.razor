@@ -6,7 +6,17 @@
         }
         else
         {
-            @((MarkupString)RenderedText)
+            foreach (var element in Elements)
+            {
+                if (element.IsEmbed)
+                {
+                    <Embed Source="@element.Text" />
+                }
+                else
+                {
+                    <span>@((MarkupString)element.Text)</span>
+                }
+            }
         }
     }
 </span>

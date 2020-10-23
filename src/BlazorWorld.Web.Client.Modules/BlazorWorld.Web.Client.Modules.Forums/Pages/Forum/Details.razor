@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">
-            <NavLink href="@($"/forums/{Forum?.Path}")"><i class="fa fa-comments"></i> Forums</NavLink>
+            <NavLink href="@($"/forums/{Forum?.Path}")"><i class="fa fa-comments"></i> @Localize["Forums"]</NavLink>
             @{ 
                 if (ParentForum != null)
                 {
@@ -65,7 +65,7 @@ else
             <div class="card-body">
                 <p class="card-text">
                     <NavLink href=@($"/forum/{forum.Name}")>@forum.Title</NavLink>.
-                    @forum.Snippet [@forum.ChildCount @Localize["topics"]]
+                    @forum.Snippet [@forum.ChildCount @Localize["subforums/topics"]]
                 </p>
             </div>
         </div>
@@ -74,7 +74,7 @@ else
 
 @if (CanAddTopic)
 {
-    <NavLink href=@($"/forum/topic/new/{Forum?.Id}")
+    <NavLink href=@($"/forum/topic/new/{Forum?.Slug}")
                 type="button"
                 class="btn btn-primary btn-sm mb-3">
         <i class="fas fa-plus"></i>
