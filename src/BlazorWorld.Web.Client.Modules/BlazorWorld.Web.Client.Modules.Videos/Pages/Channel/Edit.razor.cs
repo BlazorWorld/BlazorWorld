@@ -52,7 +52,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
                     Node = Channel,
                     Message = $"Edited a video channel: {Channel.Name}."
                 };
-                await NodeService.AddAsync(contentActivity);
+                await NodeService.UpdateAsync(contentActivity);
                 NavigationManager.NavigateTo($"videos/{Channel.Slug}");
             }
             else
