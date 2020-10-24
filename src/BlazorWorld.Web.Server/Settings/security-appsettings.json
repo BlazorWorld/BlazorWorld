@@ -29,6 +29,7 @@
       "BlazorWorld.Blogs:Blog,Edit,Admin",
       "BlazorWorld.Blogs:Blog,Edit,Manager",
       "BlazorWorld.Blogs:Post,View,Guest",
+      "BlazorWorld.Blogs:Post,Add,Admin",
       "BlazorWorld.Blogs:Post,Add,Manager",
       "BlazorWorld.Blogs:Post,Edit,Admin",
       "BlazorWorld.Blogs:Post,Edit,Manager",

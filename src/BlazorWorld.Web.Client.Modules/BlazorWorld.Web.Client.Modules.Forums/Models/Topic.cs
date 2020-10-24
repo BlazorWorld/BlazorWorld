@@ -10,6 +10,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Models
         {
             Module = Constants.ForumsModule;
             Type = Constants.TopicType;
+            CustomFields = new Core.Entities.Common.EntityCustomFields();
         }
 
         public static Topic Create(Node node)
@@ -21,6 +22,12 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Models
         {
             get => ParentId;
             set => ParentId = value;
+        }
+
+        public string Link
+        {
+            get => CustomFields.CustomField1;
+            set => CustomFields.CustomField1 = value;
         }
 
         public int PostCount => ChildCount;

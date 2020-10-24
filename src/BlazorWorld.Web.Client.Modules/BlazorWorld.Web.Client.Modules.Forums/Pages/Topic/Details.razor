@@ -22,7 +22,18 @@
         <Created CreatedBy="@Topic?.CreatedBy" CreatedDate="@Topic?.CreatedDate" />
     </div>
     <div class="card-body">
-        <h1 class="h5 card-title">@Topic?.Title</h1>
+        @if (Topic != null && !string.IsNullOrEmpty(Topic.Link))
+        {
+            <a href="@Topic?.Link" target="_blank">
+                <h1 class="h5 card-title">
+                    @Topic?.Title
+                </h1>
+            </a>
+        }
+        else
+        {
+            <h1 class="h5 card-title">@Topic?.Title</h1>
+        }
         @if (CanEditTopic)
         {
             <NavLink href=@($"/forum/topic/edit/{Topic?.Id}")

@@ -21,9 +21,15 @@
             <ValidationSummary />
             <div class="form-group row col-md-10">
                 <InputText class="form-control"
-                            @bind-Value="@Topic.Title"
-                            placeholder="Title" />
+                           @bind-Value="@Topic.Title"
+                           placeholder="Title" />
                 <ValidationMessage For="@(() => Topic.Title)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <InputText class="form-control"
+                           @bind-Value="@Topic.Link"
+                           placeholder="Link (optional)" />
+                <ValidationMessage For="@(() => Topic.Link)" />
             </div>
             <div class="form-group row col-md-10">
                 <InputTextArea class="form-control"
