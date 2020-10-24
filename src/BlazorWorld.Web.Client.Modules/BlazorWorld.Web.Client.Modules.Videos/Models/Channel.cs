@@ -28,5 +28,11 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Models
             get => Content;
             set => Content = value;
         }
+
+        public string ThumbnailUrl
+        {
+            get => CustomFields.CustomField1;
+            set => CustomFields.CustomField1 = value;
+        }
     }
 }

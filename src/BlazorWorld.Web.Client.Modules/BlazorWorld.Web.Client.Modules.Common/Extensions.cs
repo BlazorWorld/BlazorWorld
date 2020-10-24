@@ -7,7 +7,7 @@ namespace BlazorWorld.Web.Client.Modules.Common
 {
     public static class Extensions
     {
-        public static void AddModuleServices(this IServiceCollection serviceCollection)
+        public static void AddBlazorWorldModuleServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<ICategoryService, CategoryService>();
             serviceCollection.AddTransient<INodeService, NodeService>();

@@ -23,6 +23,7 @@ namespace BlazorWorld.Web.Client.Modules.Common.Services
         Task<int> SecureGetCountAsync(NodeSearch nodeSearch);
         Task<HttpResponseMessage> AddAsync(ContentActivity contentActivity);
         Task<HttpResponseMessage> UpdateAsync(ContentActivity contentActivity);
-        Task<HttpResponseMessage> DeleteAsync(string id); 
+        Task<HttpResponseMessage> DeleteAsync(string id);
+        Task<string> SecureGetOEmbed(string oEmbedUrl);
     }
 }

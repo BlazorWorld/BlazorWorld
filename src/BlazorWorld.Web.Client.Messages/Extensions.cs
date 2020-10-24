@@ -5,7 +5,7 @@ namespace BlazorWorld.Web.Client.Messages
 {
     public static class Extensions
     {
-        public static void AddMessagesServices(this IServiceCollection serviceCollection)
+        public static void AddBlazorWorldMessagesServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddScoped<HubClientService>();
             serviceCollection.AddTransient<IMessageService, MessageService>();

@@ -1,14 +1,15 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common;
 using BlazorWorld.Web.Client.Modules.Common.Services;
+using BlazorWorld.Web.Client.Modules.Videos.Services;
 using BlazorWorld.Web.Client.Shell.Services;
 using BlazorWorld.Web.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
+namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Video
 {
-    public partial class Edit : ComponentBase
+    public partial class Create : ComponentBase
     {
         [Inject]
         protected ISecurityService SecurityService { get; set; }
@@ -16,16 +17,20 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
         protected INodeService NodeService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
+        [Inject]
+        protected IVideoService VideoService { get; set; }
         [Parameter]
         public string Slug { get; set; }
+        private Models.Video Video { get; set; } = new Models.Video();
         private Models.Channel Channel { get; set; } = new Models.Channel();
+        private bool SetAsChannelThumbnail { get; set; } = false;
         private string ValidationMessage { get; set; } = string.Empty;
         private EditContext _editContext;
         private ValidationMessageStore _messages;
 
         protected override async Task OnParametersSetAsync()
         {
-            _editContext = new EditContext(Channel);
+            _editContext = new EditContext(Video);
             _messages = new ValidationMessageStore(_editContext);
 
             var node = await NodeService.GetBySlugAsync(
@@ -33,32 +38,32 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
                 Constants.ChannelType,
                 Slug);
             Channel = Models.Channel.Create(node);
+            Video.ChannelId = Channel.Id;
 
             base.OnInitialized();
         }
 
         protected async Task SubmitAsync()
         {
-            Channel.Slug = Channel.Name.ToSlug();
-            var existingChannel = await NodeService.GetBySlugAsync(
-                Constants.VideosModule,
-                Constants.ChannelType,
-                Channel.Slug);
-
-            if (existingChannel == null)
+            await VideoService.SetVideoAttributesAsync(Video);
+            var contentActivity = new ContentActivity()
             {
-                var contentActivity = new ContentActivity()
+                Node = Video,
+                Message = $"Added a new video: {Video.Url}."
+            };
+            await NodeService.AddAsync(contentActivity);
+
+            if (SetAsChannelThumbnail)
+            {
+                Channel.ThumbnailUrl = Video.ThumbnailUrl;
+                contentActivity = new ContentActivity()
                 {
                     Node = Channel,
-                    Message = $"Edited a video channel: {Channel.Name}."
+                    Message = $"Updated a video channel: {Channel.Name}."
                 };
-                await NodeService.AddAsync(contentActivity);
-                NavigationManager.NavigateTo($"videos/{Channel.Slug}");
+                await NodeService.UpdateAsync(contentActivity);
             }
-            else
-            {
-                ValidationMessage = "A similar name already exists.";
-            }
+            NavigationManager.NavigateTo($"video/{Video.Id}");
         }
 
     }

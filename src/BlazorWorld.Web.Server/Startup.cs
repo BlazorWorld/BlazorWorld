@@ -44,6 +44,7 @@ namespace BlazorWorld.Web.Server
             // https://docs.microsoft.com/en-us/aspnet/core/security/blazor/webassembly/hosted-with-identity-server?view=aspnetcore-3.1&tabs=visual-studio
             services.Configure<IdentityOptions>(options =>
                 options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
+            services.AddHttpClient();
             services.AddBlazorWorldIdentityRepositories();
             services.AddBlazorWorldApplicationRepositories();
             services.AddBlazorWorldServices(Configuration);

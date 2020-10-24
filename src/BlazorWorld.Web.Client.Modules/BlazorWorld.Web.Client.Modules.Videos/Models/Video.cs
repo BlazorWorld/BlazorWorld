@@ -17,6 +17,12 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Models
             return node.ConvertTo<Video>();
         }
 
+        public string ChannelId
+        {
+            get => ParentId;
+            set => ParentId = value;
+        }
+
         public string Url
         {
             get => CustomFields.CustomField1;

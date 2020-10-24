@@ -5,7 +5,7 @@ namespace BlazorWorld.Web.Client.Common
 {
     public static class Extensions
     {
-        public static void AddCommonServices(this IServiceCollection serviceCollection)
+        public static void AddBlazorWorldCommonServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IGroupService, GroupService>();
             serviceCollection.AddTransient<IUserApiService, UserApiService>();

@@ -1,10 +1,18 @@
 ﻿@page "/videos/{Slug}"
 @inject IStringLocalizer<Resource> Localize
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="@($"/videos")"><i class="fas fa-video"></i> @Localize["Videos"]</NavLink>
+        </li>
+    </ol>
+</nav>
+
 <div class="jumbotron">
     <div class="media">
         <div class="media-body ml-3">
-            <h1 class="h3 media-heading">@Channel?.Slug</h1>
+            <h1 class="h3 media-heading">@Channel?.Name</h1>
             <RichText Text="@Channel?.Description" ParentObject="@Channel" />
             @if (CanEditChannel)
             {
@@ -17,8 +25,24 @@
     </div>
 </div>
 
-<div class="card shadow mb-3">
-    <div class="card-body">
-        <RichText Text="@Channel?.Description" ParentObject="@Channel" />
-    </div>
-</div>
+@if (CanAddVideo)
+{
+    <NavLink href="@($"/video/new/{Channel?.Slug}")" class="btn btn-primary btn-sm mb-3 mr-2">
+        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+        @Localize["New Video"]
+    </NavLink>
+}
+
+@{
+    if (Videos != null)
+    {
+        <div class="d-flex flex-wrap">
+            @foreach (var node in Videos.Data)
+            {
+                var video = Models.Video.Create(node);
+                <VideoCard Video="video" />
+            }
+        </div>
+    }
+}
+

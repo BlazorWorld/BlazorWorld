@@ -41,7 +41,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
                 var contentActivity = new ContentActivity()
                 {
                     Node = Channel,
-                    Message = $"Added a new channel: {Channel.Name}."
+                    Message = $"Added a new video channel: {Channel.Name}."
                 };
                 await NodeService.AddAsync(contentActivity);
                 NavigationManager.NavigateTo($"videos/{Channel.Slug}");

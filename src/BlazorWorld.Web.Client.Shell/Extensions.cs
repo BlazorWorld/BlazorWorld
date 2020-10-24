@@ -11,7 +11,7 @@ namespace BlazorWorld.Web.Client.Shell
 {
     public static class Extensions
     {
-        public static void AddShellServices(this IServiceCollection serviceCollection)
+        public static void AddBlazorWorldShellServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IConfigurationService, ConfigurationService>();
             serviceCollection.AddTransient<IInvitationService, InvitationService>();

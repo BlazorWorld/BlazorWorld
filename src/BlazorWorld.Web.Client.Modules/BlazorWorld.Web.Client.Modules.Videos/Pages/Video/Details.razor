@@ -1,2 +1,25 @@
 ﻿@page "/video/{Id}"
 @inject IStringLocalizer<Resource> Localize
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+            <NavLink href="/videos"><i class="fas fa-video"></i> @Localize["Videos"]</NavLink>
+            /
+            <NavLink href="@($"/videos/{Channel?.Slug}")">@Channel?.Name</NavLink>
+        </li>
+    </ol>
+</nav>
+
+<h1 class="h3">@Video?.Title</h1>
+
+<div class="text-center">
+    <div class="col-md-12 vid">
+        <iframe width="560"
+                height="315"
+                src="@Video?.EmbedUrl"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+</div>

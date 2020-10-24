@@ -1,5 +1,13 @@
 ﻿<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-no-pad-left">
     <div class="card shadow mb-3">
+        @{
+            if (!string.IsNullOrEmpty(Channel.ThumbnailUrl))
+            {
+                <NavLink href=@($"/videos/{Channel.Slug}")>
+                    <img class="card-img-top" src="@Channel.ThumbnailUrl" />
+                </NavLink>
+            }
+        }
         <div class="card-body">
             <h2 class="h4">
                 <small>

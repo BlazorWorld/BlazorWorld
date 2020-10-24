@@ -13,11 +13,17 @@
     </div>
 }
 
-@if (Channels != null && Channels.Data != null)
-{
-    foreach (var node in Channels.Data)
+@{
+    if (Channels != null && Channels.Data != null)
     {
-        var channel = Models.Channel.Create(node);
-        <ChannelCard Channel="channel" />
+        <div class="d-flex flex-wrap">
+            @{
+                foreach (var node in Channels.Data)
+                {
+                    var channel = Models.Channel.Create(node);
+                    <ChannelCard Channel="channel" />
+                }
+            }
+        </div>
     }
 }

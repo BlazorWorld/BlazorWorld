@@ -15,7 +15,10 @@ namespace BlazorWorld.Data.Repositories
 
         public async Task<Node> GetAsync(string id)
         {
-            return await _dbContext.Nodes.FindAsync(id);
+            return await (from n in _dbContext.Nodes
+                          .Include(n => n.CustomFields)
+                          where n.Id == id
+                          select n).FirstOrDefaultAsync();
         }
 
         public IQueryable<Node> Get(NodeSearch search)

@@ -137,5 +137,11 @@ namespace BlazorWorld.Web.Client.Modules.Common.Services
         {
             return await AuthorizedHttpClient.DeleteAsync($"{API_URL}?id={id}");
         }
+
+        public async Task<string> SecureGetOEmbed(string oEmbedUrl)
+        {
+            var request = $"{API_URL}/GetOEmbed?oEmbedUrl={oEmbedUrl}";
+            return await AuthorizedHttpClient.GetStringAsync(request);
+        }
     }
 }

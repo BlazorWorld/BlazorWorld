@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -23,6 +24,7 @@ namespace BlazorWorld.Web.Server.Controllers
     public class NodeController : ControllerBase
     {
         private readonly ILogger<NodeController> _logger;
+        private readonly IHttpClientFactory _clientFactory;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly INodeService _nodeService;
         private readonly IActivityService _activityService;
@@ -31,6 +33,7 @@ namespace BlazorWorld.Web.Server.Controllers
 
         public NodeController(
             ILogger<NodeController> logger,
+            IHttpClientFactory clientFactory,
             UserManager<ApplicationUser> userManager,
             INodeService nodeService,
             IActivityService activityService,
@@ -38,6 +41,7 @@ namespace BlazorWorld.Web.Server.Controllers
             IConfiguration configuration)
         {
             _logger = logger;
+            _clientFactory = clientFactory;
             _userManager = userManager;
             _nodeService = nodeService;
             _activityService = activityService;
@@ -156,6 +160,21 @@ namespace BlazorWorld.Web.Server.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpGet("GetOEmbed")]
+        public async Task<IActionResult> GetOEmbed(string oEmbedUrl)
+        {
+            var client = _clientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, oEmbedUrl);
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return Ok(await response.Content.ReadAsStringAsync());
+            }
+
+            return Ok(string.Empty);
         }
     }
 }

@@ -1,6 +1,7 @@
 using BlazorWorld.Web.Client.Common;
 using BlazorWorld.Web.Client.Messages;
 using BlazorWorld.Web.Client.Modules.Common;
+using BlazorWorld.Web.Client.Modules.Videos;
 using BlazorWorld.Web.Client.Shell;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -35,10 +36,13 @@ namespace BlazorWorld.Web.Client
 
             // Start BlazorWorld.Web.Client Updates
             builder.Services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
-            builder.Services.AddCommonServices();
-            builder.Services.AddMessagesServices();
-            builder.Services.AddModuleServices();
-            builder.Services.AddShellServices();
+            builder.Services.AddBlazorWorldCommonServices();
+            builder.Services.AddBlazorWorldMessagesServices();
+            builder.Services.AddBlazorWorldModuleServices();
+            builder.Services.AddBlazorWorldShellServices();
+
+            // Add module services here
+            builder.Services.AddBlazorWorldVideoServices();
 
             builder.Services.AddOidcAuthentication(options =>
             {

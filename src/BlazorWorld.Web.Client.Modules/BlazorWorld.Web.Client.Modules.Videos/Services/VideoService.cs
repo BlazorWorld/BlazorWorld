@@ -1,21 +1,22 @@
-﻿using BlazorWorld.Web.Client.Modules.Videos.Models;
+﻿using BlazorWorld.Web.Client.Modules.Common.Services;
+using BlazorWorld.Web.Client.Modules.Videos.Models;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Modules.Videos.Services
 {
-    public class VideoService
+    public class VideoService : IVideoService
     {
-        private readonly IHttpClientFactory _clientFactory;
-        public VideoService(IHttpClientFactory clientFactory)
+        private readonly INodeService _nodeService;
+        public VideoService(INodeService nodeService)
         {
-            _clientFactory = clientFactory;
+            _nodeService = nodeService;
         }
 
-        public void SetVideoAttributes(Video video)
+        public async Task SetVideoAttributesAsync(Video video)
         {
-            var result = GetOEmbed(video.Url).Result;
+            var result = await GetYouTubeOEmbed(video.Url);
             var jObject = JObject.Parse(result);
             video.EmbedUrl = video.Url.Replace("https://youtu.be/", "https://www.youtube.com/embed/");
             video.Title = (string)jObject["title"];
@@ -24,22 +25,12 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Services
             video.ThumbnailWidth = (string)jObject["thumbnail_width"];
         }
 
-        private async Task<string> GetOEmbed(string url)
+        private async Task<string> GetYouTubeOEmbed(string url)
         {
-            string oEmbedUrl = "https://youtube.com/oembed?url=" + url;
-
-            if (!string.IsNullOrEmpty(oEmbedUrl))
+            if (!string.IsNullOrEmpty(url))
             {
-                var request = new HttpRequestMessage(HttpMethod.Get, oEmbedUrl);
-
-                var client = _clientFactory.CreateClient();
-
-                var response = await client.SendAsync(request);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
+                string oEmbedUrl = "https://www.youtube.com/oembed?url=" + url;
+                return await _nodeService.SecureGetOEmbed(oEmbedUrl);
             }
 
             return string.Empty;
