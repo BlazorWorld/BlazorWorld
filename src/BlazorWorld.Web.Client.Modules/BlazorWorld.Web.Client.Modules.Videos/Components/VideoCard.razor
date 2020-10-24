@@ -1,6 +1,6 @@
 ﻿@inject IStringLocalizer<Resource> Localize
 
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-no-pad-left">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-no-pad-left mb-3">
     <div class="card">
         <NavLink href=@($"/video/{Video.Id}")>
             <img class="card-img-top" src="@Video.ThumbnailUrl" />
@@ -9,14 +9,16 @@
             <NavLink href=@($"/video/{Video.Id}")>
                 <span class="card-title">@Video.Title</span>
             </NavLink>
-            @if (CanAddVideo)
-            {
-                <NavLink href="@($"/video/edit/{Video?.Id}")" class="btn btn-primary btn-sm mb-3 mr-2">
+        </div>
+        @if (CanAddVideo)
+        {
+            <div class="card-footer">
+                <NavLink href="@($"/video/edit/{Video?.Id}")" class="btn btn-primary btn-sm mr-2">
                     <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                     @Localize["Edit"]
                 </NavLink>
-                //<a asp-action="Delete" asp-route-id="@video.Id">Delete</a>
-            }
-        </div>
+                @*<a asp-action="Delete" asp-route-id="@Video.Id">Delete</a>*@
+            </div>
+        }
     </div>
 </div>
