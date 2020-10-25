@@ -89,7 +89,7 @@
         "Icon": "fa fa-address-card",
         "Link": "/profiles",
         "Permission": "BlazorWorld.Profiles",
-        "Enabled": false
+        "Enabled": true
       },
       {
         "Order": "10",

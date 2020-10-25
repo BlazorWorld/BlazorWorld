@@ -1,4 +1,5 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Modules.Profiles.Models;
 using BlazorWorld.Web.Client.Shell;
@@ -14,6 +15,8 @@ namespace BlazorWorld.Web.Client.Modules.Profiles.Pages
         [Inject]
         protected INodeService NodeService { get; set; }
         [Inject]
+        protected IUserApiService UserApiService { get; set; }
+        [Inject]
         protected ISecurityService SecurityService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
@@ -26,20 +29,38 @@ namespace BlazorWorld.Web.Client.Modules.Profiles.Pages
 
         protected override async Task OnParametersSetAsync()
         {
-            var node = await NodeService.GetBySlugAsync(
+            var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
+            if (string.IsNullOrEmpty(Slug) && !string.IsNullOrEmpty(loggedInUserId))
+            {
+                Slug = await UserApiService.GetUserNameAsync(loggedInUserId);
+            }
+            if (!string.IsNullOrEmpty(Slug))
+            {
+                var node = await NodeService.GetBySlugAsync(
                 Constants.ProfilesModule,
                 Constants.ProfileType,
                 Slug);
-            Profile = Profile.Create(node);
-            var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
-            var createdBy = node.CreatedBy;
-            CanEditProfile = await SecurityService.AllowedAsync(
-                loggedInUserId,
-                createdBy,
-                Constants.ProfilesModule,
-                Constants.ProfileType,
-                Actions.Add
-            );
+                if (node != null)
+                {
+                    Profile = Profile.Create(node);
+                    var createdBy = node.CreatedBy;
+                    CanEditProfile = await SecurityService.AllowedAsync(
+                        loggedInUserId,
+                        createdBy,
+                        Constants.ProfilesModule,
+                        Constants.ProfileType,
+                        Actions.Add
+                    );
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("profile/in/new");
+                }
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/");
+            }
         }
     }
 }

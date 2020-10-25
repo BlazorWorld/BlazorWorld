@@ -64,6 +64,8 @@
       "BlazorWorld.Forums:Comment,Delete,Manager",
       "BlazorWorld.Forums:Comment,Vote,User",
       "BlazorWorld.Messages:Menu,View,User",
+      "BlazorWorld.Profiles:Menu,View,User",
+      "BlazorWorld.Profiles:Profile,Add,User",
       "BlazorWorld.Videos:Menu,View,Guest",
       "BlazorWorld.Videos:Channel,View,Guest",
       "BlazorWorld.Videos:Channel,Add,Admin",

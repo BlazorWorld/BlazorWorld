@@ -1,5 +1,7 @@
-﻿using BlazorWorld.Web.Client.Modules.Common.Services;
+﻿using BlazorWorld.Web.Client.Common.Services;
+using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Modules.Profiles.Models;
+using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Client.Shell.Services;
 using BlazorWorld.Web.Shared.Models;
 using Microsoft.AspNetCore.Components;
@@ -9,12 +11,14 @@ using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Modules.Profiles.Pages
 {
-    public partial class Edit : ComponentBase
+    public partial class Create : ComponentBase
     {
         [Inject]
         protected ISecurityService SecurityService { get; set; }
         [Inject]
         protected INodeService NodeService { get; set; }
+        [Inject]
+        protected IUserApiService UserApiService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]
@@ -30,11 +34,15 @@ namespace BlazorWorld.Web.Client.Modules.Profiles.Pages
         {
             _editContext = new EditContext(Profile);
             _messages = new ValidationMessageStore(_editContext);
-            var profile = await NodeService.GetBySlugAsync(
-                Constants.ProfilesModule,
-                Constants.ProfileType,
-                Slug);
-            Profile = Models.Profile.Create(profile);
+            var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
+            if (!string.IsNullOrEmpty(loggedInUserId))
+            {
+                Profile.Slug = await UserApiService.GetUserNameAsync(loggedInUserId);
+            }
+            else
+            {
+                NavigationManager.NavigateTo($"/");
+            }
         }
 
         protected async Task SubmitAsync()
@@ -42,9 +50,9 @@ namespace BlazorWorld.Web.Client.Modules.Profiles.Pages
             var contentActivity = new ContentActivity()
             {
                 Node = Profile,
-                Message = $"Updated the profile: {Profile.Slug}."
+                Message = $"Created the profile: {Profile.Slug}."
             };
-            await NodeService.UpdateAsync(contentActivity);
+            await NodeService.AddAsync(contentActivity);
             NavigationManager.NavigateTo($"profile/in/{Profile.Slug}");
         }
     }

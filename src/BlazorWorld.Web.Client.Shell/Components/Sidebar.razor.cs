@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Shell.Components
@@ -38,7 +39,10 @@ namespace BlazorWorld.Web.Client.Shell.Components
                         SidebarMenuSettings.Add(setting.Category, new List<SidebarMenuSetting>());
                     }
 
-                    SidebarMenuSettings[setting.Category].Add(setting);
+                    if (!SidebarMenuSettings[setting.Category].Any(s => s.Name == setting.Name))
+                    {
+                        SidebarMenuSettings[setting.Category].Add(setting);
+                    }
                 }
             }
         }

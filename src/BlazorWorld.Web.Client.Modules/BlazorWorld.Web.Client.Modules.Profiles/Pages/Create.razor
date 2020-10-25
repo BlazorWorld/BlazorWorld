@@ -1,9 +1,9 @@
-﻿@page "/profile/in/edit/{Slug}"
+﻿@page "/profile/in/new"
 @inject IStringLocalizer<Resource> Localize
 
 <div class="card shadow mb-3">
     <div class="card-body container">
-        <h2 class="h4">@Localize["Edit Profile"]</h2>
+        <h2 class="h4">@Localize["New Profile"]</h2>
 
         <EditForm class="mt-4" OnValidSubmit="SubmitAsync" Model="@Profile">
             <DataAnnotationsValidator />
@@ -23,7 +23,7 @@
                 <ValidationMessage For="@(() => Profile.About)" />
             </div>
             <div class="form-group row col-md-10">
-                <NavLink href="@($"/profile/in/{Profile?.Slug}")"
+                <NavLink href="@($"/")"
                          class="btn btn-danger btn-sm mr-2">
                     <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
                 </NavLink>
