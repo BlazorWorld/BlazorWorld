@@ -1,9 +1,9 @@
 ﻿using BlazorWorld.Web.Shared.Models;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Shell.Services
+namespace BlazorWorld.Web.Shared.Services
 {
-    public interface IConfigurationService
+    public interface IWebConfigurationService
     {
         Task<SidebarMenuSetting[]> SidebarMenuSettingsAsync();
     }

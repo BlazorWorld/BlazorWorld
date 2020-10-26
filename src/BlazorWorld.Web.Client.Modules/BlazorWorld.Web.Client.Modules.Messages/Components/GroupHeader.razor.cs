@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Core.Entities.Organization;
 using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Common.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
@@ -14,7 +15,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Components
         [Inject]
         private IGroupService GroupService { get; set; }
         [Inject]
-        private IUserApiService UserApiService { get; set; }
+        private IWebUserService UserApiService { get; set; }
         private string Header { get; set; } = string.Empty;
         [Parameter]
         public Group Group { get; set; }

@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Modules.Videos.Services;
 using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -11,7 +12,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Video
     public partial class Edit : ComponentBase
     {
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected INodeService NodeService { get; set; }
         [Inject]

@@ -1,10 +1,9 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
-using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Modules.Common.Components;
 using BlazorWorld.Web.Client.Modules.Common.Services;
-using BlazorWorld.Web.Client.Modules.Forums.Models;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Common.Services;
+using BlazorWorld.Web.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -16,9 +15,9 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Comment
         [Inject]
         protected INodeService NodeService { get; set; }
         [Inject]
-        protected IUserApiService UserService { get; set; }
+        protected IWebUserService UserService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Parameter]
         public string Id { get; set; }
         [Parameter]

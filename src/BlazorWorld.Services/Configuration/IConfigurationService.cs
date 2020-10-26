@@ -2,7 +2,7 @@
 
 namespace BlazorWorld.Services.Configuration
 {
-    public interface ISiteConfigurationService
+    public interface IConfigurationService
     {
         SidebarMenuSetting[] SidebarMenuSettings();
     }

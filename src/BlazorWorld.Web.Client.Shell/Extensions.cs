@@ -1,4 +1,6 @@
 ﻿using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,11 +15,11 @@ namespace BlazorWorld.Web.Client.Shell
     {
         public static void AddBlazorWorldShellServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IConfigurationService, ConfigurationService>();
+            serviceCollection.AddTransient<IWebConfigurationService, ClientConfigurationService>();
             serviceCollection.AddTransient<IInvitationService, InvitationService>();
             serviceCollection.AddTransient<IMarkdown, Markdown>();
             serviceCollection.AddTransient<IMoment, Moment>();
-            serviceCollection.AddTransient<ISecurityService, SecurityService>();
+            serviceCollection.AddTransient<IWebSecurityService, ClientSecurityService>();
             serviceCollection.AddTransient<IToastr, Toastr>();
         }
 

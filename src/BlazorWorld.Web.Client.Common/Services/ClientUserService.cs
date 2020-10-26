@@ -1,19 +1,20 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BlazorWorld.Web.Common.Services;
+using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Common.Services
 {
-    public class UserApiService : ApiService, IUserApiService
+    public class ClientUserService : ApiService, IWebUserService
     { 
         private const string API_URL = "api/User";
         //private readonly ProtectedSessionStorage _sessionStorageService;
-        private readonly ILogger<UserApiService> _logger;
+        private readonly ILogger<ClientUserService> _logger;
 
-        public UserApiService(
+        public ClientUserService(
             IHttpClientFactory httpClientFactory,
             //ProtectedSessionStorage sessionStorageService,
-            ILogger<UserApiService> logger) : base(httpClientFactory)
+            ILogger<ClientUserService> logger) : base(httpClientFactory)
         {
             //_sessionStorageService = sessionStorageService;
             _logger = logger;

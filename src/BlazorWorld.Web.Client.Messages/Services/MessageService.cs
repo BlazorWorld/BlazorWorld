@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Web.Client.Common;
 using BlazorWorld.Web.Client.Common.Services;
+using BlazorWorld.Web.Common.Services;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -11,21 +12,21 @@ namespace BlazorWorld.Web.Client.Messages.Services
     public class MessageService : ApiService, IMessageService
     {
         private const string API_URL = "api/Message";
-        private readonly IUserApiService _userApiService;
+        private readonly IWebUserService _userService;
 
         public MessageService(
             IHttpClientFactory httpClientFactory,
-            IUserApiService userApiService
+            IWebUserService userService
             ) : base(httpClientFactory)
         {
-            _userApiService = userApiService;
+            _userService = userService;
         }
 
         public async Task<Message[]> GetAsync(string groupId, int currentPage)
         {
             var request = $"{API_URL}?groupId={groupId}";
             var messages = await AuthorizedHttpClient.GetFromJsonAsync<Message[]>(request);
-            messages.ToList().ForEach(async m => m.Username = await _userApiService.GetUserNameAsync(m.CreatedBy));
+            messages.ToList().ForEach(async m => m.Username = await _userService.GetUserNameAsync(m.CreatedBy));
             return messages;
         }
 

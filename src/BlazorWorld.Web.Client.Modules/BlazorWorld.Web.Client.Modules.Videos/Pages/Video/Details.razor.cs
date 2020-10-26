@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Video
         [Inject]
         protected INodeService NodeService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]

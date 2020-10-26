@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Common.Services
+namespace BlazorWorld.Web.Common.Services
 {
-    public interface IUserApiService
+    public interface IWebUserService
     {
         Task<string> GetUserNameAsync(string appUserId);
         Task<string> GetUserIdAsync(string username);

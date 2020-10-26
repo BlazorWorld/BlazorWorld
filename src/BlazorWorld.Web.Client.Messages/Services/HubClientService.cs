@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Messages.Models;
+using BlazorWorld.Web.Common.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Connections;
@@ -23,7 +24,7 @@ namespace BlazorWorld.Web.Client.Messages.Services
         private IAccessTokenProvider _tokenProvider;
         private NavigationManager _navigationManager;
         private IGroupService _groupService;
-        private IUserApiService _userApiService;
+        private IWebUserService _userService;
         private HubConnection _hubConnection;
         private IMessageService _messagesService;
 
@@ -31,13 +32,13 @@ namespace BlazorWorld.Web.Client.Messages.Services
             IAccessTokenProvider tokenProvider,
             NavigationManager navigationManager,
             IGroupService groupService,
-            IUserApiService userApiService,
+            IWebUserService userService,
             IMessageService messagesService)
         {
             _tokenProvider = tokenProvider;
             _navigationManager = navigationManager;
             _groupService = groupService;
-            _userApiService = userApiService;
+            _userService = userService;
             _messagesService = messagesService;
         }
 
@@ -80,7 +81,7 @@ namespace BlazorWorld.Web.Client.Messages.Services
 
         private async Task OnReceiveMessageAsync(Message message)
         {
-            message.Username = await _userApiService.GetUserNameAsync(message.CreatedBy);
+            message.Username = await _userService.GetUserNameAsync(message.CreatedBy);
             if (MessagesModels.ContainsKey(message.GroupId))
                 MessagesModels[message.GroupId].Add(message, false);
             OnNewMessage(message.GroupId);

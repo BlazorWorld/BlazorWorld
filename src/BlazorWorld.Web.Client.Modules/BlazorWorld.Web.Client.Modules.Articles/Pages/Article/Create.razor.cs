@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common;
 using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -18,7 +19,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
         [Inject]
         protected ICategoryService CategoryService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected INodeService NodeService { get; set; }
         [Inject]

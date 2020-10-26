@@ -19,7 +19,8 @@ namespace BlazorWorld.Web.Client
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
-            builder.RootComponents.Add<App>("app");
+            // https://jonhilton.net/blazor-wasm-prerendering
+            // builder.RootComponents.Add<App>("app");
 
             builder.Services.AddHttpClient("BlazorWorld.Web.ServerAPI",
                 client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))

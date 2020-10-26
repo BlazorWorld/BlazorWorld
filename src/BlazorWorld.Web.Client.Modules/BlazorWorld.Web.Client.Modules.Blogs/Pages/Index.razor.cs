@@ -5,6 +5,7 @@ using BlazorWorld.Web.Client.Modules.Blogs.Models;
 using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages
         [Inject]
         protected INodeService NodeService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
         private bool CanAddBlog { get; set; } = false;

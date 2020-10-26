@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Common.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
@@ -12,7 +13,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Components
     public partial class GroupMembers : ComponentBase
     {
         [Inject]
-        private IUserApiService UserApiService { get; set; }
+        private IWebUserService UserApiService { get; set; }
         [Parameter]
         public EventCallback<List<string[]>> OnUpdateUsers { get; set; }
         [CascadingParameter] 

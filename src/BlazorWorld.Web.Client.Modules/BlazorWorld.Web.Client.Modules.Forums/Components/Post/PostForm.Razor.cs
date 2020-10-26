@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Common.Services;
 using BlazorWorld.Web.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -13,7 +14,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Post
         [Inject]
         protected INodeService NodeService { get; set; }
         [Inject]
-        protected IUserApiService UserService { get; set; }
+        protected IWebUserService UserService { get; set; }
         [Parameter]
         public string Id { get; set; }
         [Parameter]

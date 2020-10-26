@@ -1,6 +1,8 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Models;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -15,9 +17,9 @@ namespace BlazorWorld.Web.Client.Shell.Components
         [Inject]
         private IConfiguration Configuration { get; set; }
         [Inject]
-        private IConfigurationService ConfigurationService { get; set; }
+        private IWebConfigurationService ConfigurationService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
 

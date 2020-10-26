@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Shell.Services
+namespace BlazorWorld.Web.Shared
 {
-    public interface ISecurityService
+    public interface IWebSecurityService
     {
         Task<bool> AllowedAsync(string loggedInUserId,
             string createdBy,

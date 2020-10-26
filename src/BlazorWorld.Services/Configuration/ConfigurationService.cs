@@ -4,11 +4,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace BlazorWorld.Services.Configuration
 {
-    public class SiteConfigurationService : ISiteConfigurationService
+    public class ConfigurationService : IConfigurationService
     {
         private readonly SiteAppSettings _siteAppSettings;
 
-        public SiteConfigurationService(
+        public ConfigurationService(
             IConfiguration configuration)
         {
             _siteAppSettings = new SiteAppSettings();

@@ -1,4 +1,5 @@
 ﻿using BlazorWorld.Web.Client.Common;
+using BlazorWorld.Web.Shared;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -6,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Shell.Services
 {
-    public class SecurityService : ApiService, ISecurityService
+    public class ClientSecurityService : ApiService, IWebSecurityService
     {
         private const string API_URL = "api/Security";
 
-        public SecurityService(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
+        public ClientSecurityService(IHttpClientFactory httpClientFactory) : base(httpClientFactory)
         {
 
         }

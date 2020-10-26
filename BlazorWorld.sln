@@ -52,6 +52,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWorld.Data.Identity",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWorld.Web.Client.Modules.Invitations", "src\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Invitations\BlazorWorld.Web.Client.Modules.Invitations.csproj", "{EDEF6B8E-3055-486F-8F07-B902597B19FC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWorld.Web.Shared.Modules", "BlazorWorld.Web.Shared.Modules", "{23C8B6AA-532D-420B-881D-499864D244D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWorld.Web.Server.Shell", "src\BlazorWorld.Web.Server.Shell\BlazorWorld.Web.Server.Shell.csproj", "{4958C2A2-1F01-47F7-8F30-857937A6E97B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWorld.Web.Server.Common", "src\BlazorWorld.Web.Server.Common\BlazorWorld.Web.Server.Common.csproj", "{93ED83E5-F8EB-43D7-9AB4-BCD4CA9A451A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -150,6 +156,14 @@ Global
 		{EDEF6B8E-3055-486F-8F07-B902597B19FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDEF6B8E-3055-486F-8F07-B902597B19FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDEF6B8E-3055-486F-8F07-B902597B19FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4958C2A2-1F01-47F7-8F30-857937A6E97B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4958C2A2-1F01-47F7-8F30-857937A6E97B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4958C2A2-1F01-47F7-8F30-857937A6E97B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4958C2A2-1F01-47F7-8F30-857937A6E97B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93ED83E5-F8EB-43D7-9AB4-BCD4CA9A451A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93ED83E5-F8EB-43D7-9AB4-BCD4CA9A451A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93ED83E5-F8EB-43D7-9AB4-BCD4CA9A451A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93ED83E5-F8EB-43D7-9AB4-BCD4CA9A451A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

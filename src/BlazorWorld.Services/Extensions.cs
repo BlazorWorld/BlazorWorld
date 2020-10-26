@@ -35,7 +35,7 @@ namespace BlazorWorld.Services
             services.AddTransient<IAppEmailSender, EmailSender>();
             services.AddTransient<ISecurityService, SecurityService>();
             services.AddTransient<IPermissionsService, PermissionsService>();
-            services.AddTransient<ISiteConfigurationService, SiteConfigurationService>();
+            services.AddTransient<IConfigurationService, ConfigurationService>();
             services.AddTransient<IInvitationService, InvitationService>();
 
             services.Configure<AuthMessageSenderOptions>(configuration);
