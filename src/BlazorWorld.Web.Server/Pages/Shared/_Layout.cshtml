@@ -43,38 +43,7 @@
 </head>
 
 <body id="page-top">
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <!-- Topbar Navbar -->
-        <ul class="container navbar-nav mr-auto">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                <i class="fas fa-fire"></i>
-                @siteName
-            </a>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <partial name="_LoginPartial" />
-        </ul>
-    </nav>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <br />
-    <br />
-    <br />
-
-    <footer class="border-top footer text-muted">
-        <div class="container mt-3 mb-3">
-            &copy; @siteName - <a class="mr-2" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <a href="https://facebook.com/blazorworld" target="_blank"><i class="fab fa-facebook fa-lg mr-2"></i></a>
-            <!-- a href="https://instagram.com/blazorworld" target="_blank"><i class="fab fa-instagram fa-lg mr-2"></i></a -->
-            <a href="https://twitter.com/blazorworld" target="_blank"><i class="fab fa-twitter fa-lg mr-2"></i></a>
-            <a href="https://reddit.com/r/blazorworld" target="_blank"><i class="fab fa-reddit fa-lg mr-2"></i></a>
-        </div>
-    </footer>
+    @RenderBody()
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
