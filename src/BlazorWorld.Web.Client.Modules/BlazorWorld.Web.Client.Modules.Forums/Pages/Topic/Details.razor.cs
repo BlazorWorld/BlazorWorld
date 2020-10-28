@@ -2,11 +2,9 @@
 using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Client.Modules.Common.Components;
-using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Modules.Forums.Models;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Common.Services;
-using BlazorWorld.Web.Shared;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -16,7 +14,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
     public partial class Details : ComponentBase
     {
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebUserService UserService { get; set; }
         [Inject]

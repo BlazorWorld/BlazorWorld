@@ -1,5 +1,5 @@
 ﻿using BlazorWorld.Core.Entities.Organization;
-using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -8,7 +8,7 @@ namespace BlazorWorld.Web.Client.Modules.Invitations.Pages
     public partial class Invitations : ComponentBase
     {
         [Inject]
-        protected IInvitationService InvitationService { get; set; }
+        protected IWebInvitationService InvitationService { get; set; }
         private Invitation Invitation { get; set; }
         private Invitation[] MyInvitations { get; set; }
 

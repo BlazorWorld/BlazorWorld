@@ -1,6 +1,6 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common;
-using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Shared.Models;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -12,7 +12,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
     public partial class Create : ComponentBase
     {
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]

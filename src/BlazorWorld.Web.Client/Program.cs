@@ -1,8 +1,6 @@
-using BlazorWorld.Web.Client.Common;
 using BlazorWorld.Web.Client.Messages;
-using BlazorWorld.Web.Client.Modules.Common;
 using BlazorWorld.Web.Client.Modules.Videos;
-using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Client.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -37,10 +35,8 @@ namespace BlazorWorld.Web.Client
 
             // Start BlazorWorld.Web.Client Updates
             builder.Services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
-            builder.Services.AddBlazorWorldCommonServices();
-            builder.Services.AddBlazorWorldMessagesServices();
-            builder.Services.AddBlazorWorldModuleServices();
-            builder.Services.AddBlazorWorldShellServices();
+            builder.Services.AddBlazorWorldWebClientServices();
+            builder.Services.AddBlazorWorldWebMessagesServices();
 
             // Add module services here
             builder.Services.AddBlazorWorldVideoServices();

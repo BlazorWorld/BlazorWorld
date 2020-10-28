@@ -2,10 +2,8 @@
 using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Client.Modules.Articles.Models;
-using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Client.Shell.Services;
-using BlazorWorld.Web.Shared;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Collections.Generic;
@@ -19,9 +17,9 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Inject]
-        protected ICategoryService CategoryService { get; set; }
+        protected IWebCategoryService CategoryService { get; set; }
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
         [CascadingParameter]

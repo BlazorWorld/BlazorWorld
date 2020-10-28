@@ -1,15 +1,14 @@
-﻿using BlazorWorld.Web.Client.Modules.Common.Services;
-using BlazorWorld.Web.Client.Modules.Videos.Models;
+﻿using BlazorWorld.Web.Client.Modules.Videos.Models;
+using BlazorWorld.Web.Shared.Services;
 using Newtonsoft.Json.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Modules.Videos.Services
 {
     public class VideoService : IVideoService
     {
-        private readonly INodeService _nodeService;
-        public VideoService(INodeService nodeService)
+        private readonly IWebNodeService _nodeService;
+        public VideoService(IWebNodeService nodeService)
         {
             _nodeService = nodeService;
         }

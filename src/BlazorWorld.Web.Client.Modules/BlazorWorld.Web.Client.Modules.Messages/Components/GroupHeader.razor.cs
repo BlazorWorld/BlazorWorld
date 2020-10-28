@@ -1,7 +1,6 @@
 ﻿using BlazorWorld.Core.Entities.Organization;
-using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Common.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System;
@@ -13,7 +12,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Components
     public partial class GroupHeader : ComponentBase
     {
         [Inject]
-        private IGroupService GroupService { get; set; }
+        private IWebGroupService GroupService { get; set; }
         [Inject]
         private IWebUserService UserApiService { get; set; }
         private string Header { get; set; } = string.Empty;

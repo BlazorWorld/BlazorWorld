@@ -1,8 +1,6 @@
-﻿using BlazorWorld.Web.Client.Modules.Common.Services;
-using BlazorWorld.Web.Client.Modules.Profiles.Models;
-using BlazorWorld.Web.Client.Shell.Services;
-using BlazorWorld.Web.Shared;
+﻿using BlazorWorld.Web.Client.Modules.Profiles.Models;
 using BlazorWorld.Web.Shared.Models;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
@@ -15,7 +13,7 @@ namespace BlazorWorld.Web.Client.Modules.Profiles.Pages
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]

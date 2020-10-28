@@ -1,4 +1,4 @@
-﻿using BlazorWorld.Web.Client.Common.Services;
+﻿using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -10,7 +10,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Pages.Groups
     public partial class Edit : ComponentBase
     {
         [Inject]
-        protected IGroupService GroupService { get; set; }
+        protected IWebGroupService GroupService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]

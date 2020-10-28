@@ -1,5 +1,4 @@
-﻿using BlazorWorld.Web.Client.Shell.Services;
-using BlazorWorld.Web.Shared;
+﻿using BlazorWorld.Web.Client.Services;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -13,16 +12,6 @@ namespace BlazorWorld.Web.Client.Shell
 {
     public static class Extensions
     {
-        public static void AddBlazorWorldShellServices(this IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddTransient<IWebConfigurationService, ClientConfigurationService>();
-            serviceCollection.AddTransient<IInvitationService, InvitationService>();
-            serviceCollection.AddTransient<IMarkdown, Markdown>();
-            serviceCollection.AddTransient<IMoment, Moment>();
-            serviceCollection.AddTransient<IWebSecurityService, ClientSecurityService>();
-            serviceCollection.AddTransient<IToastr, Toastr>();
-        }
-
         public static Claim LoggedInUserClaim(this AuthenticationState authenticationState)
         {
             var user = authenticationState.User;

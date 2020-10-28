@@ -1,6 +1,4 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
-using BlazorWorld.Web.Client.Shell.Services;
-using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;

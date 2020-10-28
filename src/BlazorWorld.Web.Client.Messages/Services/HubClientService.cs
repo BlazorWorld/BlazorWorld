@@ -1,11 +1,9 @@
 ﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Messages.Models;
-using BlazorWorld.Web.Common.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Connections;
-using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -23,7 +21,7 @@ namespace BlazorWorld.Web.Client.Messages.Services
         public event MessageGroupEventHandler OnNewMessage;
         private IAccessTokenProvider _tokenProvider;
         private NavigationManager _navigationManager;
-        private IGroupService _groupService;
+        private IWebGroupService _groupService;
         private IWebUserService _userService;
         private HubConnection _hubConnection;
         private IMessageService _messagesService;
@@ -31,7 +29,7 @@ namespace BlazorWorld.Web.Client.Messages.Services
         public HubClientService(
             IAccessTokenProvider tokenProvider,
             NavigationManager navigationManager,
-            IGroupService groupService,
+            IWebGroupService groupService,
             IWebUserService userService,
             IMessageService messagesService)
         {

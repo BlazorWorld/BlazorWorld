@@ -1,7 +1,6 @@
 ﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Common;
-using BlazorWorld.Web.Client.Common.Services;
-using BlazorWorld.Web.Common.Services;
+using BlazorWorld.Web.Client.Services;
+using BlazorWorld.Web.Shared.Services;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;

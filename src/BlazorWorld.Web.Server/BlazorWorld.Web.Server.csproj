@@ -30,7 +30,7 @@
     <ProjectReference Include="..\BlazorWorld.Services\BlazorWorld.Services.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Client\BlazorWorld.Web.Client.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Server.Messages\BlazorWorld.Web.Server.Messages.csproj" />
-    <ProjectReference Include="..\BlazorWorld.Web.Server.Shell\BlazorWorld.Web.Server.Shell.csproj" />
+    <ProjectReference Include="..\BlazorWorld.Web.Server.Services\BlazorWorld.Web.Server.Services.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Shared\BlazorWorld.Web.Shared.csproj" />
   </ItemGroup>
 

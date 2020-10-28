@@ -1,4 +1,4 @@
-﻿using BlazorWorld.Web.Client.Shell.Services;
+﻿using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
@@ -7,7 +7,7 @@ namespace BlazorWorld.Web.Client.Modules.Common.Components
     public partial class LocalDateTime : ComponentBase
     {
         [Inject]
-        public IMoment Moment { get; set; }
+        public IWebMomentService MomentService { get; set; }
         [Parameter]
         public string Date { get; set; }
         [Parameter]
@@ -17,7 +17,7 @@ namespace BlazorWorld.Web.Client.Modules.Common.Components
         protected override async Task OnParametersSetAsync()
         {
             if (!string.IsNullOrEmpty(Date))
-                LocalDateTimeString = await Moment.LocalDateAsync(Date, Format);
+                LocalDateTimeString = await MomentService.LocalDateAsync(Date, Format);
         }
     }
 }

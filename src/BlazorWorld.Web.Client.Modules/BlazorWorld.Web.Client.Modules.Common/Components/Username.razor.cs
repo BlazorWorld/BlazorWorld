@@ -1,4 +1,4 @@
-﻿using BlazorWorld.Web.Common.Services;
+﻿using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 

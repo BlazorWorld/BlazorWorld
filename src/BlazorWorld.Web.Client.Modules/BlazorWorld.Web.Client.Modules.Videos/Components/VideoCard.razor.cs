@@ -1,8 +1,7 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Web.Client.Modules.Videos.Models;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Client.Shell.Services;
-using BlazorWorld.Web.Shared;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;

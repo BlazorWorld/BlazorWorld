@@ -2,7 +2,7 @@ using BlazorWorld.Data;
 using BlazorWorld.Data.Identity;
 using BlazorWorld.Services;
 using BlazorWorld.Web.Server.Hubs;
-using BlazorWorld.Web.Server.Shell;
+using BlazorWorld.Web.Server.Services;
 using BlazorWorld.Web.Shared;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -52,9 +52,10 @@ namespace BlazorWorld.Web.Server
             services.AddBlazorWorldIdentityRepositories();
             services.AddBlazorWorldApplicationRepositories();
             services.AddBlazorWorldServices(Configuration);
-            services.AddBlazorWorldWebServerShellServices();
+            services.AddBlazorWorldWebServerServices();
             services.AddSignalR();
             services.AddControllersWithViews();
+            services.AddApiAuthorization();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

@@ -1,8 +1,6 @@
-﻿using BlazorWorld.Web.Client.Common.Services;
-using BlazorWorld.Web.Client.Modules.Common.Services;
-using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Common.Services;
+﻿using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Shared.Models;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -12,7 +10,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Post
     public partial class PostForm : ComponentBase
     {
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebUserService UserService { get; set; }
         [Parameter]

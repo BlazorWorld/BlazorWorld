@@ -1,6 +1,4 @@
-﻿using BlazorWorld.Web.Client.Common.Services;
-using BlazorWorld.Web.Client.Shell.Services;
-using BlazorWorld.Web.Common.Services;
+﻿using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;

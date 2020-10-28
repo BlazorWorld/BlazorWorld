@@ -1,13 +1,13 @@
 ﻿using BlazorWorld.Core.Helper;
 using BlazorWorld.Web.Client.Modules.Common.Models;
-using BlazorWorld.Web.Client.Modules.Common.Services;
+using BlazorWorld.Web.Shared.Services;
 using System.Collections.Generic;
 
 namespace BlazorWorld.Web.Client.Modules.Articles.Models
 {
     public class ArticlesModel : NodesModel
     {
-        public ArticlesModel(INodeService nodeService) : base(nodeService)
+        public ArticlesModel(IWebNodeService nodeService) : base(nodeService)
         {
 
         }

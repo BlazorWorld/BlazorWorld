@@ -14,7 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorWorld.Core\BlazorWorld.Core.csproj" />
-    <ProjectReference Include="..\BlazorWorld.Web.Client.Common\BlazorWorld.Web.Client.Common.csproj" />
+    <ProjectReference Include="..\BlazorWorld.Web.Client.Services\BlazorWorld.Web.Client.Services.csproj" />
+    <ProjectReference Include="..\BlazorWorld.Web.Shared.Services\BlazorWorld.Web.Shared.Services.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Shared\BlazorWorld.Web.Shared.csproj" />
   </ItemGroup>
 
