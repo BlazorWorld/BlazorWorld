@@ -8,6 +8,7 @@ namespace BlazorWorld.Web.Server.Services
         public static void AddBlazorWorldWebServerServices(this IServiceCollection services)
         {
             services.AddTransient<IWebConfigurationService, ServerConfigurationService>();
+            services.AddTransient<IWebNodeService, ServerNodeService>();
             services.AddTransient<IWebSecurityService, ServerSecurityService>();
             services.AddTransient<IWebUserService, ServerUserService>();
         }
