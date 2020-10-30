@@ -1,5 +1,4 @@
 ﻿using BlazorWorld.Web.Shared.Services;
-using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
@@ -9,12 +8,12 @@ namespace BlazorWorld.Web.Server.Services
     {
         public async Task<string> FromNowAsync(string dateString)
         {
-            return dateString;
+            return DateTimeOffset.Parse(dateString).ToLocalTime().ToString("MMMM dd, yyyy");
         }
 
         public async Task<string> LocalDateAsync(string dateString, string format)
         {
-            return dateString;
+            return string.Empty;
         }
     }
 }

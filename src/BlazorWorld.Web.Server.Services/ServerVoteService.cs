@@ -3,15 +3,12 @@ using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Data.Identity;
 using BlazorWorld.Services.Content;
 using BlazorWorld.Services.Security;
-using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Net.Http.Json;
 using System.Security.Claims;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Server.Services

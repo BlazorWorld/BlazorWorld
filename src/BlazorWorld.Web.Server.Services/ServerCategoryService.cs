@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
