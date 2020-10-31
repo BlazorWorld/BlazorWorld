@@ -52,11 +52,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWorld.Web.Client.Modu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWorld.Web.Shared.Modules", "BlazorWorld.Web.Shared.Modules", "{23C8B6AA-532D-420B-881D-499864D244D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWorld.Web.Client.Services", "src\BlazorWorld.Web.Client.Services\BlazorWorld.Web.Client.Services.csproj", "{AF13B218-28AD-49F3-9F97-32C8A5456837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWorld.Web.Client.Services", "src\BlazorWorld.Web.Client.Services\BlazorWorld.Web.Client.Services.csproj", "{AF13B218-28AD-49F3-9F97-32C8A5456837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWorld.Web.Server.Services", "src\BlazorWorld.Web.Server.Services\BlazorWorld.Web.Server.Services.csproj", "{F70CAC4F-CB59-45D8-B2FA-E862D7DB19A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWorld.Web.Server.Services", "src\BlazorWorld.Web.Server.Services\BlazorWorld.Web.Server.Services.csproj", "{F70CAC4F-CB59-45D8-B2FA-E862D7DB19A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWorld.Web.Shared.Services", "src\BlazorWorld.Web.Shared.Services\BlazorWorld.Web.Shared.Services.csproj", "{C0A0DA86-1015-4B06-AF41-C33BDB26160C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWorld.Web.Shared.Services", "src\BlazorWorld.Web.Shared.Services\BlazorWorld.Web.Shared.Services.csproj", "{C0A0DA86-1015-4B06-AF41-C33BDB26160C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
