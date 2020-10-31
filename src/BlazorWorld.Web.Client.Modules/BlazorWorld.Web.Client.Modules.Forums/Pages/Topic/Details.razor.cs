@@ -39,7 +39,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
         {
             var topicNode = await NodeService.GetAsync(Id);
             Topic = Models.Topic.Create(topicNode);
-            TopicUserName = !string.IsNullOrEmpty(topicNode.CreatedBy) ? await UserService.GetUserNameAsync(topicNode.CreatedBy) : string.Empty;
+            TopicUserName = !string.IsNullOrEmpty(Topic.CreatedBy) ? await UserService.GetUserNameAsync(Topic.CreatedBy) : string.Empty;
             var forumNode = await NodeService.GetAsync(Topic.ForumId);
             Forum = Models.Forum.Create(forumNode);
             Posts = new PostsModel(NodeService)

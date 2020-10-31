@@ -31,7 +31,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Models
 
         public string ThumbnailUrl
         {
-            get => CustomFields.CustomField1;
+            get => CustomFields != null ? CustomFields.CustomField1 : string.Empty;
             set => CustomFields.CustomField1 = value;
         }
     }

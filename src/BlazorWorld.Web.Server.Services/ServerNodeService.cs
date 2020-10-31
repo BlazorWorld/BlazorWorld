@@ -85,7 +85,8 @@ namespace BlazorWorld.Web.Server.Services
                 Slug = slug
             };
 
-            return (await GetPaginatedResultAsync(nodeSearch, 0)).FirstOrDefault();
+            var result = (await GetPaginatedResultAsync(nodeSearch, 0)).FirstOrDefault();
+            return result != null ? result : new Node();
         }
 
         public async Task<Node[]> GetAsync(
@@ -128,7 +129,8 @@ namespace BlazorWorld.Web.Server.Services
                 Slug = slug
             };
 
-            return (await GetPaginatedResultAsync(nodeSearch, 0)).FirstOrDefault();
+            var result = (await GetPaginatedResultAsync(nodeSearch, 0)).FirstOrDefault();
+            return result != null ? result : new Node();
         }
 
         public async Task<Node[]> SecureGetAsync(
