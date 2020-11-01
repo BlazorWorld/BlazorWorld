@@ -14,6 +14,7 @@ namespace BlazorWorld.Web.Client.Services
             serviceCollection.AddTransient<IWebMarkdownService, ClientMarkdownService>();
             serviceCollection.AddTransient<IWebMomentService, ClientMomentService>();
             serviceCollection.AddTransient<IWebNodeService, ClientNodeService>();
+            serviceCollection.AddTransient<IWebPrerenderCheckService, ClientPrerenderCheckService>();
             serviceCollection.AddTransient<IWebSecurityService, ClientSecurityService>();
             serviceCollection.AddTransient<IWebToastrService, ClientToastrService>();
             serviceCollection.AddTransient<IWebUserService, ClientUserService>();
