@@ -11,7 +11,6 @@ namespace BlazorWorld.Web.Server.Services
             services.AddTransient<IWebConfigurationService, ServerConfigurationService>();
             services.AddTransient<IWebMarkdownService, ServerMarkdownService>();
             services.AddTransient<IWebMomentService, ServerMomentService>();
-            services.AddTransient<IWebPrerenderCheckService, ServerPrerenderCheckService>();
             services.AddTransient<IWebNodeService, ServerNodeService>();
             services.AddTransient<IWebSecurityService, ServerSecurityService>();
             services.AddTransient<IWebUserService, ServerUserService>();
