@@ -1,4 +1,5 @@
-﻿@page
+﻿@page "/"
+@namespace BlazorWorld.Web.Server.Pages
 @using BlazorWorld.Web.Client
 
 <!DOCTYPE html>
@@ -35,7 +36,16 @@
 </head>
 
 <body id="page-top">
-    <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
+    <app>
+        @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+        {
+            <component type="typeof(App)" render-mode="Static" />
+        }
+        else
+        {
+            <text>Loading...</text>
+        }
+    </app>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -62,9 +72,16 @@
     <!-- Custom scripts for all pages-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.0.7/js/sb-admin-2.js"></script>
 
+<!--
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
+    <div id="fb-root"></div>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+-->
+
     <!-- Utilities for JSInterop -->
     <!-- Moment -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment-with-locales.min.js"></script>
     <script>
         window.fromNow = (date) => {
             return moment.utc(date).fromNow();

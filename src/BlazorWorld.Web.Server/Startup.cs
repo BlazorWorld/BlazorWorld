@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,7 +51,10 @@ namespace BlazorWorld.Web.Server
             services.Configure<IdentityOptions>(options =>
                 options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
             services.AddHttpClient();
+            services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
             services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
+            services.AddScoped<SignOutSessionStateManager>();
+
             services.AddBlazorWorldIdentityRepositories();
             services.AddBlazorWorldApplicationRepositories();
             services.AddBlazorWorldServices(Configuration);
