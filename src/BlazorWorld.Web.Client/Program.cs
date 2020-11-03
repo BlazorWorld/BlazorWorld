@@ -16,9 +16,7 @@ namespace BlazorWorld.Web.Client
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
-            // https://jonhilton.net/blazor-wasm-prerendering
-            // builder.RootComponents.Add<App>("app");
+            builder.RootComponents.Add<App>("app");
 
             builder.Services.AddHttpClient("BlazorWorld.Web.ServerAPI",
                 client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
@@ -27,7 +25,7 @@ namespace BlazorWorld.Web.Client
                 client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 
             // Supply HttpClient instances that include access tokens when making requests to the server project
-            builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+            builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
                 .CreateClient("BlazorWorld.Web.ServerAPI"));
 
             builder.Services.AddApiAuthorization()
