@@ -32,7 +32,7 @@
         "Order": "03",
         "Category": "",
         "Name": "Blogs",
-        "Icon": "fas fa-blog",
+        "Icon": "fa fa-pencil-square-o",
         "Link": "/blogs",
         "Permission": "BlazorWorld.Blogs",
         "Enabled": true
@@ -68,7 +68,7 @@
         "Order": "07",
         "Category": "",
         "Name": "Groups",
-        "Icon": "fa fa-calendar",
+        "Icon": "fa fa-users",
         "Link": "/groups",
         "Permission": "BlazorWorld.Groups",
         "Enabled": false
@@ -113,7 +113,7 @@
         "Order": "12",
         "Category": "",
         "Name": "Wikis",
-        "Icon": "fas fa-edit",
+        "Icon": "fa fa-graduation-cap",
         "Link": "/wikis",
         "Permission": "BlazorWorld.Wikis",
         "Enabled": false

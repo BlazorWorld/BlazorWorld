@@ -16,6 +16,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="manifest.json" rel="manifest" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link href="css/app.css" rel="stylesheet" />
 
     <!-- Metadata -->
     <meta property="og:type" content="website" />
@@ -30,16 +31,7 @@
     <meta name="twitter:site" content="@@BlazorWorld">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-07NCNKLL33"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-07NCNKLL33');
-    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -115,15 +107,6 @@
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
     <div id="fb-root"></div>
     <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168032701-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-168032701-1');
-    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
