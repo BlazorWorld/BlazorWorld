@@ -2,131 +2,35 @@
 @namespace BlazorWorld.Web.Server.Pages
 @using BlazorWorld.Web.Client
 
-<!DOCTYPE html>
-<html>
+<app>
+    @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
+    {
+        <component type="typeof(App)" render-mode="Static" />
+    }
+    else
+    {
+        <br />
+        <br />
+        <center>
+            <h1>
+                <span class="spinner-border m-5" style="width: 7rem; height: 7rem;" role="status">
+                </span>
+            </h1>
+        </center>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    }
+</app>
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>BlazorWorld</title>
-    <base href="/" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="manifest.json" rel="manifest" />
-    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
-    <link href="css/app.css" rel="stylesheet" />
-
-    <!-- Metadata -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="BlazorWorld | Serving the Blazor Development Community" />
-    <meta property="og:description" content="BlazorWorld is a community website and CMS, built to serve the Blazor development community." />
-    <meta property="og:image" content="https://blazorworld.com/images/main.jpg" />
-    <meta name="description" content="BlazorWorld is a community website and CMS, built to serve the Blazor development community.">
-    <meta name="keywords" content="blazor, c#, aspnet, aspnetcore, asp.net, asp.net core, dotnet, programming, developers, microsoft" />
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BlazorWorld | Serving the Blazor Development Community">
-    <meta name="twitter:description" content="BlazorWorld is a community website and CMS, built to serve the Blazor development community.">
-    <meta name="twitter:site" content="@@BlazorWorld">
-
-    <!-- Style Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet" />
-</head>
-
-<body id="page-top">
-    <app>
-        @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
-        {
-            <component type="typeof(App)" render-mode="Static" />
-        }
-        else
-        {
-            <br />
-            <br />
-            <center>
-                <h1>
-                    <span class="spinner-border m-5" style="width: 7rem; height: 7rem;" role="status">
-                    </span>
-                </h1>
-            </center>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-        }
-    </app>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script>navigator.serviceWorker.register('service-worker.js');</script>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.0.7/js/sb-admin-2.js"></script>
-
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
-    <div id="fb-root"></div>
-    <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
-    <!-- Utilities for JSInterop -->
-    <!-- Moment -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment-with-locales.min.js"></script>
-    <script>
-        window.fromNow = (date) => {
-            return moment.utc(date).fromNow();
-        }
-        window.localDate = (date, format) => {
-            return moment.utc(date).format(format);
-        }
-    </script>
-    <!-- Markdown -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js"></script>
-    <script>
-        var md = window.markdownit();
-        window.markdownRender = (text) => {
-            return md.render(text);
-        }
-    </script>
-    <!-- Toastr -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        window.toastrInfo = (text) => toastr.info(text);
-        window.toastrSuccess = (text) => toastr.success(text);
-        window.toastrWarning = (text) => toastr.warning(text);
-        window.toastrRemove = () => toastr.remove();
-        window.toastrClear = () => toastr.clear();
-    </script>
-    <!-- Modal -->
-    <script>
-        window.showModal = (id) => {
-            $('#' + id).Modal('show');
-        }
-    </script>
-    <!-- Embed -->
-    <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-</body>
-</html>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
