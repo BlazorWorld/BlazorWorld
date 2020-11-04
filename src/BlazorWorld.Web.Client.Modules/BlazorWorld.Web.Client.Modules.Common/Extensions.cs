@@ -1,5 +1,4 @@
-﻿using BlazorWorld.Web.Client.Modules.Common.Services;
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.RegularExpressions;
 
@@ -7,13 +6,6 @@ namespace BlazorWorld.Web.Client.Modules.Common
 {
     public static class Extensions
     {
-        public static void AddBlazorWorldModuleServices(this IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddTransient<ICategoryService, CategoryService>();
-            serviceCollection.AddTransient<INodeService, NodeService>();
-            serviceCollection.AddTransient<IVoteService, VoteService>();
-        }
-
         public static bool IsAuthenticated(this AuthenticationState authenticationState)
         {
             var user = authenticationState.User;

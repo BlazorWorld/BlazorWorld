@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Modules.Common.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -12,7 +12,7 @@ namespace BlazorWorld.Web.Client.Modules.Common.Components
     public partial class VoteButtons : ComponentBase
     {
         [Inject]
-        public IVoteService VoteService { get; set; }
+        public IWebVoteService VoteService { get; set; }
         [Parameter]
         public string NodeId { get; set; }
         [Parameter]

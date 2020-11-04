@@ -1,10 +1,9 @@
 ﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Messages.Models;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Connections;
-using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -22,22 +21,22 @@ namespace BlazorWorld.Web.Client.Messages.Services
         public event MessageGroupEventHandler OnNewMessage;
         private IAccessTokenProvider _tokenProvider;
         private NavigationManager _navigationManager;
-        private IGroupService _groupService;
-        private IUserApiService _userApiService;
+        private IWebGroupService _groupService;
+        private IWebUserService _userService;
         private HubConnection _hubConnection;
         private IMessageService _messagesService;
 
         public HubClientService(
             IAccessTokenProvider tokenProvider,
             NavigationManager navigationManager,
-            IGroupService groupService,
-            IUserApiService userApiService,
+            IWebGroupService groupService,
+            IWebUserService userService,
             IMessageService messagesService)
         {
             _tokenProvider = tokenProvider;
             _navigationManager = navigationManager;
             _groupService = groupService;
-            _userApiService = userApiService;
+            _userService = userService;
             _messagesService = messagesService;
         }
 
@@ -80,7 +79,7 @@ namespace BlazorWorld.Web.Client.Messages.Services
 
         private async Task OnReceiveMessageAsync(Message message)
         {
-            message.Username = await _userApiService.GetUserNameAsync(message.CreatedBy);
+            message.Username = await _userService.GetUserNameAsync(message.CreatedBy);
             if (MessagesModels.ContainsKey(message.GroupId))
                 MessagesModels[message.GroupId].Add(message, false);
             OnNewMessage(message.GroupId);

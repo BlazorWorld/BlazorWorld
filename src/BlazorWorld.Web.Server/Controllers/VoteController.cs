@@ -20,13 +20,13 @@ namespace BlazorWorld.Web.Server.Controllers
     [ApiController]
     public class VoteController : Controller
     {
-        private readonly ILogger<NodeController> _logger;
+        private readonly ILogger<VoteController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly INodeService _nodeService;
         private readonly ISecurityService _securityService;
 
         public VoteController(
-            ILogger<NodeController> logger,
+            ILogger<VoteController> logger,
             UserManager<ApplicationUser> userManager,
             INodeService nodeService,
             ISecurityService securityService)

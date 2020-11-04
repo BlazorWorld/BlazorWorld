@@ -26,7 +26,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Models
 
         public string Link
         {
-            get => CustomFields.CustomField1;
+            get => CustomFields != null ? CustomFields.CustomField1 : string.Empty;
             set => CustomFields.CustomField1 = value;
         }
 

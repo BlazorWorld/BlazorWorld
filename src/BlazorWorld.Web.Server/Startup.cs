@@ -2,12 +2,18 @@ using BlazorWorld.Data;
 using BlazorWorld.Data.Identity;
 using BlazorWorld.Services;
 using BlazorWorld.Web.Server.Hubs;
+using BlazorWorld.Web.Server.Services;
 using BlazorWorld.Web.Shared;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,11 +51,17 @@ namespace BlazorWorld.Web.Server
             services.Configure<IdentityOptions>(options =>
                 options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
             services.AddHttpClient();
+            services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
+            services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
+            services.AddScoped<SignOutSessionStateManager>();
+
             services.AddBlazorWorldIdentityRepositories();
             services.AddBlazorWorldApplicationRepositories();
             services.AddBlazorWorldServices(Configuration);
+            services.AddBlazorWorldWebServerServices();
             services.AddSignalR();
             services.AddControllersWithViews();
+            services.AddApiAuthorization();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -82,6 +94,12 @@ namespace BlazorWorld.Web.Server
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddRazorPages();
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,6 +125,12 @@ namespace BlazorWorld.Web.Server
             app.UseHttpsRedirection();
             app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
+
+            var supportedCultures = new[] { "en-US", "fr" };
+            var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+            app.UseRequestLocalization(localizationOptions);
 
             app.UseRouting();
 
@@ -135,7 +159,10 @@ namespace BlazorWorld.Web.Server
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
                 endpoints.MapHub<MessagesHub>(Constants.MessagesHubPattern);
-                endpoints.MapFallbackToFile("index.html");
+
+                // https://jonhilton.net/blazor-wasm-prerendering
+                // endpoints.MapFallbackToFile("index.html");
+                endpoints.MapFallbackToPage("/_Host");
             });
         }
 

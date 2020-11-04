@@ -19,7 +19,7 @@ namespace BlazorWorld.Web.Client.Modules.Profiles.Models
 
         public string Headline
         {
-            get => CustomFields.CustomField1;
+            get => CustomFields != null ? CustomFields.CustomField1 : string.Empty;
             set => CustomFields.CustomField1 = value;
         }
 

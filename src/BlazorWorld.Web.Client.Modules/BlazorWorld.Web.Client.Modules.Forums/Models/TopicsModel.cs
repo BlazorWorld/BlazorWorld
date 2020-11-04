@@ -1,13 +1,13 @@
 ﻿using BlazorWorld.Core.Helper;
 using BlazorWorld.Web.Client.Modules.Common.Models;
-using BlazorWorld.Web.Client.Modules.Common.Services;
+using BlazorWorld.Web.Shared.Services;
 using System.Collections.Generic;
 
 namespace BlazorWorld.Web.Client.Modules.Forums.Models
 {
     public class TopicsModel : NodesModel
     {
-        public TopicsModel(INodeService nodeService) : base(nodeService)
+        public TopicsModel(IWebNodeService nodeService) : base(nodeService)
         {
 
         }

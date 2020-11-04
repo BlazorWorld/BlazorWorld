@@ -1,14 +1,8 @@
-﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Messages.Models;
+﻿using BlazorWorld.Web.Client.Messages.Models;
 using BlazorWorld.Web.Client.Messages.Services;
-using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Modules.Messages.Components
@@ -20,7 +14,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Components
         [Inject]
         private HubClientService HubClientService { get; set; }
         [Inject]
-        private IMoment Moment { get; set; }
+        private IWebMomentService MomentService { get; set; }
         [Parameter]
         public string GroupId { get; set; }
         [Parameter]

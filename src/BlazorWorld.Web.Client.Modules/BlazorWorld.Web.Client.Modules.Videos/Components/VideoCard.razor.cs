@@ -1,7 +1,7 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Web.Client.Modules.Videos.Models;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -11,7 +11,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Components
     public partial class VideoCard : ComponentBase
     {
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Parameter]
         public Models.Video Video { get; set; }
         [CascadingParameter]

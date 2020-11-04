@@ -1,6 +1,5 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common;
-using BlazorWorld.Web.Client.Modules.Common.Services;
-using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -13,9 +12,9 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
     public partial class Edit : ComponentBase
     {
         [Inject]
-        protected ICategoryService CategoryService { get; set; }
+        protected IWebCategoryService CategoryService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]

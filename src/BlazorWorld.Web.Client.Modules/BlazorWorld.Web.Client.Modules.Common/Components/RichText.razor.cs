@@ -1,4 +1,4 @@
-﻿using BlazorWorld.Web.Client.Shell.Services;
+﻿using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace BlazorWorld.Web.Client.Modules.Common.Components
     public partial class RichText : ComponentBase
     {
         [Inject]
-        public IMarkdown Markdown { get; set; }
+        public IWebMarkdownService MarkdownService { get; set; }
         [Parameter] 
         public string Text { get; set; }
         [Parameter]
@@ -34,7 +34,7 @@ namespace BlazorWorld.Web.Client.Modules.Common.Components
                     var element = new Element();
                     var isEmbed = Regex.Match(text, "{{.*?}}");
                     element.IsEmbed = isEmbed.Success;
-                    element.Text = isEmbed.Success ? text : await Markdown.RenderAsync(text);
+                    element.Text = isEmbed.Success ? text : await MarkdownService.RenderAsync(text);
                     Elements.Add(element);
                 }
             }

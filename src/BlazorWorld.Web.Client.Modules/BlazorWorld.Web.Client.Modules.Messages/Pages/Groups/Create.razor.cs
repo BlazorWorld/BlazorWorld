@@ -1,7 +1,7 @@
-﻿using BlazorWorld.Web.Client.Common.Services;
-using BlazorWorld.Web.Client.Messages.Services;
+﻿using BlazorWorld.Web.Client.Messages.Services;
 using BlazorWorld.Web.Client.Modules.Messages.Models;
 using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -15,7 +15,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Pages.Groups
     public partial class Create : ComponentBase
     {
         [Inject]
-        protected IGroupService GroupService { get; set; }
+        protected IWebGroupService GroupService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Inject]

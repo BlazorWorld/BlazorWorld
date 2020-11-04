@@ -25,32 +25,32 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Models
 
         public string Url
         {
-            get => CustomFields.CustomField1;
+            get => CustomFields != null ? CustomFields.CustomField1 : string.Empty;
             set => CustomFields.CustomField1 = value;
         }
 
         public string EmbedUrl
         {
-            get => CustomFields.CustomField2;
+            get => CustomFields != null ? CustomFields.CustomField2 : string.Empty;
             set => CustomFields.CustomField2 = value;
         }
 
         public string ThumbnailUrl
         {
-            get => CustomFields.CustomField3;
+            get => CustomFields != null ? CustomFields.CustomField3 : string.Empty;
             set => CustomFields.CustomField3 = value;
         }
 
         public string ThumbnailHeight
         {
-            get => CustomFields.CustomField4;
+            get => CustomFields != null ? CustomFields.CustomField4 : string.Empty;
             set => CustomFields.CustomField4 = value;
         }
 
         public string ThumbnailWidth
         {
-            get => CustomFields.CustomField4;
-            set => CustomFields.CustomField4 = value;
+            get => CustomFields != null ? CustomFields.CustomField5 : string.Empty;
+            set => CustomFields.CustomField5 = value;
         }
     }
 }

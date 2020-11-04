@@ -1,8 +1,7 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Web.Client.Modules.Common.Components;
-using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -12,11 +11,11 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Post
     public partial class Details : ComponentBase
     {
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
-        protected ICategoryService CategoryService { get; set; }
+        protected IWebCategoryService CategoryService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]

@@ -1,5 +1,4 @@
-﻿using BlazorWorld.Web.Client.Common.Services;
-using BlazorWorld.Web.Client.Shell.Services;
+﻿using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -9,7 +8,7 @@ namespace BlazorWorld.Web.Client.Shell.Components.TopbarComponents
     public partial class TopbarNavItemUserInfo : ComponentBase
     {
         [Inject]
-        protected IUserApiService UserApiService { get; set; }
+        protected IWebUserService UserService { get; set; }
         [CascadingParameter]
         public Task<AuthenticationState> authenticationState { get; set; }
         public string UserId { get; set; }

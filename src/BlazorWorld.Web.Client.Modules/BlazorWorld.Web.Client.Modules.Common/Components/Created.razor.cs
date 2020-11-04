@@ -1,6 +1,4 @@
-﻿using BlazorWorld.Web.Client.Common.Services;
-using Microsoft.AspNetCore.Components;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace BlazorWorld.Web.Client.Modules.Common.Components
 {

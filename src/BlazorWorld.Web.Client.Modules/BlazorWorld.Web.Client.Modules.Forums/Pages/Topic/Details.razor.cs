@@ -1,12 +1,10 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Repositories;
-using BlazorWorld.Web.Client.Common.Services;
 using BlazorWorld.Web.Client.Modules.Common.Components;
-using BlazorWorld.Web.Client.Modules.Common.Services;
 using BlazorWorld.Web.Client.Modules.Forums.Models;
 using BlazorWorld.Web.Client.Shell;
-using BlazorWorld.Web.Client.Shell.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Threading.Tasks;
@@ -16,11 +14,11 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
     public partial class Details : ComponentBase
     {
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
-        protected IUserApiService UserService { get; set; }
+        protected IWebUserService UserService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]
@@ -41,7 +39,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
         {
             var topicNode = await NodeService.GetAsync(Id);
             Topic = Models.Topic.Create(topicNode);
-            TopicUserName = !string.IsNullOrEmpty(topicNode.CreatedBy) ? await UserService.GetUserNameAsync(topicNode.CreatedBy) : string.Empty;
+            TopicUserName = !string.IsNullOrEmpty(Topic.CreatedBy) ? await UserService.GetUserNameAsync(Topic.CreatedBy) : string.Empty;
             var forumNode = await NodeService.GetAsync(Topic.ForumId);
             Forum = Models.Forum.Create(forumNode);
             Posts = new PostsModel(NodeService)

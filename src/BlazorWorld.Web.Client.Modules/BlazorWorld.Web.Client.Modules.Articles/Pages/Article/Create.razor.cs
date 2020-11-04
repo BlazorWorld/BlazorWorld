@@ -1,13 +1,11 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common;
-using BlazorWorld.Web.Client.Modules.Common.Services;
-using BlazorWorld.Web.Client.Shell.Services;
 using BlazorWorld.Web.Shared.Models;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
@@ -16,11 +14,11 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
     public partial class Create : ComponentBase
     {
         [Inject]
-        protected ICategoryService CategoryService { get; set; }
+        protected IWebCategoryService CategoryService { get; set; }
         [Inject]
-        protected ISecurityService SecurityService { get; set; }
+        protected IWebSecurityService SecurityService { get; set; }
         [Inject]
-        protected INodeService NodeService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]

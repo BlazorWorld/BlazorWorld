@@ -16,6 +16,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="manifest.json" rel="manifest" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link href="css/app.css" rel="stylesheet" />
 
     <!-- Metadata -->
     <meta property="og:type" content="website" />
@@ -30,41 +31,22 @@
     <meta name="twitter:site" content="@@BlazorWorld">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <!-- Topbar Navbar -->
-        <ul class="container navbar-nav mr-auto">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                <i class="fas fa-fire"></i>
-                @siteName
-            </a>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <partial name="_LoginPartial" />
-        </ul>
-    </nav>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    @RenderBody()
 
-    <br />
-    <br />
-    <br />
+    @RenderSection("Scripts", required: false)
 
-    <footer class="border-top footer text-muted">
-        <div class="container mt-3 mb-3">
-            &copy; @siteName - <a class="mr-2" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <a href="https://facebook.com/blazorworld" target="_blank"><i class="fab fa-facebook fa-lg mr-2"></i></a>
-            <!-- a href="https://instagram.com/blazorworld" target="_blank"><i class="fab fa-instagram fa-lg mr-2"></i></a -->
-            <a href="https://twitter.com/blazorworld" target="_blank"><i class="fab fa-twitter fa-lg mr-2"></i></a>
-            <a href="https://reddit.com/r/blazorworld" target="_blank"><i class="fab fa-reddit fa-lg mr-2"></i></a>
-        </div>
-    </footer>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <script src="_content/Microsoft.AspNetCore.Components.WebAssembly.Authentication/AuthenticationService.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -80,15 +62,42 @@
     <script src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
     <div id="fb-root"></div>
     <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168032701-1"></script>
+    <!-- Utilities for JSInterop -->
+    <!-- Moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment-with-locales.min.js"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-168032701-1');
+        window.fromNow = (date) => {
+            return moment.utc(date).fromNow();
+        }
+        window.localDate = (date, format) => {
+            return moment.utc(date).format(format);
+        }
     </script>
-    @RenderSection("Scripts", required: false)
+    <!-- Markdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/11.0.0/markdown-it.min.js"></script>
+    <script>
+        var md = window.markdownit();
+        window.markdownRender = (text) => {
+            return md.render(text);
+        }
+    </script>
+    <!-- Toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        window.toastrInfo = (text) => toastr.info(text);
+        window.toastrSuccess = (text) => toastr.success(text);
+        window.toastrWarning = (text) => toastr.warning(text);
+        window.toastrRemove = () => toastr.remove();
+        window.toastrClear = () => toastr.clear();
+    </script>
+    <!-- Modal -->
+    <script>
+        window.showModal = (id) => {
+            $('#' + id).Modal('show');
+        }
+    </script>
+    <!-- Embed -->
+    <script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 ﻿using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
-using BlazorWorld.Web.Client.Modules.Common.Services;
+using BlazorWorld.Web.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,9 @@ namespace BlazorWorld.Web.Client.Modules.Common.Models
     // https://www.mikesdotnetting.com/article/328/simple-paging-in-asp-net-core-razor-pages
     public class NodesModel
     {
-        private readonly INodeService _nodeService;
+        private readonly IWebNodeService _nodeService;
 
-        public NodesModel(INodeService nodeService)
+        public NodesModel(IWebNodeService nodeService)
         {
             _nodeService = nodeService;
         }

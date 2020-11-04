@@ -1,8 +1,6 @@
-using BlazorWorld.Web.Client.Common;
 using BlazorWorld.Web.Client.Messages;
-using BlazorWorld.Web.Client.Modules.Common;
 using BlazorWorld.Web.Client.Modules.Videos;
-using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Client.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +16,6 @@ namespace BlazorWorld.Web.Client
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
-
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddHttpClient("BlazorWorld.Web.ServerAPI",
@@ -28,7 +25,7 @@ namespace BlazorWorld.Web.Client
                 client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 
             // Supply HttpClient instances that include access tokens when making requests to the server project
-            builder.Services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>()
+            builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
                 .CreateClient("BlazorWorld.Web.ServerAPI"));
 
             builder.Services.AddApiAuthorization()
@@ -36,10 +33,8 @@ namespace BlazorWorld.Web.Client
 
             // Start BlazorWorld.Web.Client Updates
             builder.Services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
-            builder.Services.AddBlazorWorldCommonServices();
-            builder.Services.AddBlazorWorldMessagesServices();
-            builder.Services.AddBlazorWorldModuleServices();
-            builder.Services.AddBlazorWorldShellServices();
+            builder.Services.AddBlazorWorldWebClientServices();
+            builder.Services.AddBlazorWorldWebMessagesServices();
 
             // Add module services here
             builder.Services.AddBlazorWorldVideoServices();

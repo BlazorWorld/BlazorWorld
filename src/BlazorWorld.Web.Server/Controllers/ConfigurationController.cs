@@ -10,9 +10,9 @@ namespace BlazorWorld.Web.Server.Controllers
     [ApiController]
     public class ConfigurationController : ControllerBase
     {
-        private ISiteConfigurationService _siteConfigurationService;
+        private IConfigurationService _siteConfigurationService;
 
-        public ConfigurationController(ISiteConfigurationService siteConfigurationService)
+        public ConfigurationController(IConfigurationService siteConfigurationService)
         {
             _siteConfigurationService = siteConfigurationService;
         }
