@@ -4,7 +4,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">
-            <NavLink href="@($"/articles")"><i class="fas fa-newspaper"></i></NavLink>
+            <NavLink href="@($"/articles")"><i class="fas fa-newspaper"></i> @Localize["Articles"]</NavLink>
             /
             <NavLink href="@($"/articles/{Category?.Slug}")">@Category?.Name</NavLink>
         </li>
