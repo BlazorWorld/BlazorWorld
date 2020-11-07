@@ -53,5 +53,16 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
             );
             Category = await CategoryService.GetAsync(node.CategoryId);
         }
+
+        public void Delete()
+        {
+            ConfirmModal.Open();
+        }
+
+        public async Task DeleteConfirmedAsync()
+        {
+            await NodeService.DeleteAsync(Article.Id);
+            NavigationManager.NavigateTo($"/articles/{Category?.Slug}");
+        }
     }
 }

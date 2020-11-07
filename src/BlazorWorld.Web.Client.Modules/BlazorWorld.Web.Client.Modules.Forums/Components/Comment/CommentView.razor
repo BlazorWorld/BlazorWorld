@@ -4,10 +4,10 @@
     {
     <div class="media d-block d-md-flex">
         <Modal @ref="ConfirmModal"
-               Title="Delete Comment"
-               Text="Do you want to remove this comment?"
-               ConfirmButtonText="Delete"
-               CancelButtonText="Cancel"
+               Title="@Localize["Delete Comment"]"
+               Text="@Localize["Do you want to remove this comment?"]"
+               ConfirmButtonText="@Localize["Delete"]"
+               CancelButtonText="@Localize["Cancel"]"
                OnConfirm="DeleteConfirmedAsync" />
         <Avatar Class="rounded-circle" UserId="@Comment?.CreatedBy" Size="30" />
         <div class="media-body text-md-left ml-md-3 ml-0">

@@ -2,6 +2,7 @@
 using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Client.Modules.Blogs.Models;
+using BlazorWorld.Web.Client.Modules.Common.Components;
 using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
@@ -26,8 +27,10 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Blog
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
         public Models.Blog Blog { get; set; }
         private bool CanEditBlog { get; set; } = false;
+        private bool CanDeleteBlog { get; set; } = false;
         private bool CanAddPost { get; set; } = false;
         private PostsModel Posts { get; set; }
+        private Modal ConfirmModal { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
@@ -61,6 +64,13 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Blog
                 Constants.BlogType,
                 Actions.Add
             );
+            CanDeleteBlog = await SecurityService.AllowedAsync(
+                loggedInUserId,
+                null,
+                Constants.BlogsModule,
+                Constants.BlogType,
+                Actions.Delete
+            );
             CanAddPost = await SecurityService.AllowedAsync(
                 loggedInUserId,
                 null,
@@ -69,5 +79,17 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Blog
                 Actions.Add
             );
         }
+
+        public void Delete()
+        {
+            ConfirmModal.Open();
+        }
+
+        public async Task DeleteConfirmedAsync()
+        {
+            await NodeService.DeleteAsync(Blog.Id);
+            NavigationManager.NavigateTo($"/blogs");
+        }
+
     }
 }

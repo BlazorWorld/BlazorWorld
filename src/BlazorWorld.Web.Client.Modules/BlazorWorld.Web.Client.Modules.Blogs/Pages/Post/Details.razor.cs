@@ -54,5 +54,16 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Post
                 Actions.Delete
             );
         }
+
+        public void Delete()
+        {
+            ConfirmModal.Open();
+        }
+
+        public async Task DeleteConfirmedAsync()
+        {
+            await NodeService.DeleteAsync(Post.Id);
+            NavigationManager.NavigateTo($"/blog/{Blog.Slug}");
+        }
     }
 }

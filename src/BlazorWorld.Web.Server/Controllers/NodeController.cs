@@ -148,7 +148,7 @@ namespace BlazorWorld.Web.Server.Controllers
             if (node != null)
             {
                 var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (node.Id != userId)
+                if (node.CreatedBy != userId)
                 {
                     var allowed = await _securityService.IsAllowedAsync(
                         HttpContext.User, node.Module, node.Type, Actions.Delete);

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorWorld.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200926021031_Initial")]
+    [Migration("20201107041512_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -305,6 +305,9 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ChildCount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("TEXT");
 
@@ -329,6 +332,9 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("NodeCount")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ParentCategoryId")
                         .HasColumnType("TEXT");
@@ -848,10 +854,6 @@ namespace BlazorWorld.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TenantId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

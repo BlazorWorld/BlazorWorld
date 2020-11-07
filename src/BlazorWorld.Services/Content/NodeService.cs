@@ -14,15 +14,18 @@ namespace BlazorWorld.Services.Content
 {
     public class NodeService : INodeService
     {
+        private readonly ICategoryRepository _categoryRepository;
         private readonly INodeRepository _nodeRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ContentAppSettings _contentAppSettings;
 
         public NodeService(
+            ICategoryRepository categoryRepository,
             INodeRepository nodeRepository,
             IConfiguration configuration,
             UserManager<ApplicationUser> userManager)
         {
+            _categoryRepository = categoryRepository;
             _nodeRepository = nodeRepository;
             _contentAppSettings = new ContentAppSettings();
             configuration.Bind(nameof(ContentAppSettings), _contentAppSettings);
@@ -77,6 +80,15 @@ namespace BlazorWorld.Services.Content
             }
 
             await _nodeRepository.SaveChangesAsync();
+
+            if (!string.IsNullOrEmpty(node.CategoryId))
+            {
+                var category = await _categoryRepository.GetAsync(node.CategoryId);
+                category.ChildCount++;
+                await _categoryRepository.UpdateAsync(category);
+                await _categoryRepository.SaveChangesAsync();
+            }
+
             return node.Id;
         }
 
@@ -91,10 +103,16 @@ namespace BlazorWorld.Services.Content
             _nodeRepository.Delete(id);
 
             var node = await _nodeRepository.GetAsync(id);
+
+            if (node.ChildCount > 0)
+            {
+                throw new Exception("Node has children.");
+            }
+
             if (!string.IsNullOrEmpty(node.ParentId))
             {
                 var parent = await _nodeRepository.GetAsync(node.ParentId);
-                parent.ChildCount -= 1;
+                parent.ChildCount--;
                 _nodeRepository.Update(parent);
             }
             if (!string.IsNullOrEmpty(node.RootId))
@@ -105,6 +123,14 @@ namespace BlazorWorld.Services.Content
             }
 
             await _nodeRepository.SaveChangesAsync();
+
+            if (!string.IsNullOrEmpty(node.CategoryId))
+            {
+                var category = await _categoryRepository.GetAsync(node.CategoryId);
+                category.NodeCount -= 1;
+                await _categoryRepository.UpdateAsync(category);
+                await _categoryRepository.SaveChangesAsync();
+            }
         }
 
         public async Task<int> VoteAsync(string userId, string nodeId, bool isUpVote)

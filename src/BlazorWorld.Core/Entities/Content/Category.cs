@@ -17,5 +17,7 @@ namespace BlazorWorld.Core.Entities.Content
         public string Module { get; set; }
         public int Weight { get; set; }
         public string Description { get; set; }
+        public int NodeCount { get; set; }
+        public int ChildCount { get; set; }
     }
 }

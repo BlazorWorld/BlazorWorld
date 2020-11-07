@@ -140,6 +140,8 @@ namespace BlazorWorld.Data.Migrations
                     Module = table.Column<string>(type: "TEXT", nullable: true),
                     Weight = table.Column<int>(type: "INTEGER", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
+                    NodeCount = table.Column<int>(type: "INTEGER", nullable: false),
+                    ChildCount = table.Column<int>(type: "INTEGER", nullable: false),
                     CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true),
                     TenantId = table.Column<string>(type: "TEXT", nullable: true),
                     SiteId = table.Column<string>(type: "TEXT", nullable: true),
@@ -222,7 +224,6 @@ namespace BlazorWorld.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     InvitationCode = table.Column<string>(type: "TEXT", nullable: false),
                     CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true),

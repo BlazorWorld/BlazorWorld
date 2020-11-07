@@ -15,12 +15,28 @@
     <RichText Text="@Category?.Description" ParentObject="@Category" />
     @if (CanEditCategory)
     {
-        <NavLink href="@($"/articles/category/edit/{Category?.Slug}")" class="btn btn-primary btn-sm mb-3 mr-2">
+        <NavLink href="@($"/articles/category/edit/{Category?.Slug}")" class="btn btn-primary btn-sm mb-2 mr-2">
             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
             @Localize["Edit"]
         </NavLink>
     }
+
+    @if (CanDeleteCategory)
+    {
+        <a href="javascript:;"
+           @onclick="Delete"
+           class="btn btn-danger btn-sm mb-2 mr-2">
+            <i class="fas fa-trash-alt"></i> @Localize["Delete"]
+        </a>
+    }
 </div>
+
+<Modal @ref="ConfirmModal"
+       Title="@Localize["Delete Category"]"
+       Text="@Localize["Do you want to delete this category?"]"
+       ConfirmButtonText="@Localize["Delete"]"
+       CancelButtonText="@Localize["Cancel"]"
+       OnConfirm="DeleteConfirmedAsync" />
 
 @if (CanAddArticle)
 {

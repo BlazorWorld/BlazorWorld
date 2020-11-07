@@ -37,6 +37,14 @@ namespace BlazorWorld.Services.Content
         public async Task<string> AddAsync(Category category)
         {
             await _categoryRepository.AddAsync(category);
+
+            if (!string.IsNullOrEmpty(category.ParentCategoryId))
+            {
+                var parentCategory = await GetAsync(category.ParentCategoryId);
+                parentCategory.ChildCount++;
+                await _categoryRepository.UpdateAsync(parentCategory);
+            }
+
             await _categoryRepository.SaveChangesAsync();
             return category.Id;
         }
@@ -50,6 +58,15 @@ namespace BlazorWorld.Services.Content
         public async Task DeleteAsync(string id)
         {
             _categoryRepository.DeleteAsync(id);
+
+            var category = await GetAsync(id);
+            if (!string.IsNullOrEmpty(category.ParentCategoryId))
+            {
+                var parentCategory = await GetAsync(category.ParentCategoryId);
+                parentCategory.ChildCount--;
+                await _categoryRepository.UpdateAsync(parentCategory);
+            }
+
             await _categoryRepository.SaveChangesAsync();
         }
     }
