@@ -1,6 +1,8 @@
 ﻿@page "/blog/post/{Slug}"
 @inject IStringLocalizer<Resource> Localize
 
+<PageTitle Title=@($"{Post?.Title} | {Blog?.Name}") />
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">

@@ -1,6 +1,8 @@
 ﻿@page "/blogs"
 @inject IStringLocalizer<Resource> Localize
 
+<PageTitle Title="@Localize["Blogs"]" />
+
 <h3><i class="fa fa-pencil-square-o"></i> @Localize["Blogs"]</h3>
 
 @if (CanAddBlog)

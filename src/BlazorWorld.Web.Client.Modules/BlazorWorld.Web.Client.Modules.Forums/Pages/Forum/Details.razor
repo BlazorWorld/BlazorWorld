@@ -1,6 +1,8 @@
 ﻿@page "/forum/{Slug}"
 @inject IStringLocalizer<Resource> Localize
 
+<PageTitle Title="@Forum?.Title" />
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">

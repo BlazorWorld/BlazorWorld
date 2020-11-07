@@ -1,6 +1,8 @@
 ﻿@page "/articles/"
 @inject IStringLocalizer<Resource> Localize
 
+<PageTitle Title="@Localize["Articles"]" />
+
 <h3><i class="fas fa-newspaper"></i> @Localize["Articles"]</h3>
 
 @if (CanAddCategory)

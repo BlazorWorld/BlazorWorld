@@ -15,6 +15,7 @@ namespace BlazorWorld.Web.Client.Services
             serviceCollection.AddTransient<IWebMomentService, ClientMomentService>();
             serviceCollection.AddTransient<IWebNodeService, ClientNodeService>();
             serviceCollection.AddTransient<IWebSecurityService, ClientSecurityService>();
+            serviceCollection.AddTransient<IWebTitleService, ClientTitleService>();
             serviceCollection.AddTransient<IWebToastrService, ClientToastrService>();
             serviceCollection.AddTransient<IWebUserService, ClientUserService>();
             serviceCollection.AddTransient<IWebVoteService, ClientVoteService>();

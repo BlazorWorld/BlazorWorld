@@ -1,6 +1,8 @@
 ﻿@page "/videos/"
 @inject IStringLocalizer<Resource> Localize
 
+<PageTitle Title="@Localize["Videos"]" />
+
 <h3><i class="fas fa-video"></i> @Localize["Videos"]</h3>
 
 @if (CanAddChannel)

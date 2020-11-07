@@ -1,6 +1,8 @@
 ﻿@page "/forums"
 @inject IStringLocalizer<Resource> Localize
 
+<PageTitle Title="@Localize["Forums"]" />
+
 <h1 class="h3"><i class="fa fa-comments"></i> @Localize["Forums"]</h1>
 
 @if (CanAddForum)

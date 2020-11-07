@@ -13,6 +13,7 @@ namespace BlazorWorld.Web.Server.Services
             services.AddTransient<IWebMomentService, ServerMomentService>();
             services.AddTransient<IWebNodeService, ServerNodeService>();
             services.AddTransient<IWebSecurityService, ServerSecurityService>();
+            services.AddTransient<IWebTitleService, ServerTitleService>();
             services.AddTransient<IWebUserService, ServerUserService>();
             services.AddTransient<IWebVoteService, ServerVoteService>();
         }
