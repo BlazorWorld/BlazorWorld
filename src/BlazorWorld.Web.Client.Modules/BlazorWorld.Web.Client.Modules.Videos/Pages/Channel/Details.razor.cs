@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Repositories;
+using BlazorWorld.Web.Client.Modules.Common.Components;
 using BlazorWorld.Web.Client.Modules.Videos.Models;
 using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Shared.Services;
@@ -25,7 +26,9 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
         private Models.Channel Channel { get; set; }
         private VideosModel Videos { get; set; }
         private bool CanEditChannel { get; set; } = false;
+        private bool CanDeleteChannel { get; set; } = false;
         private bool CanAddVideo { get; set; } = false;
+        private Modal ConfirmModal { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
@@ -42,6 +45,13 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
                 Constants.VideosModule,
                 Constants.ChannelType,
                 Actions.Add
+            );
+            CanDeleteChannel = await SecurityService.AllowedAsync(
+                loggedInUserId,
+                createdBy,
+                Constants.VideosModule,
+                Constants.ChannelType,
+                Actions.Delete
             );
             CanAddVideo = await SecurityService.AllowedAsync(
                 loggedInUserId,
@@ -66,6 +76,17 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
                 }
             };
             await Videos.InitAsync();
+        }
+
+        public void Delete()
+        {
+            ConfirmModal.Open();
+        }
+
+        public async Task DeleteConfirmedAsync()
+        {
+            await NodeService.DeleteAsync(Channel.Id);
+            NavigationManager.NavigateTo($"/videos");
         }
     }
 }

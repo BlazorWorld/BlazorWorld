@@ -10,15 +10,5 @@
                 <span class="card-title">@Video.Title</span>
             </NavLink>
         </div>
-        @if (CanAddVideo)
-        {
-            <div class="card-footer">
-                <NavLink href="@($"/video/edit/{Video?.Id}")" class="btn btn-primary btn-sm mr-2">
-                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                    @Localize["Edit"]
-                </NavLink>
-                @*<a asp-action="Delete" asp-route-id="@Video.Id">Delete</a>*@
-            </div>
-        }
     </div>
 </div>

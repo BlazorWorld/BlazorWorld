@@ -13,6 +13,21 @@
 
 <h1 class="h3">@Video?.Title</h1>
 
+@if (CanEditVideo)
+{
+    <NavLink href="@($"/video/edit/{Video?.Id}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+        @Localize["Edit"]
+    </NavLink>
+}
+@if (CanDeleteVideo)
+{
+    <NavLink href="@($"/video/edit/{Video?.Id}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+        @Localize["Delete"]
+    </NavLink>
+}
+
 <div class="text-center">
     <div class="col-md-12 vid">
         <iframe width="560"
