@@ -53,7 +53,8 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
                     {
                         OrderBy.Hot,
                         OrderBy.Latest
-                    }
+                    },
+                    TruncateContent = 140
                 }
             };
             await Posts.InitAsync();

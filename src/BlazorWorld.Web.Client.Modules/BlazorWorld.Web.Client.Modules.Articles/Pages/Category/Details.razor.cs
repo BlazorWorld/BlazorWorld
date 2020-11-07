@@ -48,7 +48,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
                             OrderBy.Weight,
                             OrderBy.Latest,
                             OrderBy.Title
-                    }
+                    },
+                    TruncateContent = 140
                 }
             };
             await Articles.InitAsync();

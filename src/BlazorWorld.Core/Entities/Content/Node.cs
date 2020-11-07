@@ -37,14 +37,6 @@ namespace BlazorWorld.Core.Entities.Content
         public int DownVotes { get; set; }
         public double Hot { get; set; }
 
-        public string Snippet
-        {
-            get
-            {
-                return this.Content.Snippet();
-            }
-        }
-
         public int Votes
         {
             get

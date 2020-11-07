@@ -67,7 +67,7 @@ else
             <div class="card-body">
                 <p class="card-text">
                     <NavLink href=@($"/forum/{forum.Name}")>@forum.Title</NavLink>.
-                    @forum.Snippet [@forum.ChildCount @Localize["subforums/topics"]]
+                    @forum.Content [@forum.ChildCount @Localize["subforums/topics"]]
                 </p>
             </div>
         </div>
@@ -108,7 +108,7 @@ else
                                                 <NavLink href=@($"/forum/topic/{topic.Id}")>@topic.Title</NavLink>
                                             </strong>
                                             <br />
-                                            @topic.Snippet
+                                            @topic.Content
                                         </p>
                                     </td>
                                     <td class="col-md-2 col-sm-2">

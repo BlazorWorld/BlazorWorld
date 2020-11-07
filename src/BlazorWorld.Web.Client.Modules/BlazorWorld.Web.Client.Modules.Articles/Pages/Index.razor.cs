@@ -49,7 +49,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages
                             OrderBy.Latest,
                             OrderBy.Title
                         },
-                        PageSize = 9
+                        PageSize = 9,
+                        TruncateContent = 140
                     }
                 };
                 await articles.InitAsync();

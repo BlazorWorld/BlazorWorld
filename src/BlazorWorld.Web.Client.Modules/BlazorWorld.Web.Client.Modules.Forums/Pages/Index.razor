@@ -27,7 +27,7 @@ else
             <div class="card-body">
                 <p class="card-text">
                     <NavLink href=@($"/forum/{forum.Name}")>@forum.Title</NavLink>.
-                    @forum.Snippet [@forum.ChildCount @Localize["subforums/topics"]]
+                    @forum.Content [@forum.ChildCount @Localize["subforums/topics"]]
                 </p>
             </div>
         </div>

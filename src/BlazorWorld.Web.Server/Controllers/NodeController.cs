@@ -1,4 +1,5 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Core.Helper;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Data.Identity;
 using BlazorWorld.Services.Configuration.Models;
@@ -73,7 +74,14 @@ namespace BlazorWorld.Web.Server.Controllers
             {
                 pageSize = nodeSearch.PageSize;
             }
-            return Ok(await _nodeService.GetPaginatedResultAsync(nodeSearch, currentPage, pageSize));
+            
+            var results = await _nodeService.GetPaginatedResultAsync(nodeSearch, currentPage, pageSize);
+
+            if (nodeSearch.TruncateContent > 0)
+                foreach (var result in results)
+                    result.Content = Helper.Truncate(result.Content, nodeSearch.TruncateContent);
+
+            return Ok(results);
         }
 
         [AllowAnonymous]

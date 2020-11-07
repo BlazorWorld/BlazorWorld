@@ -34,7 +34,8 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages
                     OrderBy = new string[]
                     {
                         OrderBy.Title
-                    }
+                    },
+                    TruncateContent = 140
                 }
             };
             await Blogs.InitAsync();

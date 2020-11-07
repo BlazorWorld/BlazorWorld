@@ -51,7 +51,8 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Blog
                             OrderBy.Weight,
                             OrderBy.Latest,
                             OrderBy.Title
-                    }
+                    },
+                    TruncateContent = 140
                 }
             };
             await Posts.InitAsync();

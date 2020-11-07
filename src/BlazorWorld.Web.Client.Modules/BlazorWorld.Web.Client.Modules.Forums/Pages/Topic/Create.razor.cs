@@ -33,7 +33,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
             var contentActivity = new ContentActivity()
             {
                 Node = Topic,
-                Message = $"Added a new forum topic: {Topic.Snippet}"
+                Message = $"Added a new forum topic."
             };
             await NodeService.AddAsync(contentActivity);
             NavigationManager.NavigateTo($"forum/topic/{Topic.Id}");

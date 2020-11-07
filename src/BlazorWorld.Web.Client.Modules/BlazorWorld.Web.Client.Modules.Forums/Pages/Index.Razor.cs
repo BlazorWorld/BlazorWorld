@@ -38,7 +38,8 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages
                     {
                         OrderBy.Title
                     },
-                    RootOnly = true
+                    RootOnly = true,
+                    TruncateContent = 140
                 }
             };
             await Forums.InitAsync();

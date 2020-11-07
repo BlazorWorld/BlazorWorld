@@ -51,7 +51,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Post
                 var contentActivity = new ContentActivity()
                 {
                     Node = Post,
-                    Message = $"Added a new forum post: {Post.Snippet}"
+                    Message = $"Added a new forum post."
                 };
                 await NodeService.AddAsync(contentActivity);
             }
@@ -60,7 +60,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Post
                 var contentActivity = new ContentActivity()
                 {
                     Node = Post,
-                    Message = $"Updated a forum post: {Post.Snippet}"
+                    Message = $"Updated a forum post."
                 };
                 await NodeService.UpdateAsync(contentActivity);
             }

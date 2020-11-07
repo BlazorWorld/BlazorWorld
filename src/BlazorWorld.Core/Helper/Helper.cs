@@ -44,7 +44,7 @@ namespace BlazorWorld.Core.Helper
             return convertList.ToArray();
         }
 
-        public static string Snippet(this string text)
+        public static string Truncate(this string text, int length = 140)
         {
             string output = text;
 
@@ -60,9 +60,9 @@ namespace BlazorWorld.Core.Helper
                 // strip extra whitespace
                 output = Regex.Replace(output, @"\s{2,}", " ");
 
-                if (text.Length > 140)
+                if (text.Length > length)
                 {
-                    output = output.Truncate(140);
+                    output = StringExt.Truncate(output, length);
                     output = output + " ...";
                 }
             }

@@ -12,5 +12,6 @@
         public bool RootOnly { get; set; } = false;
         public string[] OrderBy { get; set; }
         public int PageSize { get; set; }
+        public int TruncateContent { get; set; }
     }
 }

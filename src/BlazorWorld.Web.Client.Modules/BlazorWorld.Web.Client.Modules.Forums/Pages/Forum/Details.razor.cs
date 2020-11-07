@@ -86,7 +86,8 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
                     {
                         OrderBy.Hot,
                         OrderBy.Latest
-                    }
+                    },
+                    TruncateContent = 140
                 }
             };
             await Topics.InitAsync();

@@ -50,7 +50,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Comment
                     var contentActivity = new ContentActivity()
                     {
                         Node = Comment,
-                        Message = $"Added a new forum comment: {Comment.Snippet}"
+                        Message = $"Added a new forum comment."
                     };
                     await NodeService.AddAsync(contentActivity);
                 }
@@ -59,7 +59,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Comment
                     var contentActivity = new ContentActivity()
                     {
                         Node = Comment,
-                        Message = $"Updated a new forum comment: {Comment.Snippet}"
+                        Message = $"Updated a forum comment."
                     };
                     await NodeService.UpdateAsync(contentActivity);
                 }
