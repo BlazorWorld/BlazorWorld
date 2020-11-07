@@ -15,7 +15,7 @@
     <RichText Text="@Category?.Description" ParentObject="@Category" />
     @if (CanEditCategory)
     {
-        <NavLink href="@($"/articles/category/edit/{Category?.Slug}")" class="btn btn-primary btn-sm mb-2 mr-2">
+        <NavLink href="@($"/articles/category/edit/{Category?.Slug}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
             <i class="fas fa-pencil-alt" aria-hidden="true"></i>
             @Localize["Edit"]
         </NavLink>
@@ -25,7 +25,7 @@
     {
         <a href="javascript:;"
            @onclick="Delete"
-           class="btn btn-danger btn-sm mb-2 mr-2">
+           class="btn btn-danger btn-sm mt-2 mb-2 mr-2">
             <i class="fas fa-trash-alt"></i> @Localize["Delete"]
         </a>
     }

@@ -24,7 +24,7 @@
     <RichText Text="@Forum?.Content" ParentObject="@Forum" />
     @if (CanEditForum)
     {
-        <NavLink href=@($"/forum/edit/{Forum?.Slug}") class="btn btn-primary btn-sm mb-2 mr-2">
+        <NavLink href=@($"/forum/edit/{Forum?.Slug}") class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
             <i class="fas fa-pencil-alt"></i> Edit
         </NavLink>
     }
@@ -32,7 +32,7 @@
     {
         <a href="javascript:;"
            @onclick="Delete"
-           class="btn btn-danger btn-sm mb-2 mr-2">
+           class="btn btn-danger btn-sm mt-2 mb-2 mr-2">
             <i class="fas fa-trash-alt"></i> @Localize["Delete"]
         </a>
     }
