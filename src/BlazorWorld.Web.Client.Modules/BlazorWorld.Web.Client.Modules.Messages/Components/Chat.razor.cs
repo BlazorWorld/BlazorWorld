@@ -1,9 +1,8 @@
-﻿using BlazorWorld.Web.Client.Messages.Models;
-using BlazorWorld.Web.Client.Messages.Services;
-using BlazorWorld.Web.Shared.Services;
+﻿using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using static BlazorWorld.Web.Shared.Services.IHubClientService;
 
 namespace BlazorWorld.Web.Client.Modules.Messages.Components
 {
@@ -12,7 +11,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Components
         [Inject]
         ILogger<Chat> Logger { get; set; }
         [Inject]
-        private HubClientService HubClientService { get; set; }
+        private IHubClientService HubClientService { get; set; }
         [Inject]
         private IWebMomentService MomentService { get; set; }
         [Parameter]
@@ -24,8 +23,8 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Components
 
         protected override void OnInitialized()
         {
-            HubClientService.OnGroupInit += new HubClientService.MessageGroupEventHandler(OnGroupInit);
-            HubClientService.OnNewMessage += new HubClientService.MessageGroupEventHandler(OnNewMessage);
+            HubClientService.OnGroupInit += new MessageGroupEventHandler(OnGroupInit);
+            HubClientService.OnNewMessage += new MessageGroupEventHandler(OnNewMessage);
             SetMessages();
             base.OnInitialized();
         }

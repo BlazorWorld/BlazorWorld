@@ -1,6 +1,7 @@
 using BlazorWorld.Web.Client.Messages;
 using BlazorWorld.Web.Client.Modules.Videos;
 using BlazorWorld.Web.Client.Services;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -48,7 +49,12 @@ namespace BlazorWorld.Web.Client
             });
             // End BlazorWorld.Web.Client Updates
 
-            await builder.Build().RunAsync();
+            var host = builder.Build();
+
+            var hubClientService = host.Services.GetRequiredService<IHubClientService>();
+            await hubClientService.InitAsync();
+
+            await host.RunAsync();
         }
     }
 }

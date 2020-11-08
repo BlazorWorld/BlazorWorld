@@ -1,17 +1,16 @@
 ﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Messages.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Messages.Models
+namespace BlazorWorld.Web.Shared.Services
 {
     public class MessagesModel
     {
-        private readonly IMessageService _messagesService;
+        private readonly IWebMessageService _messagesService;
 
-        public MessagesModel(IMessageService messagesService)
+        public MessagesModel(IWebMessageService messagesService)
         {
             _messagesService = messagesService;
         }

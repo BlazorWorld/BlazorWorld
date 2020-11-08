@@ -9,6 +9,7 @@ namespace BlazorWorld.Web.Server.Services
         {
             services.AddTransient<IWebCategoryService, ServerCategoryService>();
             services.AddTransient<IWebConfigurationService, ServerConfigurationService>();
+            services.AddTransient<IWebGroupService, ServerGroupService>();
             services.AddTransient<IWebMarkdownService, ServerMarkdownService>();
             services.AddTransient<IWebMomentService, ServerMomentService>();
             services.AddTransient<IWebNodeService, ServerNodeService>();
@@ -16,6 +17,8 @@ namespace BlazorWorld.Web.Server.Services
             services.AddTransient<IWebTitleService, ServerTitleService>();
             services.AddTransient<IWebUserService, ServerUserService>();
             services.AddTransient<IWebVoteService, ServerVoteService>();
+
+            services.AddTransient<IHubClientService, HubClientService>();
         }
     }
 }

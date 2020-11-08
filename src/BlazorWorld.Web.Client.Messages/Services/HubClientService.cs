@@ -1,5 +1,5 @@
 ﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Messages.Models;
+using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -9,14 +9,14 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using static BlazorWorld.Web.Shared.Services.IHubClientService;
 
 namespace BlazorWorld.Web.Client.Messages.Services
 {
-    public class HubClientService
+    public class HubClientService : IHubClientService
     {
         public Dictionary<string, MessagesModel> MessagesModels { get; set; }
             = new Dictionary<string, MessagesModel>();
-        public delegate void MessageGroupEventHandler(string groupId);
         public event MessageGroupEventHandler OnGroupInit;
         public event MessageGroupEventHandler OnNewMessage;
         private IAccessTokenProvider _tokenProvider;
@@ -24,14 +24,14 @@ namespace BlazorWorld.Web.Client.Messages.Services
         private IWebGroupService _groupService;
         private IWebUserService _userService;
         private HubConnection _hubConnection;
-        private IMessageService _messagesService;
+        private IWebMessageService _messagesService;
 
         public HubClientService(
             IAccessTokenProvider tokenProvider,
             NavigationManager navigationManager,
             IWebGroupService groupService,
             IWebUserService userService,
-            IMessageService messagesService)
+            IWebMessageService messagesService)
         {
             _tokenProvider = tokenProvider;
             _navigationManager = navigationManager;

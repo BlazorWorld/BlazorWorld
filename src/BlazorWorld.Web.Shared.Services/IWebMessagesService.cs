@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Messages.Services
+namespace BlazorWorld.Web.Shared
 {
-    public interface IMessageService
+    public interface IWebMessageService
     {
         Task<Message[]> GetAsync(string groupId, int currentPage);
         Task<int> GetCountAsync(string groupId);
