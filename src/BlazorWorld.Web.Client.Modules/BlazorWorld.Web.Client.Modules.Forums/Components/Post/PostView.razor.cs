@@ -124,7 +124,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Post
         public void SaveComment(Models.Comment comment)
         {
             Comments.Add(comment, true);
-            Post.ChildCount += 1;
+            Post.ChildCount++;
         }
 
         public void DeleteComment(string Id)

@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
+using System;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Services.Content
@@ -57,9 +58,12 @@ namespace BlazorWorld.Services.Content
 
         public async Task DeleteAsync(string id)
         {
+            var category = await GetAsync(id);
+            if (category.NodeCount > 0 || category.ChildCount > 0)
+                throw new Exception("Category is not empty.");
+
             _categoryRepository.DeleteAsync(id);
 
-            var category = await GetAsync(id);
             if (!string.IsNullOrEmpty(category.ParentCategoryId))
             {
                 var parentCategory = await GetAsync(category.ParentCategoryId);

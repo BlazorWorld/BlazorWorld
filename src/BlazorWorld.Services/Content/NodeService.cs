@@ -66,7 +66,7 @@ namespace BlazorWorld.Services.Content
             if (!string.IsNullOrEmpty(node.ParentId))
             {
                 var parent = await _nodeRepository.GetAsync(node.ParentId);
-                parent.ChildCount += 1;
+                parent.ChildCount++;
                 _nodeRepository.Update(parent);
                 if (!string.IsNullOrEmpty(parent.RootId))
                     rootId = parent.RootId;
@@ -75,7 +75,7 @@ namespace BlazorWorld.Services.Content
             if (!string.IsNullOrEmpty(node.RootId))
             {
                 var root = await _nodeRepository.GetAsync(node.RootId);
-                root.DescendantCount += 1;
+                root.DescendantCount++;
                 _nodeRepository.Update(root);
             }
 
@@ -84,7 +84,7 @@ namespace BlazorWorld.Services.Content
             if (!string.IsNullOrEmpty(node.CategoryId))
             {
                 var category = await _categoryRepository.GetAsync(node.CategoryId);
-                category.ChildCount++;
+                category.NodeCount++;
                 await _categoryRepository.UpdateAsync(category);
                 await _categoryRepository.SaveChangesAsync();
             }
@@ -118,7 +118,7 @@ namespace BlazorWorld.Services.Content
             if (!string.IsNullOrEmpty(node.RootId))
             {
                 var root = await _nodeRepository.GetAsync(node.RootId);
-                root.DescendantCount -= 1;
+                root.DescendantCount--;
                 _nodeRepository.Update(root);
             }
 
@@ -127,7 +127,7 @@ namespace BlazorWorld.Services.Content
             if (!string.IsNullOrEmpty(node.CategoryId))
             {
                 var category = await _categoryRepository.GetAsync(node.CategoryId);
-                category.NodeCount -= 1;
+                category.NodeCount--;
                 await _categoryRepository.UpdateAsync(category);
                 await _categoryRepository.SaveChangesAsync();
             }

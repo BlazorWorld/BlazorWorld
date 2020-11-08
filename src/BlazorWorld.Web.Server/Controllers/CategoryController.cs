@@ -104,6 +104,19 @@ namespace BlazorWorld.Web.Server.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(string id)
         {
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var category = await _categoryService.GetAsync(id);
+            if (category.CreatedBy != userId)
+            {
+                var moduleAllowed = await _securityService.IsAllowedAsync(
+                    HttpContext.User, category.Module, "Category", Actions.Delete);
+
+                var allowed = await _securityService.IsAllowedAsync(
+                    HttpContext.User, category.Module, "Category", Actions.Delete);
+
+                if (!moduleAllowed && !allowed) throw new Exception("User is not allowed to perform the action.");
+            }
+
             await _categoryService.DeleteAsync(id);
 
             return Ok();
