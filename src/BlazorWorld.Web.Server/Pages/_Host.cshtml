@@ -2,6 +2,13 @@
 @namespace BlazorWorld.Web.Server.Pages
 @using BlazorWorld.Web.Client
 
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NF35GLH"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <app>
     @if (!HttpContext.Request.Path.StartsWithSegments("/authentication"))
     {
