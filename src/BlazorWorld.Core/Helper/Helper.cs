@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Markdig;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace BlazorWorld.Core.Helper
                 output = Regex.Replace(output, @"\t|\n|\r", " ");
 
                 // strip tags
-                // output = Markdown.ToHtml(output);
+                output = Markdown.ToHtml(text);
                 output = Regex.Replace(output, @"<[^>]+>|&nbsp;", "").Trim();
                 output = Regex.Replace(output, @"{{[^>]+}}|&nbsp;", "").Trim();
 

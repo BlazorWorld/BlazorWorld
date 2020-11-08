@@ -11,6 +11,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Markdig" Version="0.22.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\BlazorWorld.Core\BlazorWorld.Core.csproj" />
 		<ProjectReference Include="..\BlazorWorld.Services\BlazorWorld.Services.csproj" />
 		<ProjectReference Include="..\BlazorWorld.Web.Shared.Services\BlazorWorld.Web.Shared.Services.csproj" />

@@ -1,4 +1,5 @@
 ﻿using BlazorWorld.Web.Shared.Services;
+using Markdig;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Server.Services
@@ -7,7 +8,7 @@ namespace BlazorWorld.Web.Server.Services
     {
         public async Task<string> RenderAsync(string text)
         {
-            return text;
+            return Markdown.ToHtml(text);
         }
     }
 }
