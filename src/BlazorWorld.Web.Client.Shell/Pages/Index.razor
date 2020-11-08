@@ -1,4 +1,7 @@
 ﻿@page "/"
+@inject IStringLocalizer<Resource> Localize
+
+<PageTitle Title="@Localize["Welcome to BlazorWorld!"]" />
 
 <div class="jumbotron">
     <h1>Welcome to BlazorWorld!</h1>

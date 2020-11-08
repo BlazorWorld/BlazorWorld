@@ -17,14 +17,14 @@
         @{
             if (!string.IsNullOrEmpty(Id))
             {
-                <button class="btn btn-danger btn-sm mr-2"
+                <button class="btn btn-danger btn-sm mt-2 mb-2 mr-2"
                         type="button"
                         @onclick="CancelAsync">
                     <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
                 </button>
             }
         }
-        <button class="btn btn-success btn-sm mr-2"
+        <button class="btn btn-success btn-sm mt-2 mb-2 mr-2"
                 type="submit"
                 value="save">
             <i class="fa fa-check" aria-hidden="true"></i> @Localize["Save"]

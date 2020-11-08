@@ -41,7 +41,7 @@
 
 @if (CanAddArticle)
 {
-    <NavLink href="@($"/article/new/{Category?.Slug}")" class="btn btn-primary btn-sm mb-3 mr-2">
+    <NavLink href="@($"/article/new/{Category?.Slug}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
         @Localize["New Article"]
     </NavLink>
@@ -58,7 +58,7 @@
         @{
             if (Articles.ShowNext)
             {
-                <button class="btn btn-primary btn-sm mr-2" @onclick="Articles.NextAsync">
+                <button class="btn btn-primary btn-sm mt-2 mb-2 mr-2" @onclick="Articles.NextAsync">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     @Localize["More Articles"]
                 </button>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorWorld.Web.Client.Shell;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorWorld.Web.Client.Modules.Common.Components
