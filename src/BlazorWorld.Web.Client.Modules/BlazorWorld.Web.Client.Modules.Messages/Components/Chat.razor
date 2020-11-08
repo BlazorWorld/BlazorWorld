@@ -33,7 +33,7 @@
 
             foreach (var message in Messages.Data)
             {
-                <div class="card shadow mb-3">
+                <div class="card shadow mt-2 mb-2">
                     <div class="card-body">
                         <div class="media d-block d-md-flex">
                             <Avatar Class="rounded-circle" UserId="@message.CreatedBy" Size="30" />
@@ -58,7 +58,7 @@
 </ul>
 
 <form>
-    <div class="input-group mb-3">
+    <div class="input-group mt-2 mb-2">
         <input type="text" class="form-control" @bind="message">
         <div class="input-group-append">
             <button class="btn btn-outline-secondary"

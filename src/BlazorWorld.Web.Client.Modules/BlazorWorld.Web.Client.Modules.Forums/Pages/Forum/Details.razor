@@ -63,7 +63,7 @@ else
 {
     @foreach (var forum in Forums.Items())
     {
-        <div class="card shadow mb-3">
+        <div class="card shadow mt-2 mb-2">
             <div class="card-body">
                 <p class="card-text">
                     <NavLink href=@($"/forum/{forum.Name}")>@forum.Title</NavLink>.
@@ -87,7 +87,7 @@ else
 @{
     if ((Topics != null) && (Topics.Items().Count() > 0))
     {
-        <div class="card shadow mb-3">
+        <div class="card shadow mt-2 mb-2">
             <div class="card-body">
                 <table class="table" style="margin-bottom: 0px;">
                     <thead>

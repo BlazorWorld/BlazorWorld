@@ -23,7 +23,7 @@ else
 {
     @foreach (var forum in Forums.Items())
     {
-        <div class="card shadow mt-3">
+        <div class="card shadow mt-2 mb-2">
             <div class="card-body">
                 <p class="card-text">
                     <NavLink href=@($"/forum/{forum.Name}")>@forum.Title</NavLink>.

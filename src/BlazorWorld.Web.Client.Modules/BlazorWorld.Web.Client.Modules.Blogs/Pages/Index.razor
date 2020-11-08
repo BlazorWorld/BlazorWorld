@@ -23,7 +23,7 @@ else
 {
     @foreach (var blog in Blogs.Items())
     {
-        <div class="card shadow mt-3">
+        <div class="card shadow mt-2 mb-2">
             <div class="card-body">
                 <p class="card-text">
                     <NavLink href=@($"/blog/{blog.Slug}")>@blog.Name</NavLink>.

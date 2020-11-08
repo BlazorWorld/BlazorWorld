@@ -20,7 +20,7 @@
        CancelButtonText="@Localize["Cancel"]"
        OnConfirm="DeleteConfirmedAsync" />
 
-<div class="card shadow gedf-card mb-3">
+<div class="card shadow gedf-card mt-2 mb-2">
     <div class="card-header">
         <Created CreatedBy="@Topic?.CreatedBy" CreatedDate="@Topic?.CreatedDate" />
     </div>
@@ -67,7 +67,7 @@
 
 @if (CanAddPost)
 {
-    <div shadow class="card mb-3">
+    <div shadow class="card mt-2 mb-2">
         <PostForm TopicId="@Topic?.Id" OnSave="SavePost"></PostForm>
     </div>
 }
@@ -77,7 +77,7 @@
     {
         foreach (var post in Posts.Items())
         {
-            <div class="card shadow mb-3">
+            <div class="card shadow mt-2 mb-2">
                 <PostView Id="@post.Id" OnDelete="DeletePost"></PostView>
             </div>
         }
