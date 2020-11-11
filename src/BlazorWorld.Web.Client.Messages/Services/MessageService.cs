@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Web.Client.Services;
+using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Services;
 using System.Linq;
 using System.Net.Http;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Messages.Services
 {
-    public class MessageService : ApiService, IMessageService
+    public class MessageService : ApiService, IWebMessageService
     {
         private const string API_URL = "api/Message";
         private readonly IWebUserService _userService;
