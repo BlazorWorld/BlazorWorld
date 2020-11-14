@@ -1,4 +1,5 @@
 ﻿using BlazorWorld.Web.Client.Modules.Common;
+using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -12,7 +13,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
     public partial class Edit : ComponentBase
     {
         [Inject]
-        protected IWebCategoryService CategoryService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
         [Inject]
@@ -21,7 +22,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
         public string Slug { get; set; }
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
-        private Core.Entities.Content.Category Category { get; set; } = new Core.Entities.Content.Category();
+        private Models.Category Category { get; set; } = new Models.Category();
         private string Name
         {
             get
@@ -60,24 +61,29 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
 
         protected override async Task OnParametersSetAsync()
         {
-            Category = await CategoryService.GetBySlugAsync(Slug, Constants.ArticlesModule);
+            var node = await NodeService.GetBySlugAsync(
+                Constants.ArticlesModule,
+                Constants.CategoryType,
+                Slug);
+            Category = Models.Category.Create(node);
         }
 
         protected async Task SubmitAsync()
         {
             Category.Slug = Category.Name.ToSlug();
-            var existingCategory = await CategoryService.GetBySlugAsync(
-                Category.Slug,
-                Constants.ArticlesModule);
+            var existingCategory = await NodeService.GetBySlugAsync(
+                Constants.ArticlesModule,
+                Constants.CategoryType,
+                Category.Slug);
 
-            if (string.IsNullOrEmpty(existingCategory.Id) || existingCategory.Id == Category.Id)
+            if (existingCategory == null || existingCategory.Id == Category.Id)
             {
-                //var contentActivity = new ContentActivity()
-                //{
-                //    Node = Article,
-                //    Message = $"Added a new category: {Article.Title}."
-                //};
-                await CategoryService.UpdateAsync(Category);
+                var contentActivity = new ContentActivity()
+                {
+                    Node = Category,
+                    Message = $"Added a new article category: {Category.Name}."
+                };
+                await NodeService.UpdateAsync(contentActivity);
                 NavigationManager.NavigateTo($"articles/{Category.Slug}");
             }
             else

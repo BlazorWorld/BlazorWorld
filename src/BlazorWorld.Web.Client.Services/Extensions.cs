@@ -7,7 +7,6 @@ namespace BlazorWorld.Web.Client.Services
     {
         public static void AddBlazorWorldWebClientServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IWebCategoryService, ClientCategoryService>();
             serviceCollection.AddTransient<IWebConfigurationService, ClientConfigurationService>();
             serviceCollection.AddTransient<IWebGroupService, ClientGroupService>();
             serviceCollection.AddTransient<IWebInvitationService, ClientInvitationService>();

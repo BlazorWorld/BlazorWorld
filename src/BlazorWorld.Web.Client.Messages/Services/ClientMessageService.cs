@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Messages.Services
 {
-    public class MessageService : ApiService, IWebMessageService
+    public class ClientMessageService : ApiService, IWebMessageService
     {
         private const string API_URL = "api/Message";
         private readonly IWebUserService _userService;
 
-        public MessageService(
+        public ClientMessageService(
             IHttpClientFactory httpClientFactory,
             IWebUserService userService
             ) : base(httpClientFactory)

@@ -16,8 +16,6 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Blog
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Inject]
-        protected IWebCategoryService CategoryService { get; set; }
-        [Inject]
         protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }

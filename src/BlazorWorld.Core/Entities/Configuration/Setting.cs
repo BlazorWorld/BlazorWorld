@@ -9,7 +9,9 @@ namespace BlazorWorld.Core.Entities.Configuration
     public class Setting : Entity
     {
         [Required]
-        public string Module { get; set; }
+        public string Type { get; set; }
+        [Required]
+        public string Object { get; set; }
         [Required]
         public string Key { get; set; }
         [Required]

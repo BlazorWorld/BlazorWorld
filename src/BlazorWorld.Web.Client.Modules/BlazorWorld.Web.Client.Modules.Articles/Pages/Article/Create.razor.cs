@@ -14,18 +14,16 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
     public partial class Create : ComponentBase
     {
         [Inject]
-        protected IWebCategoryService CategoryService { get; set; }
+        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
-        [Inject]
-        protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Parameter]
         public string CategorySlug { get; set; }
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
-        private IEnumerable<Core.Entities.Content.Category> Categories { get; set; } = new List<Core.Entities.Content.Category>();
+        private IEnumerable<Models.Category> Categories { get; set; } = new List<Models.Category>();
         private Models.Article Article { get; set; } = new Models.Article();
         private string Weight
         {
@@ -53,7 +51,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
 
         protected override async Task OnParametersSetAsync()
         {
-            var category = await CategoryService.GetBySlugAsync(CategorySlug, Constants.ArticlesModule);
+            var category = await NodeService.GetBySlugAsync(Constants.ArticlesModule, Constants.CategoryType, CategorySlug);
             Article.CategoryId = category.Id;
         }
 

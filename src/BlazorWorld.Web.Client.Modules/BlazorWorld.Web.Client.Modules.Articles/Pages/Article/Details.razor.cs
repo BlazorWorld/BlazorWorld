@@ -13,8 +13,6 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
         [Inject]
         protected IWebNodeService NodeService { get; set; }
         [Inject]
-        protected IWebCategoryService CategoryService { get; set; }
-        [Inject]
         protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
@@ -23,7 +21,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
         private Models.Article Article { get; set; }
-        private Core.Entities.Content.Category Category { get; set; }
+        private Models.Category Category { get; set; }
         private bool CanEditArticle { get; set; } = false;
         private bool CanDeleteArticle { get; set; } = false;
         private Modal ConfirmModal { get; set; }
@@ -51,7 +49,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
                 Constants.ArticleType,
                 Actions.Delete
             );
-            Category = await CategoryService.GetAsync(node.CategoryId);
+            var catgoryNode = await NodeService.GetAsync(Article.CategoryId);
+            Category = Models.Category.Create(node);
         }
 
         public void Delete()

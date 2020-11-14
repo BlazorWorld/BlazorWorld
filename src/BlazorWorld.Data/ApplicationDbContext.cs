@@ -24,7 +24,6 @@ namespace BlazorWorld.Data
 
         // content entities
         public DbSet<Activity> Activities { get; set; }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Node> Nodes { get; set; }
         public DbSet<NodeVersion> NodeVersions { get; set; }
@@ -94,18 +93,10 @@ namespace BlazorWorld.Data
                 .HasIndex(x => x.NodeId);
             modelBuilder.Entity<Activity>()
                 .HasIndex(x => x.CreatedBy);
-            modelBuilder.Entity<Category>()
-                .HasIndex(x => x.ParentCategoryId);
-            modelBuilder.Entity<Category>()
-                .HasIndex(x => x.Path);
             modelBuilder.Entity<Message>()
                 .HasIndex(x => x.GroupId);
             modelBuilder.Entity<Node>()
                 .HasIndex(x => x.Slug);
-            modelBuilder.Entity<Node>()
-                .HasIndex(x => x.CategoryId);
-            modelBuilder.Entity<Node>()
-                .HasIndex(x => x.Path);
             modelBuilder.Entity<Node>()
                 .HasIndex(x => x.GroupId);
             modelBuilder.Entity<Node>()

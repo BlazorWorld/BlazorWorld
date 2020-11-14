@@ -16,8 +16,6 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Inject]
-        protected IWebCategoryService CategoryService { get; set; }
-        [Inject]
         protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
@@ -28,13 +26,17 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
         private bool CanEditCategory { get; set; } = false;
         private bool CanDeleteCategory { get; set; } = false;
         private bool CanAddArticle { get; set; } = false;
-        private Core.Entities.Content.Category Category { get; set; }
+        private Models.Category Category { get; set; }
         private ArticlesModel Articles { get; set; }
         private Modal ConfirmModal { get; set; }
 
         protected override async Task OnParametersSetAsync()
         {
-            Category = await CategoryService.GetBySlugAsync(Slug, Constants.ArticlesModule);
+            var node = await NodeService.GetBySlugAsync(
+                Constants.ArticlesModule,
+                Constants.CategoryType,
+                Slug);
+            Category = Models.Category.Create(node);
 
             Articles = new ArticlesModel(NodeService)
             {
@@ -42,7 +44,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
                 {
                     Module = Constants.ArticlesModule,
                     Type = Constants.ArticleType,
-                    CategoryId = Category.Id,
+                    ParentId = Category.Id,
                     OrderBy = new string[]
                     {
                             OrderBy.Weight,
@@ -85,7 +87,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
 
         public async Task DeleteConfirmedAsync()
         {
-            await CategoryService.DeleteAsync(Category.Id);
+            await NodeService.DeleteAsync(Category.Id);
             NavigationManager.NavigateTo($"/articles");
         }
     }

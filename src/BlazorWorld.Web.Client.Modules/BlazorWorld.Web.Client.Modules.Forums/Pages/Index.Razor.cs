@@ -18,8 +18,6 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages
         protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
-        [Parameter]
-        public string Path { get; set; }
         [CascadingParameter] 
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
         private bool CanAddForum { get; set; } = false;
@@ -33,7 +31,6 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages
                 {
                     Module = Constants.ForumsModule,
                     Type = Constants.ForumType,
-                    Path = Path,
                     OrderBy = new string[]
                     {
                         OrderBy.Title

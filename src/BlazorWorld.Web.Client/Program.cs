@@ -51,7 +51,7 @@ namespace BlazorWorld.Web.Client
 
             var host = builder.Build();
 
-            var hubClientService = host.Services.GetRequiredService<IHubClientService>();
+            var hubClientService = host.Services.GetRequiredService<IWebHubClientService>();
             await hubClientService.InitAsync();
 
             await host.RunAsync();

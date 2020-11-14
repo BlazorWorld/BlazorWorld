@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorWorld.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201107041512_Initial")]
+    [Migration("20201114225303_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.0-rc.1.20451.13");
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Common.EntityCustomFields", b =>
                 {
@@ -232,7 +232,11 @@ namespace BlazorWorld.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Module")
+                    b.Property<string>("Object")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -252,7 +256,7 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CategoryId")
+                    b.Property<string>("Action")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
@@ -300,72 +304,6 @@ namespace BlazorWorld.Data.Migrations
                     b.ToTable("Activities");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Category", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("ChildCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastUpdatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Module")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("NodeCount")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ParentCategoryId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Path")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("SiteId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TenantId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Weight")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomFieldsId");
-
-                    b.HasIndex("ParentCategoryId");
-
-                    b.HasIndex("Path");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.EntityTag", b =>
                 {
                     b.Property<string>("Id")
@@ -375,9 +313,6 @@ namespace BlazorWorld.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("BadgeId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CategoryId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EntityId")
@@ -416,8 +351,6 @@ namespace BlazorWorld.Data.Migrations
                     b.HasIndex("ActivityId");
 
                     b.HasIndex("BadgeId");
-
-                    b.HasIndex("CategoryId");
 
                     b.HasIndex("EntityId");
 
@@ -491,9 +424,6 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("ChildCount")
                         .HasColumnType("INTEGER");
 
@@ -537,9 +467,6 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Path")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("RootId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("SiteId")
                         .HasColumnType("TEXT");
 
@@ -570,15 +497,11 @@ namespace BlazorWorld.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("CustomFieldsId");
 
                     b.HasIndex("GroupId");
 
                     b.HasIndex("ParentId");
-
-                    b.HasIndex("Path");
 
                     b.HasIndex("Slug");
 
@@ -725,9 +648,6 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("CreatedBy")
                         .HasColumnType("TEXT");
 
@@ -758,10 +678,10 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Path")
+                    b.Property<string>("SiteId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("SiteId")
+                    b.Property<string>("Slug")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("TenantId")
@@ -912,15 +832,6 @@ namespace BlazorWorld.Data.Migrations
                     b.Navigation("CustomFields");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Category", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.EntityTag", b =>
                 {
                     b.HasOne("BlazorWorld.Core.Entities.Content.Activity", null)
@@ -930,10 +841,6 @@ namespace BlazorWorld.Data.Migrations
                     b.HasOne("BlazorWorld.Core.Entities.Organization.Badge", null)
                         .WithMany("Tags")
                         .HasForeignKey("BadgeId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Content.Category", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("CategoryId");
 
                     b.HasOne("BlazorWorld.Core.Entities.Organization.Group", null)
                         .WithMany("Tags")
@@ -1064,11 +971,6 @@ namespace BlazorWorld.Data.Migrations
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Activity", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Category", b =>
                 {
                     b.Navigation("Tags");
                 });

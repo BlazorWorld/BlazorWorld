@@ -9,7 +9,7 @@ namespace BlazorWorld.Web.Client.Messages
     {
         public static void AddBlazorWorldWebMessagesServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IHubClientService, HubClientService>();
+            serviceCollection.AddScoped<IWebHubClientService, ClientHubClientService>();
             serviceCollection.AddTransient<IWebMessageService, ClientMessageService>();
         }
     }

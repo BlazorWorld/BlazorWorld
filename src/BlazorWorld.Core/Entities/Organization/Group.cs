@@ -13,8 +13,7 @@ namespace BlazorWorld.Core.Entities.Organization
         public string Key { get; set; }
         public string Name { get; set; }
         public string Module { get; set; }
-        public string CategoryId { get; set; }
-        public string Path { get; set; }
+        public string Slug { get; set; }
         public bool IsOpen { get; set; }
         public int MemberCount { get; set; }
         [NotMapped]

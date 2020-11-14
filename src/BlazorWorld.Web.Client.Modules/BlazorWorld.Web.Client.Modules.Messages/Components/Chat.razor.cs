@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using static BlazorWorld.Web.Shared.Services.IHubClientService;
+using static BlazorWorld.Web.Shared.Services.IWebHubClientService;
 
 namespace BlazorWorld.Web.Client.Modules.Messages.Components
 {
@@ -11,7 +11,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Components
         [Inject]
         ILogger<Chat> Logger { get; set; }
         [Inject]
-        private IHubClientService HubClientService { get; set; }
+        private IWebHubClientService HubClientService { get; set; }
         [Inject]
         private IWebMomentService MomentService { get; set; }
         [Parameter]

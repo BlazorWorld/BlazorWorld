@@ -9,11 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using static BlazorWorld.Web.Shared.Services.IHubClientService;
+using static BlazorWorld.Web.Shared.Services.IWebHubClientService;
 
 namespace BlazorWorld.Web.Client.Messages.Services
 {
-    public class HubClientService : IHubClientService
+    public class ClientHubClientService : IWebHubClientService
     {
         public Dictionary<string, MessagesModel> MessagesModels { get; set; }
             = new Dictionary<string, MessagesModel>();
@@ -26,7 +26,7 @@ namespace BlazorWorld.Web.Client.Messages.Services
         private HubConnection _hubConnection;
         private IWebMessageService _messagesService;
 
-        public HubClientService(
+        public ClientHubClientService(
             IAccessTokenProvider tokenProvider,
             NavigationManager navigationManager,
             IWebGroupService groupService,

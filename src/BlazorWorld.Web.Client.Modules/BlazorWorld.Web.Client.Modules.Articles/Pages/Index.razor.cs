@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Core.Helper;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Client.Modules.Articles.Models;
 using BlazorWorld.Web.Client.Shell;
@@ -17,22 +18,30 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Inject]
-        protected IWebCategoryService CategoryService { get; set; }
-        [Inject]
         protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
         private bool CanAddCategory { get; set; } = false;
-        private IEnumerable<Core.Entities.Content.Category> Categories { get; set; }
+        private Models.Category[] Categories { get; set; }
         private Dictionary<string, ArticlesModel> Articles { get; set; } = new Dictionary<string, ArticlesModel>();
 
         protected override async Task OnParametersSetAsync()
         {
-            Categories = (await CategoryService.GetAllAsync(Constants.ArticlesModule))
+            var nodeSearch = new NodeSearch()
+            {
+                Module = Constants.ArticlesModule,
+                Type = Constants.CategoryType,
+                OrderBy = new string[]
+                {
+                    OrderBy.Title
+                }
+            };
+            var nodes = (await NodeService.GetAsync(nodeSearch, 0))
                 .OrderBy(a => a.Weight)
-                .ThenBy(a => a.Name);
+                .ThenBy(a => a.Title);
+            Categories = nodes.ToArray().ConvertTo<Models.Category>();
 
             foreach (var category in Categories)
             {
@@ -42,7 +51,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages
                     {
                         Module = Constants.ArticlesModule,
                         Type = Constants.ArticleType,
-                        CategoryId = category.Id,
+                        ParentId = category.Id,
                         OrderBy = new string[]
                         {
                             OrderBy.Weight,

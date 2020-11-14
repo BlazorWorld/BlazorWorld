@@ -22,10 +22,8 @@ namespace BlazorWorld.Core.Entities.Content
         public string Slug { get; set; } 
 
         // Taxonomy Schemes
-        public string RootId { get; set; }
-        public string ParentId { get; set; }
-        public string CategoryId { get; set; }
         public string Path { get; set; }
+        public string ParentId { get; set; }
         public string GroupId { get; set; }
         public string Tags { get; set; }
 

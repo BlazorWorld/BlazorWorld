@@ -60,7 +60,7 @@ namespace BlazorWorld.Web.Server
             services.AddBlazorWorldIdentityRepositories();
             services.AddBlazorWorldApplicationRepositories();
             services.AddBlazorWorldServices(Configuration);
-            services.AddTransient<IHubClientService, HubClientService>();
+            services.AddTransient<IWebHubClientService, ServerHubClientService>();
             services.AddTransient<IWebMessageService, ServerMessageService>();
             services.AddBlazorWorldWebServerServices();
             services.AddSignalR();

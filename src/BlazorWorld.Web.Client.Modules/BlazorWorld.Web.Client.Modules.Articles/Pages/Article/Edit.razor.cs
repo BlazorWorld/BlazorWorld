@@ -1,4 +1,7 @@
-﻿using BlazorWorld.Web.Client.Modules.Common;
+﻿using BlazorWorld.Core.Constants;
+using BlazorWorld.Core.Helper;
+using BlazorWorld.Core.Repositories;
+using BlazorWorld.Web.Client.Modules.Common;
 using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
@@ -13,8 +16,6 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
     public partial class Edit : ComponentBase
     {
         [Inject]
-        protected IWebCategoryService CategoryService { get; set; }
-        [Inject]
         protected IWebSecurityService SecurityService { get; set; }
         [Inject]
         protected IWebNodeService NodeService { get; set; }
@@ -24,7 +25,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
         public string Slug { get; set; }
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
-        private IEnumerable<Core.Entities.Content.Category> Categories { get; set; } = new List<Core.Entities.Content.Category>();
+        private IEnumerable<Models.Category> Categories { get; set; } = new List<Models.Category>();
         private Models.Article Article { get; set; } = new Models.Article();
         private string Weight
         {
@@ -52,8 +53,17 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
 
         protected override async Task OnParametersSetAsync()
         {
-            Categories = await CategoryService.GetAllAsync(Constants.ArticlesModule);
-            Categories = Categories.OrderBy(c => c.Name);
+            var nodeSearch = new NodeSearch()
+            {
+                Module = Constants.ArticlesModule,
+                Type = Constants.CategoryType,
+                OrderBy = new string[]
+                        {
+                            OrderBy.Title
+                        }
+            };
+            var nodes = await NodeService.GetAsync(nodeSearch, 0);
+            Categories = nodes.ToArray().ConvertTo<Models.Category>();
             var article = await NodeService.GetBySlugAsync(
                 Constants.ArticlesModule,
                 Constants.ArticleType,

@@ -1,11 +1,11 @@
 ﻿using BlazorWorld.Web.Shared.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using static BlazorWorld.Web.Shared.Services.IHubClientService;
+using static BlazorWorld.Web.Shared.Services.IWebHubClientService;
 
 namespace BlazorWorld.Web.Server.Services
 {
-    public class HubClientService : IHubClientService
+    public class ServerHubClientService : IWebHubClientService
     {
         public Dictionary<string, MessagesModel> MessagesModels { get; set; }
             = new Dictionary<string, MessagesModel>();

@@ -1,4 +1,23 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+﻿/* @import url('open-iconic/font/css/open-iconic-bootstrap.min.css'); */
+
+/* override sb-admin-2 images */
+.bg-login-image {
+    background: url("https://picsum.photos/600/800");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-register-image {
+    background: url("https://picsum.photos/600/800");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-password-image {
+    background: url("https://picsum.photos/600/800");
+    background-position: center;
+    background-size: cover;
+}
 
 #blazor-error-ui {
     background: lightyellow;

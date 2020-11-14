@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Shared.Services
 {
-    public interface IHubClientService
+    public interface IWebHubClientService
     {
         Dictionary<string, MessagesModel> MessagesModels { get; set; }
         delegate void MessageGroupEventHandler(string groupId);

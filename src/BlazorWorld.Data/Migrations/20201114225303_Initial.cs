@@ -79,8 +79,8 @@ namespace BlazorWorld.Data.Migrations
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     NodeId = table.Column<string>(type: "TEXT", nullable: true),
+                    Action = table.Column<string>(type: "TEXT", nullable: true),
                     Content = table.Column<string>(type: "TEXT", nullable: false),
-                    CategoryId = table.Column<string>(type: "TEXT", nullable: true),
                     GroupId = table.Column<string>(type: "TEXT", nullable: true),
                     IsSystem = table.Column<bool>(type: "INTEGER", nullable: false),
                     CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true),
@@ -129,39 +129,6 @@ namespace BlazorWorld.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    ParentCategoryId = table.Column<string>(type: "TEXT", nullable: true),
-                    Slug = table.Column<string>(type: "TEXT", nullable: false),
-                    Path = table.Column<string>(type: "TEXT", nullable: true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Module = table.Column<string>(type: "TEXT", nullable: true),
-                    Weight = table.Column<int>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
-                    NodeCount = table.Column<int>(type: "INTEGER", nullable: false),
-                    ChildCount = table.Column<int>(type: "INTEGER", nullable: false),
-                    CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true),
-                    TenantId = table.Column<string>(type: "TEXT", nullable: true),
-                    SiteId = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedBy = table.Column<string>(type: "TEXT", nullable: true),
-                    CreatedDate = table.Column<string>(type: "TEXT", nullable: true),
-                    LastUpdatedBy = table.Column<string>(type: "TEXT", nullable: true),
-                    LastUpdatedDate = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Categories_EntityCustomFields_CustomFieldsId",
-                        column: x => x.CustomFieldsId,
-                        principalTable: "EntityCustomFields",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GroupMembers",
                 columns: table => new
                 {
@@ -196,8 +163,7 @@ namespace BlazorWorld.Data.Migrations
                     Key = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Module = table.Column<string>(type: "TEXT", nullable: true),
-                    CategoryId = table.Column<string>(type: "TEXT", nullable: true),
-                    Path = table.Column<string>(type: "TEXT", nullable: true),
+                    Slug = table.Column<string>(type: "TEXT", nullable: true),
                     IsOpen = table.Column<bool>(type: "INTEGER", nullable: false),
                     MemberCount = table.Column<int>(type: "INTEGER", nullable: false),
                     CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true),
@@ -283,10 +249,8 @@ namespace BlazorWorld.Data.Migrations
                     Content = table.Column<string>(type: "TEXT", nullable: true),
                     Status = table.Column<string>(type: "TEXT", nullable: true),
                     Slug = table.Column<string>(type: "TEXT", nullable: true),
-                    RootId = table.Column<string>(type: "TEXT", nullable: true),
-                    ParentId = table.Column<string>(type: "TEXT", nullable: true),
-                    CategoryId = table.Column<string>(type: "TEXT", nullable: true),
                     Path = table.Column<string>(type: "TEXT", nullable: true),
+                    ParentId = table.Column<string>(type: "TEXT", nullable: true),
                     GroupId = table.Column<string>(type: "TEXT", nullable: true),
                     Tags = table.Column<string>(type: "TEXT", nullable: true),
                     Weight = table.Column<int>(type: "INTEGER", nullable: false),
@@ -384,7 +348,8 @@ namespace BlazorWorld.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Module = table.Column<string>(type: "TEXT", nullable: false),
+                    Type = table.Column<string>(type: "TEXT", nullable: false),
+                    Object = table.Column<string>(type: "TEXT", nullable: false),
                     Key = table.Column<string>(type: "TEXT", nullable: false),
                     Value = table.Column<string>(type: "TEXT", nullable: false),
                     CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true)
@@ -431,7 +396,6 @@ namespace BlazorWorld.Data.Migrations
                     Tag = table.Column<string>(type: "TEXT", nullable: false),
                     ActivityId = table.Column<string>(type: "TEXT", nullable: true),
                     BadgeId = table.Column<string>(type: "TEXT", nullable: true),
-                    CategoryId = table.Column<string>(type: "TEXT", nullable: true),
                     GroupId = table.Column<string>(type: "TEXT", nullable: true),
                     GroupMemberId = table.Column<string>(type: "TEXT", nullable: true),
                     InvitationId = table.Column<string>(type: "TEXT", nullable: true),
@@ -454,12 +418,6 @@ namespace BlazorWorld.Data.Migrations
                         name: "FK_EntityTags_Badges_BadgeId",
                         column: x => x.BadgeId,
                         principalTable: "Badges",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EntityTags_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -536,21 +494,6 @@ namespace BlazorWorld.Data.Migrations
                 name: "IX_Badges_UserId",
                 table: "Badges",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_CustomFieldsId",
-                table: "Categories",
-                column: "CustomFieldsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_ParentCategoryId",
-                table: "Categories",
-                column: "ParentCategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categories_Path",
-                table: "Categories",
-                column: "Path");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EntityCustomFields_EntityId",
@@ -668,11 +611,6 @@ namespace BlazorWorld.Data.Migrations
                 column: "BadgeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EntityTags_CategoryId",
-                table: "EntityTags",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EntityTags_EntityId",
                 table: "EntityTags",
                 column: "EntityId");
@@ -763,11 +701,6 @@ namespace BlazorWorld.Data.Migrations
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Nodes_CategoryId",
-                table: "Nodes",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Nodes_CustomFieldsId",
                 table: "Nodes",
                 column: "CustomFieldsId");
@@ -781,11 +714,6 @@ namespace BlazorWorld.Data.Migrations
                 name: "IX_Nodes_ParentId",
                 table: "Nodes",
                 column: "ParentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Nodes_Path",
-                table: "Nodes",
-                column: "Path");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Nodes_Slug",
@@ -872,9 +800,6 @@ namespace BlazorWorld.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Badges");
-
-            migrationBuilder.DropTable(
-                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "GroupMembers");

@@ -19,7 +19,7 @@ namespace BlazorWorld.Web.Client.Modules.Messages.Pages.Groups
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [Inject]
-        private HubClientService HubClientService { get; set; }
+        private ClientHubClientService HubClientService { get; set; }
         [CascadingParameter]
         private Task<AuthenticationState> AuthenticationStateTask { get; set; }
         public Models.MessagesGroup Group { get; set; } = new Models.MessagesGroup();

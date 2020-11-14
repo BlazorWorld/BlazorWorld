@@ -21,7 +21,6 @@ namespace BlazorWorld.Services
         {
             // content
             services.AddTransient<IActivityService, ActivityService>();
-            services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<INodeService, NodeService>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IProfileService, ProfileService>();

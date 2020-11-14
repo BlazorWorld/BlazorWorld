@@ -14,18 +14,15 @@ namespace BlazorWorld.Services.Content
 {
     public class NodeService : INodeService
     {
-        private readonly ICategoryRepository _categoryRepository;
         private readonly INodeRepository _nodeRepository;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ContentAppSettings _contentAppSettings;
 
         public NodeService(
-            ICategoryRepository categoryRepository,
             INodeRepository nodeRepository,
             IConfiguration configuration,
             UserManager<ApplicationUser> userManager)
         {
-            _categoryRepository = categoryRepository;
             _nodeRepository = nodeRepository;
             _contentAppSettings = new ContentAppSettings();
             configuration.Bind(nameof(ContentAppSettings), _contentAppSettings);
@@ -62,32 +59,24 @@ namespace BlazorWorld.Services.Content
             }
             _nodeRepository.Add(node);
 
-            var rootId = node.ParentId;
+            var path = node.ParentId;
             if (!string.IsNullOrEmpty(node.ParentId))
             {
                 var parent = await _nodeRepository.GetAsync(node.ParentId);
                 parent.ChildCount++;
                 _nodeRepository.Update(parent);
-                if (!string.IsNullOrEmpty(parent.RootId))
-                    rootId = parent.RootId;
+                if (!string.IsNullOrEmpty(parent.Path))
+                    path = $"{parent.Path},{node.ParentId}";
             }
-            node.RootId = rootId;
-            if (!string.IsNullOrEmpty(node.RootId))
-            {
-                var root = await _nodeRepository.GetAsync(node.RootId);
-                root.DescendantCount++;
-                _nodeRepository.Update(root);
-            }
+            node.Path = path;
+            //if (!string.IsNullOrEmpty(node.Path))
+            //{
+            //    var root = await _nodeRepository.GetAsync(node.RootId);
+            //    root.DescendantCount++;
+            //    _nodeRepository.Update(root);
+            //}
 
             await _nodeRepository.SaveChangesAsync();
-
-            if (!string.IsNullOrEmpty(node.CategoryId))
-            {
-                var category = await _categoryRepository.GetAsync(node.CategoryId);
-                category.NodeCount++;
-                await _categoryRepository.UpdateAsync(category);
-                await _categoryRepository.SaveChangesAsync();
-            }
 
             return node.Id;
         }
@@ -115,22 +104,14 @@ namespace BlazorWorld.Services.Content
                 parent.ChildCount--;
                 _nodeRepository.Update(parent);
             }
-            if (!string.IsNullOrEmpty(node.RootId))
-            {
-                var root = await _nodeRepository.GetAsync(node.RootId);
-                root.DescendantCount--;
-                _nodeRepository.Update(root);
-            }
+            //if (!string.IsNullOrEmpty(node.RootId))
+            //{
+            //    var root = await _nodeRepository.GetAsync(node.RootId);
+            //    root.DescendantCount--;
+            //    _nodeRepository.Update(root);
+            //}
 
             await _nodeRepository.SaveChangesAsync();
-
-            if (!string.IsNullOrEmpty(node.CategoryId))
-            {
-                var category = await _categoryRepository.GetAsync(node.CategoryId);
-                category.NodeCount--;
-                await _categoryRepository.UpdateAsync(category);
-                await _categoryRepository.SaveChangesAsync();
-            }
         }
 
         public async Task<int> VoteAsync(string userId, string nodeId, bool isUpVote)
