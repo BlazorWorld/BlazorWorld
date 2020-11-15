@@ -1,4 +1,5 @@
-﻿using BlazorWorld.Web.Shared.Services;
+﻿using BlazorWorld.Web.Shared.Models;
+using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;

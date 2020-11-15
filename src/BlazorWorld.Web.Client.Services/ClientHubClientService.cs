@@ -1,5 +1,5 @@
 ﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Shared;
+using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -11,7 +11,7 @@ using System.Net;
 using System.Threading.Tasks;
 using static BlazorWorld.Web.Shared.Services.IWebHubClientService;
 
-namespace BlazorWorld.Web.Client.Messages.Services
+namespace BlazorWorld.Web.Client.Services
 {
     public class ClientHubClientService : IWebHubClientService
     {

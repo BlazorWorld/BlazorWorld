@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Messages
+namespace BlazorWorld.Web.Client.Services
 {
     /// <summary>
     /// A factory for creating <see cref="HttpConnection"/> instances.

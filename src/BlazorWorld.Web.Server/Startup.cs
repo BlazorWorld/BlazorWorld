@@ -1,9 +1,9 @@
 using BlazorWorld.Data;
 using BlazorWorld.Data.Identity;
 using BlazorWorld.Services;
-using BlazorWorld.Web.Server.Hubs;
 using BlazorWorld.Web.Server.Messages.Services;
 using BlazorWorld.Web.Server.Services;
+using BlazorWorld.Web.Server.Services.Hubs;
 using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authentication;

@@ -23,7 +23,6 @@
     <ProjectReference Include="..\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Admin\BlazorWorld.Web.Client.Modules.Admin.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Articles\BlazorWorld.Web.Client.Modules.Articles.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Blogs\BlazorWorld.Web.Client.Modules.Blogs.csproj" />
-    <ProjectReference Include="..\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Common\BlazorWorld.Web.Client.Modules.Common.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Events\BlazorWorld.Web.Client.Modules.Events.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Files\BlazorWorld.Web.Client.Modules.Files.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Client.Modules\BlazorWorld.Web.Client.Modules.Forums\BlazorWorld.Web.Client.Modules.Forums.csproj" />

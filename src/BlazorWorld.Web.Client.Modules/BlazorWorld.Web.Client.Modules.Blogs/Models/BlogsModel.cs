@@ -1,5 +1,5 @@
 ﻿using BlazorWorld.Core.Helper;
-using BlazorWorld.Web.Client.Modules.Common.Models;
+using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Shared.Services;
 using System.Collections.Generic;
 

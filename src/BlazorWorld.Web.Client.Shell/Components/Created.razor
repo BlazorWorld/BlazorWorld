@@ -1,0 +1,16 @@
+﻿<div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="mr-2">
+            <Avatar Class="rounded-circle" UserId="@CreatedBy" Size="30" />
+        </div>
+        <div class="ml-2">
+            <Username UserId="@CreatedBy" />
+            @if (!string.IsNullOrEmpty(CreatedDate))
+            {
+                <div class="small text-muted">
+                    <FromNow Date="@CreatedDate" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

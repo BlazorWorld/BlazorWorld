@@ -7,7 +7,7 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Server.Hubs
+namespace BlazorWorld.Web.Server.Services.Hubs
 {
     [Authorize]
     public class MessagesHub : Hub<IMessagesClient>

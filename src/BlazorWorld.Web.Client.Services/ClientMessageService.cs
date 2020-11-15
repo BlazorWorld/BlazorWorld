@@ -1,5 +1,4 @@
 ﻿using BlazorWorld.Core.Entities.Content;
-using BlazorWorld.Web.Client.Services;
 using BlazorWorld.Web.Shared;
 using BlazorWorld.Web.Shared.Services;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Client.Messages.Services
+namespace BlazorWorld.Web.Client.Services
 {
     public class ClientMessageService : ApiService, IWebMessageService
     {

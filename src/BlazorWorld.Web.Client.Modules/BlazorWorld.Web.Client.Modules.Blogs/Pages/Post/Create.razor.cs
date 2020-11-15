@@ -1,4 +1,4 @@
-﻿using BlazorWorld.Web.Client.Modules.Common;
+﻿using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;

@@ -1,10 +1,11 @@
 ﻿using BlazorWorld.Core.Entities.Content;
+using BlazorWorld.Web.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Web.Shared.Services
+namespace BlazorWorld.Web.Shared.Models
 {
     public class MessagesModel
     {

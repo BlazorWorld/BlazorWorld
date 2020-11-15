@@ -1,5 +1,5 @@
-﻿using BlazorWorld.Web.Client.Messages.Services;
-using BlazorWorld.Web.Client.Modules.Messages.Models;
+﻿using BlazorWorld.Web.Client.Modules.Messages.Models;
+using BlazorWorld.Web.Client.Services;
 using BlazorWorld.Web.Client.Shell;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;

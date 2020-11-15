@@ -17,7 +17,6 @@
     <ProjectReference Include="..\..\BlazorWorld.Web.Client.Messages\BlazorWorld.Web.Client.Messages.csproj" />
     <ProjectReference Include="..\..\BlazorWorld.Web.Client.Shell\BlazorWorld.Web.Client.Shell.csproj" />
     <ProjectReference Include="..\..\BlazorWorld.Web.Shared\BlazorWorld.Web.Shared.csproj" />
-    <ProjectReference Include="..\BlazorWorld.Web.Client.Modules.Common\BlazorWorld.Web.Client.Modules.Common.csproj" />
   </ItemGroup>
 
 

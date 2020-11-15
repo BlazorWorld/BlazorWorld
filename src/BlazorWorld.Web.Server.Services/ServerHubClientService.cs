@@ -1,4 +1,5 @@
-﻿using BlazorWorld.Web.Shared.Services;
+﻿using BlazorWorld.Web.Shared.Models;
+using BlazorWorld.Web.Shared.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static BlazorWorld.Web.Shared.Services.IWebHubClientService;

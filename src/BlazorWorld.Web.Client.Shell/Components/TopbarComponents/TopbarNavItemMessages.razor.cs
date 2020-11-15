@@ -1,4 +1,4 @@
-﻿using BlazorWorld.Web.Client.Messages.Services;
+﻿using BlazorWorld.Web.Client.Services;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;

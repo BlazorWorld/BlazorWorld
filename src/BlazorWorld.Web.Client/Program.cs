@@ -1,4 +1,3 @@
-using BlazorWorld.Web.Client.Messages;
 using BlazorWorld.Web.Client.Modules.Videos;
 using BlazorWorld.Web.Client.Services;
 using BlazorWorld.Web.Shared.Services;
@@ -35,7 +34,6 @@ namespace BlazorWorld.Web.Client
             // Start BlazorWorld.Web.Client Updates
             builder.Services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
             builder.Services.AddBlazorWorldWebClientServices();
-            builder.Services.AddBlazorWorldWebMessagesServices();
 
             // Add module services here
             builder.Services.AddBlazorWorldVideoServices();

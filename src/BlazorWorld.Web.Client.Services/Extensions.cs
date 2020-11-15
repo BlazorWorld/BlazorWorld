@@ -9,8 +9,10 @@ namespace BlazorWorld.Web.Client.Services
         {
             serviceCollection.AddTransient<IWebConfigurationService, ClientConfigurationService>();
             serviceCollection.AddTransient<IWebGroupService, ClientGroupService>();
+            serviceCollection.AddScoped<IWebHubClientService, ClientHubClientService>();
             serviceCollection.AddTransient<IWebInvitationService, ClientInvitationService>();
             serviceCollection.AddTransient<IWebMarkdownService, ClientMarkdownService>();
+            serviceCollection.AddTransient<IWebMessageService, ClientMessageService>();
             serviceCollection.AddTransient<IWebMomentService, ClientMomentService>();
             serviceCollection.AddTransient<IWebNodeService, ClientNodeService>();
             serviceCollection.AddTransient<IWebSecurityService, ClientSecurityService>();

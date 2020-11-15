@@ -2,8 +2,8 @@
 using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Client.Modules.Articles.Models;
-using BlazorWorld.Web.Client.Modules.Common.Components;
 using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Client.Shell.Components;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
