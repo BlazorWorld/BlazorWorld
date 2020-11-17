@@ -1,4 +1,4 @@
-﻿using BlazorWorld.Web.Shared.Models;
+﻿using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Web.Shared.Services;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -20,10 +20,10 @@ namespace BlazorWorld.Web.Client.Services
 
         }
 
-        public async Task<SidebarMenuSetting[]> SidebarMenuSettingsAsync()
+        public async Task<Setting[]> SidebarMenuSettingsAsync()
         {
             var request = $"{API_URL}/SidebarMenuSettings";
-            return await PublicHttpClient.GetFromJsonAsync<SidebarMenuSetting[]>(request);
+            return await PublicHttpClient.GetFromJsonAsync<Setting[]>(request);
         }
     }
 }

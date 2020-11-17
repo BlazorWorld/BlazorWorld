@@ -1,9 +1,10 @@
-﻿using BlazorWorld.Web.Shared.Models;
+﻿using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Web.Shared.Models;
 
 namespace BlazorWorld.Services.Configuration
 {
     public interface IConfigurationService
     {
-        SidebarMenuSetting[] SidebarMenuSettings();
+        Setting[] SidebarMenuSettings();
     }
 }

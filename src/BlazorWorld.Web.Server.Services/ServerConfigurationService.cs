@@ -1,4 +1,5 @@
-﻿using BlazorWorld.Services.Configuration;
+﻿using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Services.Configuration;
 using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace BlazorWorld.Web.Server.Services
             _siteConfigurationService = siteConfigurationService;
         }
 
-        public async Task<SidebarMenuSetting[]> SidebarMenuSettingsAsync()
+        public async Task<Setting[]> SidebarMenuSettingsAsync()
         {
             return _siteConfigurationService.SidebarMenuSettings();
         }

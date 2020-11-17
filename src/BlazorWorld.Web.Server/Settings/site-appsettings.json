@@ -2,121 +2,82 @@
   "SiteAppSettings": {
     "SidebarMenuSettings": [
       {
-        "Order": "00",
-        "Category": "",
-        "Name": "Admin",
-        "Icon": "fas fa-cogs",
-        "Link": "/admin",
-        "Permission": "BlazorWorld.Admin",
-        "Enabled": true
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Admin",
+        "Value": "00,,fas fa-cogs,/admin,BlazorWorld.Admin,true"
       },
       {
-        "Order": "01",
-        "Category": "",
-        "Name": "Activity Feed",
-        "Icon": "fas fa-list",
-        "Link": "/activities",
-        "Permission": "BlazorWorld.Activity",
-        "Enabled": false
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Activity Feed",
+        "Value": "01,,fas fa-list,/activities,BlazorWorld.Activity,false"
       },
       {
-        "Order": "02",
-        "Category": "",
-        "Name": "Articles",
-        "Icon": "fas fa-newspaper",
-        "Link": "/articles",
-        "Permission": "BlazorWorld.Articles",
-        "Enabled": true
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Articles",
+        "Value": "02,,fas fa-newspaper,/articles,BlazorWorld.Articles,true"
       },
       {
-        "Order": "03",
-        "Category": "",
-        "Name": "Blogs",
-        "Icon": "fa fa-pencil-square-o",
-        "Link": "/blogs",
-        "Permission": "BlazorWorld.Blogs",
-        "Enabled": true
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Blogs",
+        "Value": "03,,fas fa-pencil-square-o,/blogs,BlazorWorld.Blogs,true"
       },
       {
-        "Order": "04",
-        "Category": "",
-        "Name": "Events",
-        "Icon": "fa fa-calendar",
-        "Link": "/events",
-        "Permission": "BlazorWorld.Events",
-        "Enabled": false
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Events",
+        "Value": "04,,fas fa-calendar,/events,BlazorWorld.Events,false"
       },
       {
-        "Order": "05",
-        "Category": "",
-        "Name": "Files",
-        "Icon": "fas fa-copy",
-        "Link": "/files",
-        "Permission": "BlazorWorld.Files",
-        "Enabled": false
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Files",
+        "Value": "04,,fas fa-copy,/files,BlazorWorld.Files,false"
       },
       {
-        "Order": "06",
-        "Category": "",
-        "Name": "Forums",
-        "Icon": "fa fa-comments",
-        "Link": "/forums",
-        "Permission": "BlazorWorld.Forums",
-        "Enabled": true
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Forums",
+        "Value": "06,,fas fa-comments,/forums,BlazorWorld.Forums,true"
       },
       {
-        "Order": "07",
-        "Category": "",
-        "Name": "Groups",
-        "Icon": "fa fa-users",
-        "Link": "/groups",
-        "Permission": "BlazorWorld.Groups",
-        "Enabled": false
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Groups",
+        "Value": "07,,fas fa-users,/groups,BlazorWorld.Groups,false"
       },
       {
-        "Order": "08",
-        "Category": "",
-        "Name": "Messages",
-        "Icon": "fa fa-envelope",
-        "Link": "/messages",
-        "Permission": "BlazorWorld.Messages",
-        "Enabled": true
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Messages",
+        "Value": "08,,fas fa-envelope,/messages,BlazorWorld.Messages,true"
       },
       {
-        "Order": "09",
-        "Category": "",
-        "Name": "Profiles",
-        "Icon": "fa fa-address-card",
-        "Link": "/profiles",
-        "Permission": "BlazorWorld.Profiles",
-        "Enabled": true
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Profiles",
+        "Value": "09,,fas fa-card,/profiles,BlazorWorld.Profiles,true"
       },
       {
-        "Order": "10",
-        "Category": "",
-        "Name": "Projects",
-        "Icon": "fas fa-project-diagram",
-        "Link": "/projects",
-        "Permission": "BlazorWorld.Projects",
-        "Enabled": false
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Projects",
+        "Value": "10,,fas fa-project-diagram,/projects,BlazorWorld.Projects,false"
       },
       {
-        "Order": "11",
-        "Category": "",
-        "Name": "Videos",
-        "Icon": "fas fa-video",
-        "Link": "/videos",
-        "Permission": "BlazorWorld.Videos",
-        "Enabled": true
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Videos",
+        "Value": "11,,fas fa-video,/videos,BlazorWorld.Videos,true"
       },
       {
-        "Order": "12",
-        "Category": "",
-        "Name": "Wikis",
-        "Icon": "fa fa-graduation-cap",
-        "Link": "/wikis",
-        "Permission": "BlazorWorld.Wikis",
-        "Enabled": false
+        "Id": "",
+        "Type": "SidebarMenu",
+        "Key": "Wikis",
+        "Value": "12,,fas fa-graduation-cap,/wikis,BlazorWorld.Wikis,true"
       }
     ]
   }

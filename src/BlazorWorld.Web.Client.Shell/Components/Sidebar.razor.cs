@@ -28,8 +28,9 @@ namespace BlazorWorld.Web.Client.Shell.Components
             SidebarMenuSettings = new Dictionary<string, List<SidebarMenuSetting>>();
             var sidebarMenuSettings = await ConfigurationService.SidebarMenuSettingsAsync();
             var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
-            foreach (var setting in sidebarMenuSettings)
+            foreach (var settingItem in sidebarMenuSettings)
             {
+                var setting = new SidebarMenuSetting(settingItem);
                 var allowed = await SecurityService.AllowedAsync(loggedInUserId, string.Empty,
                     setting.Permission, "Menu", Actions.View);
                 if (allowed && setting.Enabled)

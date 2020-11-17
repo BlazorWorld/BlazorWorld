@@ -1,4 +1,5 @@
-﻿using BlazorWorld.Services.Configuration.Models;
+﻿using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Services.Configuration.Models;
 using BlazorWorld.Web.Shared.Models;
 using Microsoft.Extensions.Configuration;
 
@@ -15,7 +16,7 @@ namespace BlazorWorld.Services.Configuration
             configuration.Bind(nameof(SiteAppSettings), _siteAppSettings);
         }
 
-        public SidebarMenuSetting[] SidebarMenuSettings()
+        public Setting[] SidebarMenuSettings()
         {
             return _siteAppSettings.SidebarMenuSettings;
         }

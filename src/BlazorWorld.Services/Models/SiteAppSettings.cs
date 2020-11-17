@@ -1,9 +1,9 @@
-﻿using BlazorWorld.Web.Shared.Models;
+﻿using BlazorWorld.Core.Entities.Configuration;
 
 namespace BlazorWorld.Services.Configuration.Models
 {
     public class SiteAppSettings
     {
-        public SidebarMenuSetting[] SidebarMenuSettings { get; set; }
+        public Setting[] SidebarMenuSettings { get; set; }
     }
 }
