@@ -101,6 +101,7 @@ namespace BlazorWorld.Web.Server
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
+            services.AddResponseCaching();
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
@@ -152,6 +153,21 @@ namespace BlazorWorld.Web.Server
             app.UpdateBlazorWorldIdentityDatabase();
             app.UpdateBlazorWorldApplicationDatabase();
             services.UseBlazorWorldSecurity(Configuration);
+
+            app.UseResponseCaching();
+            app.Use(async (context, next) =>
+            {
+                context.Response.GetTypedHeaders().CacheControl =
+                    new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromSeconds(10)
+                    };
+                context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
+                    new string[] { "Accept-Encoding" };
+
+                await next();
+            });
 
             app.UseEndpoints(endpoints =>
             {
