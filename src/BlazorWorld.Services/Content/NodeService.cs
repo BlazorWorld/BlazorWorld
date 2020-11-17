@@ -69,16 +69,36 @@ namespace BlazorWorld.Services.Content
                     path = $"{parent.Path},{node.ParentId}";
             }
             node.Path = path;
-            //if (!string.IsNullOrEmpty(node.Path))
-            //{
-            //    var root = await _nodeRepository.GetAsync(node.RootId);
-            //    root.DescendantCount++;
-            //    _nodeRepository.Update(root);
-            //}
+            if (!string.IsNullOrEmpty(node.Path))
+            {
+                var nodes = await GetAncestors(node);
+                foreach (var ancestorNode in nodes)
+                {
+                    ancestorNode.DescendantCount++;
+                    _nodeRepository.Update(ancestorNode);
+                }
+            }
 
             await _nodeRepository.SaveChangesAsync();
 
             return node.Id;
+        }
+
+        private async Task<IEnumerable<Node>> GetAncestors(Node node)
+        {
+            var nodes = new List<Node>();
+            var path = node.Path;
+            if (!string.IsNullOrEmpty(path))
+            {
+                var ids = path.Split(',');
+                foreach (var id in ids)
+                {
+                    var ancestorNode = await _nodeRepository.GetAsync(id);
+                    if (ancestorNode != null) nodes.Add(ancestorNode);
+                }
+            }
+
+            return nodes;
         }
 
         public async Task UpdateAsync(Node node)
@@ -104,12 +124,15 @@ namespace BlazorWorld.Services.Content
                 parent.ChildCount--;
                 _nodeRepository.Update(parent);
             }
-            //if (!string.IsNullOrEmpty(node.RootId))
-            //{
-            //    var root = await _nodeRepository.GetAsync(node.RootId);
-            //    root.DescendantCount--;
-            //    _nodeRepository.Update(root);
-            //}
+            if (!string.IsNullOrEmpty(node.Path))
+            {
+                var nodes = await GetAncestors(node);
+                foreach (var ancestorNode in nodes)
+                {
+                    ancestorNode.DescendantCount--;
+                    _nodeRepository.Update(ancestorNode);
+                }
+            }
 
             await _nodeRepository.SaveChangesAsync();
         }
