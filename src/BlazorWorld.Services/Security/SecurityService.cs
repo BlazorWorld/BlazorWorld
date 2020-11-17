@@ -63,6 +63,8 @@ namespace BlazorWorld.Services.Security
                 type,
                 action)) return true;
 
+            if (principal == null) return false;
+
             var user = await _userManager.GetUserAsync(principal);
 
             if (user == null) return false;

@@ -31,7 +31,7 @@ namespace BlazorWorld.Web.Server.Controllers
         [HttpGet("GuestAllowed")]
         public async Task<IActionResult> PublicAllowedAsync(string module, string type, string action)
         {
-            var result = await _securityService.IsAllowedAsync(HttpContext.User,
+            var result = await _securityService.IsAllowedAsync(null,
                 module, type, action);
             return Ok(result);
         }
