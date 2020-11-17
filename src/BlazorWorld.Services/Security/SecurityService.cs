@@ -46,9 +46,10 @@ namespace BlazorWorld.Services.Security
         {
             var securityAppSettings = new SecurityAppSettings();
             _configuration.Bind(nameof(SecurityAppSettings), securityAppSettings);
-            var adminUsers = (from ru in securityAppSettings.DefaultRoleUsers
-                             where ru.Role == Roles.Admin
-                             select ru.Users).FirstOrDefault();
+            var admin = (from ru in securityAppSettings.RoleUserSettings
+                         where ru.Type == Roles.Admin
+                         select ru.Value).FirstOrDefault();
+            var adminUsers = admin.Split(',');
             return adminUsers.Contains(username);
         }
 

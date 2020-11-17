@@ -66,9 +66,10 @@ namespace BlazorWorld.Services
             var securityAppSettings = new SecurityAppSettings();
             configuration.Bind(nameof(SecurityAppSettings), securityAppSettings);
 
-            var roleUsersArray = securityAppSettings.DefaultRoleUsers;
-            foreach (var roleUsers in roleUsersArray)
+            var roleUsersArray = securityAppSettings.RoleUserSettings;
+            foreach (var roleUserSettings in roleUsersArray)
             {
+                var roleUsers = new RoleUsers(roleUserSettings);
                 foreach (var userName in roleUsers.Users)
                 {
                     ApplicationUser user = await userManager.FindByNameAsync(userName);
@@ -90,28 +91,31 @@ namespace BlazorWorld.Services
             var securityAppSettings = new SecurityAppSettings();
             configuration.Bind(nameof(SecurityAppSettings), securityAppSettings);
 
-            foreach (var permissionSetting in securityAppSettings.DefaultPermissions)
+            foreach (var permissionSetting in securityAppSettings.PermissionSettings)
             {
-                var permissionKeyValue = permissionSetting.Split(',');
+                var permissionKeyValue = permissionSetting.Key.Split(',');
                 var resource = permissionKeyValue[0];
                 var resourceFields = resource.Split(':');
                 var module = resourceFields[0];
                 var type = resourceFields[1];
                 var action = permissionKeyValue[1];
-                var role = permissionKeyValue[2];
+                var roles = permissionSetting.Value.Split(',');
 
-                var found = await permissionsService.AllowedAsync(module, type, action, role, false);
-                if (!found)
+                foreach (var role in roles)
                 {
-                    var permission = new Permission()
+                    var found = await permissionsService.AllowedAsync(module, type, action, role, false);
+                    if (!found)
                     {
-                        Module = module,
-                        Type = type,
-                        Action = action,
-                        Role = role
-                    };
+                        var permission = new Permission()
+                        {
+                            Module = module,
+                            Type = type,
+                            Action = action,
+                            Role = role
+                        };
 
-                    await permissionsService.AddAsync(permission);
+                        await permissionsService.AddAsync(permission);
+                    }
                 }
             }
         }

@@ -1,98 +1,320 @@
 {
   "SecurityAppSettings": {
-    "DefaultRoleUsers": [
+    "RoleUserSettings": [
       {
-        "Role": "Admin",
-        "Users": ["admin"]
+        "Id": "",
+        "Type": "RoleUser",
+        "Key": "Admin",
+        "Value": "admin"
       },
       {
-        "Role": "Manager",
-        "Users": ["admin"]
+        "Id": "",
+        "Type": "RoleUser",
+        "Key": "Manager",
+        "Value": "admin"
       }
     ],
-    "DefaultPermissions": [
-      "BlazorWorld.Admin:Menu,View,Admin",
-      "BlazorWorld.Articles:Menu,View,Guest",
-      "BlazorWorld.Articles:Admin,View,Admin",
-      "BlazorWorld.Articles:Category,Add,Admin",
-      "BlazorWorld.Articles:Category,Edit,Admin",
-      "BlazorWorld.Articles:Category,Delete,Admin",
-      "BlazorWorld.Articles:Article,View,Guest",
-      "BlazorWorld.Articles:Article,Add,User",
-      "BlazorWorld.Articles:Article,Edit,Admin",
-      "BlazorWorld.Articles:Article,Edit,Manager",
-      "BlazorWorld.Articles:Article,Delete,Admin",
-      "BlazorWorld.Articles:Article,Delete,Manager",
-      "BlazorWorld.Articles:Comment,View,Guest",
-      "BlazorWorld.Articles:Comment,Add,User",
-      "BlazorWorld.Articles:Comment,Edit,Admin",
-      "BlazorWorld.Articles:Comment,Edit,Manager",
-      "BlazorWorld.Articles:Comment,Delete,Admin",
-      "BlazorWorld.Articles:Comment,Delete,Manager",
-      "BlazorWorld.Blogs:Menu,View,Guest",
-      "BlazorWorld.Blogs:Blog,View,Guest",
-      "BlazorWorld.Blogs:Blog,Add,User",
-      "BlazorWorld.Blogs:Blog,Edit,Admin",
-      "BlazorWorld.Blogs:Blog,Edit,Manager",
-      "BlazorWorld.Blogs:Blog,Delete,Admin",
-      "BlazorWorld.Blogs:Blog,Delete,Manager",
-      "BlazorWorld.Blogs:Post,View,Guest",
-      "BlazorWorld.Blogs:Post,Add,Admin",
-      "BlazorWorld.Blogs:Post,Add,Manager",
-      "BlazorWorld.Blogs:Post,Edit,Admin",
-      "BlazorWorld.Blogs:Post,Edit,Manager",
-      "BlazorWorld.Blogs:Post,Delete,Admin",
-      "BlazorWorld.Blogs:Post,Delete,Manager",
-      "BlazorWorld.Blogs:Comment,View,Guest",
-      "BlazorWorld.Blogs:Comment,Add,User",
-      "BlazorWorld.Blogs:Comment,Edit,Admin",
-      "BlazorWorld.Blogs:Comment,Edit,Manager",
-      "BlazorWorld.Blogs:Comment,Delete,Admin",
-      "BlazorWorld.Blogs:Comment,Delete,Manager",
-      "BlazorWorld.Forums:Menu,View,Guest",
-      "BlazorWorld.Forums:Admin,View,Admin",
-      "BlazorWorld.Forums:Forum,Add,Admin",
-      "BlazorWorld.Forums:Forum,Add,Manager",
-      "BlazorWorld.Forums:Forum,Edit,Admin",
-      "BlazorWorld.Forums:Forum,Edit,Manager",
-      "BlazorWorld.Forums:Forum,Delete,Admin",
-      "BlazorWorld.Forums:Forum,Delete,Manager",
-      "BlazorWorld.Forums:Topic,Add,User",
-      "BlazorWorld.Forums:Topic,Edit,Admin",
-      "BlazorWorld.Forums:Topic,Edit,Manager",
-      "BlazorWorld.Forums:Topic,Delete,Admin",
-      "BlazorWorld.Forums:Topic,Delete,Manager",
-      "BlazorWorld.Forums:Topic,Vote,User",
-      "BlazorWorld.Forums:Post,Add,User",
-      "BlazorWorld.Forums:Post,Edit,Admin",
-      "BlazorWorld.Forums:Post,Edit,Manager",
-      "BlazorWorld.Forums:Post,Delete,Admin",
-      "BlazorWorld.Forums:Post,Delete,Manager",
-      "BlazorWorld.Forums:Post,Vote,User",
-      "BlazorWorld.Forums:Comment,Add,User",
-      "BlazorWorld.Forums:Comment,Edit,Admin",
-      "BlazorWorld.Forums:Comment,Edit,Manager",
-      "BlazorWorld.Forums:Comment,Delete,Admin",
-      "BlazorWorld.Forums:Comment,Delete,Manager",
-      "BlazorWorld.Forums:Comment,Vote,User",
-      "BlazorWorld.Messages:Menu,View,User",
-      "BlazorWorld.Profiles:Menu,View,User",
-      "BlazorWorld.Profiles:Profile,Add,User",
-      "BlazorWorld.Videos:Menu,View,Guest",
-      "BlazorWorld.Videos:Channel,View,Guest",
-      "BlazorWorld.Videos:Channel,Add,Admin",
-      "BlazorWorld.Videos:Channel,Add,Manager",
-      "BlazorWorld.Videos:Channel,Edit,Admin",
-      "BlazorWorld.Videos:Channel,Edit,Manager",
-      "BlazorWorld.Videos:Channel,Delete,Admin",
-      "BlazorWorld.Videos:Channel,Delete,Manager",
-      "BlazorWorld.Videos:Video,View,Guest",
-      "BlazorWorld.Videos:Video,Add,Admin",
-      "BlazorWorld.Videos:Video,Add,Manager",
-      "BlazorWorld.Videos:Video,Edit,Admin",
-      "BlazorWorld.Videos:Video,Edit,Manager",
-      "BlazorWorld.Videos:Video,Delete,Admin",
-      "BlazorWorld.Videos:Video,Delete,Manager"
+    "PermissionSettings": [
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Admin:Menu,View",
+        "Value": "Admin"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Menu,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Category,Add",
+        "Value": "Admin"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Category,Edit",
+        "Value": "Admin"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Category,Delete",
+        "Value": "Admin"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Article,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Article,Add",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Article,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Article,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Menu,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Blog,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Blog,Add",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Blog,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Blog,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Post,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Post,Add",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Post,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Post,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Menu,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Forum,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Forum,Add",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Forum,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Forum,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Topic,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Topic,Add",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Topic,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Topic,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Topic,Vote",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Post,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Post,Add",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Post,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Post,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Post,Vote",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Comment,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Comment,Add",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Comment,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Comment,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forum:Comment,Vote",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Messages:Menu,View",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Profiles:PRofile,View",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Profiles:Profile,Add",
+        "Value": "User"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Menu,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Channel,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Channel,Add",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Channel,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Channel,Delete",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Video,View",
+        "Value": "Guest"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Video,Add",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Video,Edit",
+        "Value": "Admin,Manager"
+      },
+      {
+        "Id": "",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Video,Delete",
+        "Value": "Admin,Manager"
+      }
     ]
   }
 }

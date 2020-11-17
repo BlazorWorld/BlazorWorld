@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlazorWorld.Core.Entities.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace BlazorWorld.Services.Configuration.Models
 {
     public class SecurityAppSettings
     {
-        public RoleUsers[] DefaultRoleUsers { get; set; }
-        public string[] DefaultPermissions { get; set; }
+        public Setting[] RoleUserSettings { get; set; }
+        public Setting[] PermissionSettings { get; set; }
     }
 }
