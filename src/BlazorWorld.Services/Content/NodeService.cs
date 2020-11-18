@@ -204,9 +204,9 @@ namespace BlazorWorld.Services.Content
             short maxWeight = 1;
             foreach (var role in roles)
             {
-                var roleWeightSetting = _contentAppSettings.RoleWeightSettings.First(rws => rws.Role == role);
-                if (roleWeightSetting != null && roleWeightSetting.Weight > maxWeight)
-                    maxWeight = roleWeightSetting.Weight;
+                var roleWeightSetting = _contentAppSettings.RoleWeightSettings.First(rws => rws.Key == role);
+                if (roleWeightSetting != null && short.Parse(roleWeightSetting.Value) > maxWeight)
+                    maxWeight = short.Parse(roleWeightSetting.Value);
             }
 
             return maxWeight;

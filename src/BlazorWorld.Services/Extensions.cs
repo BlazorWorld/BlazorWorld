@@ -63,10 +63,8 @@ namespace BlazorWorld.Services
                 }
             }
 
-            var securityAppSettings = new SecurityAppSettings();
-            configuration.Bind(nameof(SecurityAppSettings), securityAppSettings);
-
-            var roleUsersArray = securityAppSettings.RoleUserSettings;
+            var configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
+            var roleUsersArray = configurationService.RoleUserSettings();
             foreach (var roleUserSettings in roleUsersArray)
             {
                 var roleUsers = new RoleUsers(roleUserSettings);
@@ -86,12 +84,9 @@ namespace BlazorWorld.Services
         private static async Task CreatePermissionsAsync(IServiceProvider serviceProvider,
             IConfiguration configuration)
         {
+            var configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
             var permissionsService = serviceProvider.GetRequiredService<IPermissionsService>();
-
-            var securityAppSettings = new SecurityAppSettings();
-            configuration.Bind(nameof(SecurityAppSettings), securityAppSettings);
-
-            foreach (var permissionSetting in securityAppSettings.PermissionSettings)
+            foreach (var permissionSetting in configurationService.PermissionSettings())
             {
                 var permissionKeyValue = permissionSetting.Key.Split(',');
                 var resource = permissionKeyValue[0];

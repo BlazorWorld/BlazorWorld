@@ -66,10 +66,9 @@ namespace BlazorWorld.Web.Server.Controllers
         {
             var pageSize = 10;
             var pageSizeSetting = _contentAppSettings.PageSizeSettings.FirstOrDefault(
-                pss => pss.Module == nodeSearch.Module &&
-                       pss.Type == nodeSearch.Type
+                pss => pss.Key == $"{nodeSearch.Module}:{nodeSearch.Type}"
                 );
-            if (pageSizeSetting != null) pageSize = pageSizeSetting.PageSize;
+            if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);
             if (nodeSearch.PageSize > 0 && nodeSearch.PageSize < pageSize)
             {
                 pageSize = nodeSearch.PageSize;
@@ -91,10 +90,9 @@ namespace BlazorWorld.Web.Server.Controllers
         {
             var pageSize = 10;
             var pageSizeSetting = _contentAppSettings.PageSizeSettings.FirstOrDefault(
-                pss => pss.Module == nodeSearch.Module &&
-                       pss.Type == nodeSearch.Type
+                pss => pss.Key == $"{nodeSearch.Module}:{nodeSearch.Type}"
             );
-            if (pageSizeSetting != null) pageSize = pageSizeSetting.PageSize;
+            if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);
             return Ok(pageSize);
         }
 

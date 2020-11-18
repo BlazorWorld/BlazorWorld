@@ -40,7 +40,7 @@ namespace BlazorWorld.Web.Server.Controllers
         {
             var group = await _groupService.GetAsync(groupId);
             var module = group.Module;
-            var pageSize = PageSize(module);
+            var pageSize = PageSize(module, "Message");
             return Ok(await _messagesService.GetPaginatedResultAsync(groupId, currentPage, pageSize));
         }
 
@@ -53,16 +53,16 @@ namespace BlazorWorld.Web.Server.Controllers
         [HttpGet("GetPageSize")]
         public IActionResult GetPageSize([FromQuery]string module)
         {
-            return Ok(PageSize(module));
+            return Ok(PageSize(module, "Message"));
         }
 
-        private int PageSize(string module)
+        private int PageSize(string module, string type)
         {
             var pageSize = 10;
             var pageSizeSetting = _contentAppSettings.PageSizeSettings.FirstOrDefault(
-                pss => pss.Module == module
+                pss => pss.Key == $"{module}:{type}"
             );
-            if (pageSizeSetting != null) pageSize = pageSizeSetting.PageSize;
+            if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);
             return pageSize;
         }
     }

@@ -6,5 +6,9 @@ namespace BlazorWorld.Services.Configuration
     public interface IConfigurationService
     {
         Setting[] SidebarMenuSettings();
+        Setting[] PermissionSettings();
+        Setting[] RoleUserSettings();
+        Setting[] PageSizeSettings();
+        Setting[] RoleWeightSettings();
     }
 }

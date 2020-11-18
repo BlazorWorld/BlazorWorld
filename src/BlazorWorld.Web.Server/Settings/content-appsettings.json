@@ -2,91 +2,120 @@
   "ContentAppSettings": {
     "RoleWeightSettings": [
       {
-        "Role": "Admin",
-        "Weight": 200
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Admin",
+        "Value": "200"
       },
       {
-        "Role": "Manager",
-        "Weight": 200
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Manager",
+        "Value": "200"
       },
       {
-        "Role": "Editor",
-        "Weight": 100
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Editor",
+        "Value": "100"
       },
       {
-        "Role": "Author",
-        "Weight": 1
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Author",
+        "Value": "1"
       },
       {
-        "Role": "Contributor",
-        "Weight": 1
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Contributor",
+        "Value": "1"
       },
       {
-        "Role": "Moderator",
-        "Weight": 10
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Moderator",
+        "Value": "10"
       },
       {
-        "Role": "Member",
-        "Weight": 1
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Member",
+        "Value": "1"
       },
       {
-        "Role": "Subscriber",
-        "Weight": 1
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "Subscriber",
+        "Value": "1"
       },
       {
-        "Role": "User",
-        "Weight": 1
+        "Id": "",
+        "Type": "RoleWeight",
+        "Key": "User",
+        "Value": "1"
       }
     ],
     "PageSizeSettings": [
       {
-        "Module": "BlazorWorld.Articles",
-        "Type": "Article",
-        "PageSize": 10
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Articles:Article",
+        "Value": "10"
       },
       {
-        "Module": "BlazorWorld.Articles",
-        "Type": "Comments",
-        "PageSize": 10
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Articles:Comments",
+        "Value": "10"
       },
       {
-        "Module": "BlazorWorld.Blogs",
-        "Type": "Blog",
-        "PageSize": 10
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Blogs:Blog",
+        "Value": "10"
       },
       {
-        "Module": "BlazorWorld.Blogs",
-        "Type": "Post",
-        "PageSize": 10
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Blogs:Post",
+        "Value": "10"
       },
       {
-        "Module": "BlazorWorld.Blogs",
-        "Type": "Comment",
-        "PageSize": 10
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Blogs:Comment",
+        "Value": "10"
       },
       {
-        "Module": "BlazorWorld.Forums",
-        "Type": "Forum",
-        "PageSize": 20
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Forums:Forum",
+        "Value": "20"
       },
       {
-        "Module": "BlazorWorld.Forums",
-        "Type": "Topic",
-        "PageSize": 20
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Forums:Topic",
+        "Value": "20"
       },
       {
-        "Module": "BlazorWorld.Forums",
-        "Type": "Post",
-        "PageSize": 20
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Forums:Post",
+        "Value": "20"
       },
       {
-        "Module": "BlazorWorld.Forums",
-        "Type": "Comment",
-        "PageSize": 10
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Forums:Comment",
+        "Value": "10"
       },
       {
-        "Module": "BlazorWorld.Messages",
-        "PageSize": 10
+        "Id": "",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Messages:Message",
+        "Value": "10"
       }
     ]
   }

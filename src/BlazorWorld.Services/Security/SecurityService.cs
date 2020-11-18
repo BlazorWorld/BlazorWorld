@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Common;
 using BlazorWorld.Data.Identity;
+using BlazorWorld.Services.Configuration;
 using BlazorWorld.Services.Configuration.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -16,16 +17,19 @@ namespace BlazorWorld.Services.Security
         private readonly IConfiguration _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IPermissionsService _permissionsService;
+        private readonly IConfigurationService _configurationService;
 
         public SecurityService(
             IConfiguration configuration,
             UserManager<ApplicationUser> userManager,
-            IPermissionsService permissionsService
+            IPermissionsService permissionsService,
+            IConfigurationService configurationService
             )
         {
             _configuration = configuration;
             _userManager = userManager;
             _permissionsService = permissionsService;
+            _configurationService = configurationService;
         }
 
         public async Task SetCreatedAsync(Item item, ClaimsPrincipal principal)
@@ -44,9 +48,7 @@ namespace BlazorWorld.Services.Security
 
         public bool IsAdminInConfig(string username)
         {
-            var securityAppSettings = new SecurityAppSettings();
-            _configuration.Bind(nameof(SecurityAppSettings), securityAppSettings);
-            var admin = (from ru in securityAppSettings.RoleUserSettings
+            var admin = (from ru in _configurationService.RoleUserSettings()
                          where ru.Type == Roles.Admin
                          select ru.Value).FirstOrDefault();
             var adminUsers = admin.Split(',');

@@ -2,6 +2,7 @@
 using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Data.Identity;
+using BlazorWorld.Services.Configuration;
 using BlazorWorld.Services.Configuration.Models;
 using BlazorWorld.Services.Content;
 using BlazorWorld.Services.Security;
@@ -29,7 +30,7 @@ namespace BlazorWorld.Web.Server.Services
         private readonly INodeService _nodeService;
         private readonly IActivityService _activityService;
         private readonly ISecurityService _securityService;
-        private readonly ContentAppSettings _contentAppSettings;
+        private readonly IConfigurationService _configurationService;
 
         public ServerNodeService(
             ILogger<ServerNodeService> logger,
@@ -39,7 +40,8 @@ namespace BlazorWorld.Web.Server.Services
             INodeService nodeService,
             IActivityService activityService,
             ISecurityService securityService,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IConfigurationService configurationService)
         {
             _logger = logger;
             _clientFactory = clientFactory;
@@ -48,8 +50,7 @@ namespace BlazorWorld.Web.Server.Services
             _nodeService = nodeService;
             _activityService = activityService;
             _securityService = securityService;
-            _contentAppSettings = new ContentAppSettings();
-            configuration.Bind(nameof(ContentAppSettings), _contentAppSettings);
+            _configurationService = configurationService;
         }
 
         public async Task<Node> GetAsync(string id)
@@ -61,11 +62,10 @@ namespace BlazorWorld.Web.Server.Services
             int currentPage)
         {
             var pageSize = 10;
-            var pageSizeSetting = _contentAppSettings.PageSizeSettings.FirstOrDefault(
-                pss => pss.Module == nodeSearch.Module &&
-                       pss.Type == nodeSearch.Type
+            var pageSizeSetting = _configurationService.PageSizeSettings().FirstOrDefault(
+                pss => pss.Key == $"{nodeSearch.Module}:{nodeSearch.Type}"
                 );
-            if (pageSizeSetting != null) pageSize = pageSizeSetting.PageSize;
+            if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);
             if (nodeSearch.PageSize > 0 && nodeSearch.PageSize < pageSize)
             {
                 pageSize = nodeSearch.PageSize;
@@ -104,11 +104,10 @@ namespace BlazorWorld.Web.Server.Services
         public async Task<int> GetPageSizeAsync(NodeSearch nodeSearch)
         {
             var pageSize = 10;
-            var pageSizeSetting = _contentAppSettings.PageSizeSettings.FirstOrDefault(
-                pss => pss.Module == nodeSearch.Module &&
-                       pss.Type == nodeSearch.Type
+            var pageSizeSetting = _configurationService.PageSizeSettings().FirstOrDefault(
+                pss => pss.Key == $"{nodeSearch.Module}:{nodeSearch.Type}"
             );
-            if (pageSizeSetting != null) pageSize = pageSizeSetting.PageSize;
+            if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);
             return pageSize;
         }
 
