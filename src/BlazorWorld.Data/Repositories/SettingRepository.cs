@@ -21,7 +21,9 @@ namespace BlazorWorld.Data.Repositories
         {
             return await (from s in _dbContext.Settings
                           where s.Type == type
-                          select s).ToArrayAsync();
+                          select s)
+                          .OrderBy(s => s.Key)
+                          .ToArrayAsync();
         }
 
         public void Add(Setting setting)

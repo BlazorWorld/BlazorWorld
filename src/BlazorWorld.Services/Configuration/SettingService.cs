@@ -76,25 +76,13 @@ namespace BlazorWorld.Services.Configuration
             return settings;
         }
 
-        public async Task<Setting[]> SidebarMenuSettingsAsync()
-        {
-            return await GetByTypeAsync("SidebarMenu");
-        }
+        public async Task<Setting[]> SidebarMenuSettingsAsync() => await GetByTypeAsync("SidebarMenu");
 
-        public async Task<Setting[]> PermissionSettingsAsync()
-        {
-            return await GetByTypeAsync("Permission");
-        }
+        public async Task<Setting[]> PermissionSettingsAsync() => await GetByTypeAsync("Permission");
 
-        public async Task<Setting[]> RoleUserSettingsAsync()
-        {
-            return await GetByTypeAsync("RoleUser");
-        }
+        public async Task<Setting[]> RoleUserSettingsAsync() => await GetByTypeAsync("RoleUser");
 
-        public async Task<Setting[]> PageSizeSettingsAsync()
-        {
-            return await GetByTypeAsync("PageSize");
-        }
+        public async Task<Setting[]> PageSizeSettingsAsync() => await GetByTypeAsync("PageSize");
 
         public async Task<Setting[]> RoleWeightSettingsAsync()
         {

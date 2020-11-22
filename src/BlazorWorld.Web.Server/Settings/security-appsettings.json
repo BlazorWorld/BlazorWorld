@@ -126,121 +126,121 @@
       {
         "Id": "4b10a641-d304-42e4-a42d-f0aa163206a1",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Menu,View",
+        "Key": "BlazorWorld.Forums:Menu,View",
         "Value": "Guest"
       },
       {
         "Id": "69215263-8b1c-48c7-92e1-2509b7fd263c",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Forum,View",
+        "Key": "BlazorWorld.Forums:Forum,View",
         "Value": "Guest"
       },
       {
         "Id": "2c9f6f12-e328-4a84-a5aa-623ced451b9b",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Forum,Add",
+        "Key": "BlazorWorld.Forums:Forum,Add",
         "Value": "Admin,Manager"
       },
       {
         "Id": "7a4f6409-9623-4a75-a91f-d46169024cae",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Forum,Edit",
+        "Key": "BlazorWorld.Forums:Forum,Edit",
         "Value": "Admin,Manager"
       },
       {
         "Id": "dcbd4894-976a-4469-9b93-f58fb87ee239",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Forum,Delete",
+        "Key": "BlazorWorld.Forums:Forum,Delete",
         "Value": "Admin,Manager"
       },
       {
         "Id": "b6bfd719-683a-47f6-bca4-196d8cb8ec48",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Topic,View",
+        "Key": "BlazorWorld.Forums:Topic,View",
         "Value": "Guest"
       },
       {
         "Id": "27baf70a-9ea5-41e6-bafb-65b872147a2a",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Topic,Add",
+        "Key": "BlazorWorld.Forums:Topic,Add",
         "Value": "User"
       },
       {
         "Id": "a8670b41-f876-491a-b747-c67a69c40836",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Topic,Edit",
+        "Key": "BlazorWorld.Forums:Topic,Edit",
         "Value": "Admin,Manager"
       },
       {
         "Id": "9c6b3b81-6c8b-4a20-8489-a36027a6315b",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Topic,Delete",
+        "Key": "BlazorWorld.Forums:Topic,Delete",
         "Value": "Admin,Manager"
       },
       {
         "Id": "9755ec36-95e5-4555-abac-5a8fe339853a",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Topic,Vote",
+        "Key": "BlazorWorld.Forums:Topic,Vote",
         "Value": "User"
       },
       {
         "Id": "f0d78ade-18df-4639-ada2-0027880414b9",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Post,View",
+        "Key": "BlazorWorld.Forums:Post,View",
         "Value": "Guest"
       },
       {
         "Id": "cfa45f34-c9dc-430d-92d8-5c363c83b3be",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Post,Add",
+        "Key": "BlazorWorld.Forums:Post,Add",
         "Value": "User"
       },
       {
         "Id": "86ecb99c-6886-4fc3-9c09-297c63dad4ed",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Post,Edit",
+        "Key": "BlazorWorld.Forums:Post,Edit",
         "Value": "Admin,Manager"
       },
       {
         "Id": "b0296dca-60ac-4d65-83c9-1fe5be9e665c",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Post,Delete",
+        "Key": "BlazorWorld.Forums:Post,Delete",
         "Value": "Admin,Manager"
       },
       {
         "Id": "185bff62-c614-4ddb-8334-e97d6327fb81",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Post,Vote",
+        "Key": "BlazorWorld.Forums:Post,Vote",
         "Value": "User"
       },
       {
         "Id": "24ac5883-c104-46ae-bdbe-039760845884",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Comment,View",
+        "Key": "BlazorWorld.Forums:Comment,View",
         "Value": "Guest"
       },
       {
         "Id": "5e033864-8d52-405f-80a2-cd123c2224ab",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Comment,Add",
+        "Key": "BlazorWorld.Forums:Comment,Add",
         "Value": "User"
       },
       {
         "Id": "eedc2652-cb4a-482e-b9da-91e1a070c29c",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Comment,Edit",
+        "Key": "BlazorWorld.Forums:Comment,Edit",
         "Value": "Admin,Manager"
       },
       {
         "Id": "6d784f82-c7ad-423a-a439-957193256aad",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Comment,Delete",
+        "Key": "BlazorWorld.Forums:Comment,Delete",
         "Value": "Admin,Manager"
       },
       {
         "Id": "8b520325-40b1-48a7-a193-e76737d015b0",
         "Type": "Permission",
-        "Key": "BlazorWorld.Forum:Comment,Vote",
+        "Key": "BlazorWorld.Forums:Comment,Vote",
         "Value": "User"
       },
       {
@@ -252,7 +252,7 @@
       {
         "Id": "c5932fa8-e46b-4744-95dd-26656f58eb53",
         "Type": "Permission",
-        "Key": "BlazorWorld.Profiles:PRofile,View",
+        "Key": "BlazorWorld.Profiles:Profile,View",
         "Value": "User"
       },
       {
