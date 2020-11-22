@@ -19,8 +19,8 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Models
 
         public string Name
         {
-            get => Slug;
-            set => Slug = value;
+            get => Title;
+            set => Title = value;
         }
 
         public int TopicCount => ChildCount;

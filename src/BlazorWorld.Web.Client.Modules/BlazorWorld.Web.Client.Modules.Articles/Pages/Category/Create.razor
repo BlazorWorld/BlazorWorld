@@ -27,6 +27,12 @@
                 <ValidationMessage For="@(() => Category.Name)" />
             </div>
             <div class="form-group row col-md-4">
+                <InputText class="form-control"
+                           @bind-Value="Category.Slug"
+                           placeholder="@Localize["Slug"]" />
+                <ValidationMessage For="@(() => Category.Slug)" />
+            </div>
+            <div class="form-group row col-md-4">
                 <input class="form-control"
                        @bind="Weight"
                        placeholder="@Localize["Weight"]" />

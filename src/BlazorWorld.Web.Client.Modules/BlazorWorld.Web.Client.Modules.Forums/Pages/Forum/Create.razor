@@ -23,9 +23,15 @@
 
                 <div class="form-group row col-md-10">
                     <InputText class="form-control"
-                               @bind-Value="@Forum.Title"
-                               placeholder="@Localize["Title"]" />
-                    <ValidationMessage For="@(() => Forum.Title)" />
+                               @bind-Value="@Name"
+                               placeholder="@Localize["Name"]" />
+                    <ValidationMessage For="@(() => Forum.Name)" />
+                </div>
+                <div class="form-group row col-md-10">
+                    <InputText class="form-control"
+                               @bind-Value="@Forum.Slug"
+                               placeholder="@Localize["Slug"]" />
+                    <ValidationMessage For="@(() => Forum.Slug)" />
                 </div>
                 <div class="form-group row col-md-10">
                     <textarea class="form-control"

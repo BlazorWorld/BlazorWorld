@@ -23,6 +23,19 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
         private EditContext _editContext;
         private ValidationMessageStore _messages;
 
+        private string Name
+        {
+            get
+            {
+                return Forum.Name;
+            }
+            set
+            {
+                Forum.Name = value;
+                Forum.Slug = value.ToSlug();
+            }
+        }
+
         protected override async Task OnInitializedAsync()
         {
             _editContext = new EditContext(Forum);
@@ -39,7 +52,6 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
 
         protected async Task SubmitAsync()
         {
-            Forum.Name = Forum.Title.ToSlug();
             Forum.ParentId = ParentId;
             var existingForum = await NodeService.GetBySlugAsync(
                 Constants.ForumsModule,

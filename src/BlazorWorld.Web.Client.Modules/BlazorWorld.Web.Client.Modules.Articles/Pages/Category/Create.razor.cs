@@ -63,7 +63,6 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
 
         protected async Task SubmitAsync()
         {
-            Category.Slug = Category.Name.ToSlug();
             var existingCategory = await NodeService.GetBySlugAsync(
                 Constants.ArticlesModule,
                 Constants.CategoryType,

@@ -1,4 +1,5 @@
-﻿using BlazorWorld.Web.Shared.Models;
+﻿using BlazorWorld.Web.Client.Shell;
+using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -16,6 +17,19 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
         [Parameter]
         public string Slug { get; set; }
         private Models.Forum Forum { get; set; } = new Models.Forum();
+
+        private string Name
+        {
+            get
+            {
+                return Forum.Name;
+            }
+            set
+            {
+                Forum.Name = value;
+                Forum.Slug = value.ToSlug();
+            }
+        }
 
         protected override async Task OnParametersSetAsync()
         {

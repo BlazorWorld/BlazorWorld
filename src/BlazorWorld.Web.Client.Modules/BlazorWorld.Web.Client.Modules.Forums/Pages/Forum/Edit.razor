@@ -12,22 +12,28 @@
             <ValidationSummary />
             <div class="form-group row col-md-10">
                 <InputText class="form-control"
-                            @bind-Value="@Forum.Name"
-                            placeholder="@Localize["Name"]" />
+                           @bind-Value="@Name"
+                           placeholder="@Localize["Name"]" />
                 <ValidationMessage For="@(() => Forum.Name)" />
             </div>
             <div class="form-group row col-md-10">
                 <InputText class="form-control"
-                            @bind-Value="@Forum.Title"
-                            placeholder="@Localize["Title"]" />
+                           @bind-Value="@Forum.Slug"
+                           placeholder="@Localize["Slug"]" />
+                <ValidationMessage For="@(() => Forum.Slug)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <InputText class="form-control"
+                           @bind-Value="@Forum.Title"
+                           placeholder="@Localize["Title"]" />
                 <ValidationMessage For="@(() => Forum.Title)" />
             </div>
             <div class="form-group row col-md-10">
                 <textarea class="form-control"
-                            rows="@Forum.Content.StringToRows(4)"
-                            @bind-value="Forum.Content"
-                            @bind-value:event="oninput"
-                            placeholder="@Localize["Description"]" />
+                          rows="@Forum.Content.StringToRows(4)"
+                          @bind-value="Forum.Content"
+                          @bind-value:event="oninput"
+                          placeholder="@Localize["Description"]" />
                 <ValidationMessage For="@(() => Forum.Content)" />
             </div>
             <div class="form-group row col-md-10">
