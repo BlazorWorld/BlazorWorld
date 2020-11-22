@@ -35,13 +35,13 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages
                 Type = Constants.CategoryType,
                 OrderBy = new string[]
                 {
+                    OrderBy.Weight,
                     OrderBy.Title
-                }
+                },
+                RootOnly = true
             };
-            var nodes = (await NodeService.GetAsync(nodeSearch, 0))
-                .OrderBy(a => a.Weight)
-                .ThenBy(a => a.Title);
-            Categories = nodes.ToArray().ConvertTo<Models.Category>();
+            var nodes = (await NodeService.GetAsync(nodeSearch, 0));
+            Categories = nodes.ConvertTo<Models.Category>();
 
             foreach (var category in Categories)
             {

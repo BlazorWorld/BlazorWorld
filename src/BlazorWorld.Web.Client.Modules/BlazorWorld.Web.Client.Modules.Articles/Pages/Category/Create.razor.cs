@@ -17,6 +17,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
         protected IWebNodeService NodeService { get; set; }
         [Inject]
         protected IWebSecurityService SecurityService { get; set; }
+        [Parameter]
+        public string ParentSlug { get; set; }
         [Inject]
         protected NavigationManager NavigationManager { get; set; }
         [CascadingParameter]
@@ -25,6 +27,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
         {
             Module = Constants.ArticlesModule
         };
+        private Models.Category ParentCategory { get; set; }
         private string Name
         {
             get
@@ -54,11 +57,26 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
         private EditContext _editContext;
         private ValidationMessageStore _messages;
 
-        protected override void OnInitialized()
+        protected override async Task OnParametersSetAsync()
         {
             _editContext = new EditContext(Category);
             _messages = new ValidationMessageStore(_editContext);
             base.OnInitialized();
+
+            if (!string.IsNullOrEmpty(ParentSlug))
+            {
+                var node = await NodeService.GetBySlugAsync(
+                    Constants.ArticlesModule,
+                    Constants.CategoryType,
+                    ParentSlug);
+                if (node != null)
+                {
+                    ParentCategory = Models.Category.Create(node);
+                    Category.ParentId = ParentCategory.Id;
+                }
+            }
+
+            await base.OnParametersSetAsync();
         }
 
         protected async Task SubmitAsync()

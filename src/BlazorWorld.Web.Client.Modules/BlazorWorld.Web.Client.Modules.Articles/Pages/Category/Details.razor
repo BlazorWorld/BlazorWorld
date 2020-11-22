@@ -5,9 +5,19 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">
+        <li class="breadcrumb-item" aria-current="page">
             <NavLink href="@($"/articles")"><i class="fas fa-newspaper"></i> @Localize["Articles"]</NavLink>
         </li>
+        @{
+            if (ParentCategory != null)
+            {
+                <li class="breadcrumb-item" aria-current="page">
+                    <NavLink href=@($"/articles/{ParentCategory.Slug}")>
+                        @ParentCategory.Name
+                    </NavLink>
+                </li>
+            }
+        }
     </ol>
 </nav>
 
@@ -38,6 +48,37 @@
        ConfirmButtonText="@Localize["Delete"]"
        CancelButtonText="@Localize["Cancel"]"
        OnConfirm="DeleteConfirmedAsync" />
+
+@if (CanAddCategory)
+{
+    <NavLink href="@($"/articles/category/new/{Category?.Slug}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+        <i class="fas fa-plus" aria-hidden="true"></i>
+        @Localize["New Category"]
+    </NavLink>
+}
+
+@if (Categories == null)
+{
+    <Loading />
+}
+else
+{
+    if (Categories.Count() > 0)
+    {
+        <div class="card mt-2 mb-2">
+            <div class="card-body">
+                <p class="card-text flex-row row">
+                    @foreach (var category in Categories)
+                    {
+                        <NavLink href=@($"/articles/{category.Slug}") class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            @category.Name
+                        </NavLink>
+                    }
+                </p>
+            </div>
+        </div>
+    }
+}
 
 @if (CanAddArticle)
 {

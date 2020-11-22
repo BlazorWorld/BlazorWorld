@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Core.Helper;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Client.Modules.Articles.Models;
 using BlazorWorld.Web.Client.Shell;
@@ -27,6 +28,10 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
         private bool CanDeleteCategory { get; set; } = false;
         private bool CanAddArticle { get; set; } = false;
         private Models.Category Category { get; set; }
+        private Models.Category ParentCategory { get; set; }
+        private bool CanAddCategory { get; set; } = false;
+        private Models.Category[] Categories { get; set; }
+
         private ArticlesModel Articles { get; set; }
         private Modal ConfirmModal { get; set; }
 
@@ -37,6 +42,29 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
                 Constants.CategoryType,
                 Slug);
             Category = Models.Category.Create(node);
+
+            if (!string.IsNullOrEmpty(Category.ParentId))
+            {
+                var parentNode = await NodeService.GetAsync(Category.ParentId);
+                if (parentNode != null)
+                {
+                    ParentCategory = Models.Category.Create(parentNode);
+                }
+            }
+
+            var nodeSearch = new NodeSearch()
+            {
+                Module = Constants.ArticlesModule,
+                Type = Constants.CategoryType,
+                ParentId = Category.Id,
+                OrderBy = new string[]
+                {
+                    OrderBy.Weight,
+                    OrderBy.Title
+                }
+            };
+            var nodes = await NodeService.GetAsync(nodeSearch, 0);
+            Categories = nodes.ConvertTo<Models.Category>();
 
             Articles = new ArticlesModel(NodeService)
             {
@@ -57,6 +85,13 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
             await Articles.InitAsync();
 
             var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
+            CanAddCategory = await SecurityService.AllowedAsync(
+                loggedInUserId,
+                null,
+                Constants.ArticlesModule,
+                Constants.CategoryType,
+                Actions.Add
+            );
             CanEditCategory = await SecurityService.AllowedAsync(
                 loggedInUserId,
                 null,
