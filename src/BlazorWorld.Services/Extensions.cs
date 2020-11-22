@@ -33,22 +33,25 @@ namespace BlazorWorld.Services
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<IAppEmailSender, EmailSender>();
             services.AddTransient<ISecurityService, SecurityService>();
-            services.AddTransient<IPermissionsService, PermissionsService>();
-            services.AddTransient<IConfigurationService, ConfigurationService>();
+            services.AddTransient<ISettingService, SettingService>();
             services.AddTransient<IInvitationService, InvitationService>();
 
             services.Configure<AuthMessageSenderOptions>(configuration);
         }
 
-        public static void UseBlazorWorldSecurity(this IServiceProvider serviceProvider,
-            IConfiguration configuration)
+        public static void UseBlazorWorldServices(this IServiceProvider serviceProvider, IConfiguration configuration)
         {
-            CreateUserRolesAsync(serviceProvider, configuration).Wait();
-            CreatePermissionsAsync(serviceProvider, configuration).Wait();
+            LoadSettingsAsync(serviceProvider, configuration).Wait();
+            CreateUserRolesAsync(serviceProvider).Wait();
         }
 
-        private static async Task CreateUserRolesAsync(IServiceProvider serviceProvider,
-            IConfiguration configuration)
+        private static async Task LoadSettingsAsync(IServiceProvider serviceProvider, IConfiguration configuration)
+        {
+            var settingService = serviceProvider.GetRequiredService<ISettingService>();
+            await settingService.LoadSettingsAsync(configuration);
+        }
+
+        private static async Task CreateUserRolesAsync(IServiceProvider serviceProvider)
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -63,8 +66,8 @@ namespace BlazorWorld.Services
                 }
             }
 
-            var configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            var roleUsersArray = configurationService.RoleUserSettings();
+            var configurationService = serviceProvider.GetRequiredService<ISettingService>();
+            var roleUsersArray = await configurationService.RoleUserSettingsAsync();
             foreach (var roleUserSettings in roleUsersArray)
             {
                 var roleUsers = new RoleUsers(roleUserSettings);
@@ -76,40 +79,6 @@ namespace BlazorWorld.Services
                         var inRole = await userManager.IsInRoleAsync(user, roleUsers.Role);
                         if (!inRole)
                             await userManager.AddToRoleAsync(user, roleUsers.Role);
-                    }
-                }
-            }
-        }
-
-        private static async Task CreatePermissionsAsync(IServiceProvider serviceProvider,
-            IConfiguration configuration)
-        {
-            var configurationService = serviceProvider.GetRequiredService<IConfigurationService>();
-            var permissionsService = serviceProvider.GetRequiredService<IPermissionsService>();
-            foreach (var permissionSetting in configurationService.PermissionSettings())
-            {
-                var permissionKeyValue = permissionSetting.Key.Split(',');
-                var resource = permissionKeyValue[0];
-                var resourceFields = resource.Split(':');
-                var module = resourceFields[0];
-                var type = resourceFields[1];
-                var action = permissionKeyValue[1];
-                var roles = permissionSetting.Value.Split(',');
-
-                foreach (var role in roles)
-                {
-                    var found = await permissionsService.AllowedAsync(module, type, action, role, false);
-                    if (!found)
-                    {
-                        var permission = new Permission()
-                        {
-                            Module = module,
-                            Type = type,
-                            Action = action,
-                            Role = role
-                        };
-
-                        await permissionsService.AddAsync(permission);
                     }
                 }
             }

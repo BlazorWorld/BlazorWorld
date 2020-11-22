@@ -6,7 +6,7 @@ namespace BlazorWorld.Services.Security
 {
     public interface ISecurityService
     {
-        bool IsAdminInConfig(string username);
+        Task<bool> IsAdminInConfigAsync(string username);
         Task SetCreatedAsync(Item item, ClaimsPrincipal principal);
         Task SetUpdatedAsync(Item item, ClaimsPrincipal principal);
         Task<bool> IsAllowedAsync(

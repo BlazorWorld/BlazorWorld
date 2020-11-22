@@ -57,6 +57,7 @@ namespace BlazorWorld.Data
             services.AddTransient<IInvitationRepository, InvitationRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddTransient<INodeRepository, NodeRepository>();
+            services.AddTransient<ISettingRepository, SettingRepository>();
         }
     }
 }

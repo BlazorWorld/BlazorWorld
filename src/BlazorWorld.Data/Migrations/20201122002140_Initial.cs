@@ -59,21 +59,6 @@ namespace BlazorWorld.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Permissions",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Module = table.Column<string>(type: "TEXT", nullable: false),
-                    Type = table.Column<string>(type: "TEXT", nullable: false),
-                    Action = table.Column<string>(type: "TEXT", nullable: false),
-                    Role = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Permissions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Activities",
                 columns: table => new
                 {
@@ -252,7 +237,6 @@ namespace BlazorWorld.Data.Migrations
                     Path = table.Column<string>(type: "TEXT", nullable: true),
                     ParentId = table.Column<string>(type: "TEXT", nullable: true),
                     GroupId = table.Column<string>(type: "TEXT", nullable: true),
-                    Tags = table.Column<string>(type: "TEXT", nullable: true),
                     Weight = table.Column<int>(type: "INTEGER", nullable: false),
                     ChildCount = table.Column<int>(type: "INTEGER", nullable: false),
                     DescendantCount = table.Column<int>(type: "INTEGER", nullable: false),
@@ -287,7 +271,6 @@ namespace BlazorWorld.Data.Migrations
                     Version = table.Column<int>(type: "INTEGER", nullable: false),
                     Title = table.Column<string>(type: "TEXT", nullable: true),
                     Content = table.Column<string>(type: "TEXT", nullable: true),
-                    Tags = table.Column<string>(type: "TEXT", nullable: true),
                     CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -349,9 +332,9 @@ namespace BlazorWorld.Data.Migrations
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     Type = table.Column<string>(type: "TEXT", nullable: false),
-                    Object = table.Column<string>(type: "TEXT", nullable: false),
                     Key = table.Column<string>(type: "TEXT", nullable: false),
                     Value = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedDate = table.Column<string>(type: "TEXT", nullable: true),
                     CustomFieldsId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -400,6 +383,8 @@ namespace BlazorWorld.Data.Migrations
                     GroupMemberId = table.Column<string>(type: "TEXT", nullable: true),
                     InvitationId = table.Column<string>(type: "TEXT", nullable: true),
                     MessageId = table.Column<string>(type: "TEXT", nullable: true),
+                    NodeId = table.Column<string>(type: "TEXT", nullable: true),
+                    NodeVersionId = table.Column<string>(type: "TEXT", nullable: true),
                     NodeVoteId = table.Column<string>(type: "TEXT", nullable: true),
                     ReactionId = table.Column<string>(type: "TEXT", nullable: true),
                     SettingId = table.Column<string>(type: "TEXT", nullable: true),
@@ -442,6 +427,18 @@ namespace BlazorWorld.Data.Migrations
                         name: "FK_EntityTags_Messages_MessageId",
                         column: x => x.MessageId,
                         principalTable: "Messages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EntityTags_Nodes_NodeId",
+                        column: x => x.NodeId,
+                        principalTable: "Nodes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EntityTags_NodeVersions_NodeVersionId",
+                        column: x => x.NodeVersionId,
+                        principalTable: "NodeVersions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -636,6 +633,16 @@ namespace BlazorWorld.Data.Migrations
                 column: "MessageId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EntityTags_NodeId",
+                table: "EntityTags",
+                column: "NodeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EntityTags_NodeVersionId",
+                table: "EntityTags",
+                column: "NodeVersionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EntityTags_NodeVoteId",
                 table: "EntityTags",
                 column: "NodeVoteId");
@@ -746,11 +753,6 @@ namespace BlazorWorld.Data.Migrations
                 columns: new[] { "NodeId", "UserId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Permissions_Module_Type_Action",
-                table: "Permissions",
-                columns: new[] { "Module", "Type", "Action" });
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reactions_ContentId",
                 table: "Reactions",
                 column: "ContentId");
@@ -787,15 +789,6 @@ namespace BlazorWorld.Data.Migrations
                 name: "EntityTags");
 
             migrationBuilder.DropTable(
-                name: "Nodes");
-
-            migrationBuilder.DropTable(
-                name: "NodeVersions");
-
-            migrationBuilder.DropTable(
-                name: "Permissions");
-
-            migrationBuilder.DropTable(
                 name: "Activities");
 
             migrationBuilder.DropTable(
@@ -812,6 +805,12 @@ namespace BlazorWorld.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "Nodes");
+
+            migrationBuilder.DropTable(
+                name: "NodeVersions");
 
             migrationBuilder.DropTable(
                 name: "NodeVotes");

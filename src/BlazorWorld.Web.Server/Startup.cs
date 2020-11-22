@@ -152,7 +152,7 @@ namespace BlazorWorld.Web.Server
 
             app.UpdateBlazorWorldIdentityDatabase();
             app.UpdateBlazorWorldApplicationDatabase();
-            services.UseBlazorWorldSecurity(Configuration);
+            services.UseBlazorWorldServices(Configuration);
 
             app.UseResponseCaching();
             app.Use(async (context, next) =>

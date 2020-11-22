@@ -2,7 +2,6 @@
 using BlazorWorld.Core.Entities.Common;
 using BlazorWorld.Data.Identity;
 using BlazorWorld.Services.Configuration;
-using BlazorWorld.Services.Configuration.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -14,22 +13,16 @@ namespace BlazorWorld.Services.Security
 {
     public class SecurityService : ISecurityService
     {
-        private readonly IConfiguration _configuration;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IPermissionsService _permissionsService;
-        private readonly IConfigurationService _configurationService;
+        private readonly ISettingService _settingService;
 
         public SecurityService(
-            IConfiguration configuration,
             UserManager<ApplicationUser> userManager,
-            IPermissionsService permissionsService,
-            IConfigurationService configurationService
+            ISettingService configurationService
             )
         {
-            _configuration = configuration;
             _userManager = userManager;
-            _permissionsService = permissionsService;
-            _configurationService = configurationService;
+            _settingService = configurationService;
         }
 
         public async Task SetCreatedAsync(Item item, ClaimsPrincipal principal)
@@ -46,9 +39,9 @@ namespace BlazorWorld.Services.Security
             item.LastUpdatedDate = DateTimeOffset.UtcNow.ToString("s");
         }
 
-        public bool IsAdminInConfig(string username)
+        public async Task<bool> IsAdminInConfigAsync(string username)
         {
-            var admin = (from ru in _configurationService.RoleUserSettings()
+            var admin = (from ru in await _settingService.RoleUserSettingsAsync()
                          where ru.Type == Roles.Admin
                          select ru.Value).FirstOrDefault();
             var adminUsers = admin.Split(',');
@@ -81,7 +74,7 @@ namespace BlazorWorld.Services.Security
 
             foreach (var role in roles)
             {
-                var allowed = await _permissionsService.AllowedAsync(module, type, action, role, true);
+                var allowed = await _settingService.AllowedAsync(module, type, action, role);
                 if (allowed) return true;
             }
 
@@ -93,7 +86,7 @@ namespace BlazorWorld.Services.Security
             string type,
             string action)
         {
-            return await _permissionsService.AllowedAsync(module, type, action, Roles.Guest, true);
+            return await _settingService.AllowedAsync(module, type, action, Roles.Guest);
         }
 
         private async Task<bool> IsAllowedForRegisteredUsersAsync(
@@ -101,8 +94,8 @@ namespace BlazorWorld.Services.Security
             string type,
             string action)
         {
-            return await _permissionsService.AllowedAsync(
-                module, type, action, Roles.User, true);
+            return await _settingService.AllowedAsync(
+                module, type, action, Roles.User);
         }
     }
 }

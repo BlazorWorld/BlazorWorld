@@ -4,6 +4,11 @@
     [Parameter]
     public string Title { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await TitleService.SetPageTitleAsync("Test");
+    }
+
     protected override async Task OnParametersSetAsync()
     {
         await TitleService.SetPageTitleAsync(Title);

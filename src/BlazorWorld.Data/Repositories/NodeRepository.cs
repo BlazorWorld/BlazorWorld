@@ -115,11 +115,6 @@ namespace BlazorWorld.Data.Repositories
             _dbContext.Remove(_dbContext.Nodes.Single(i => i.Id == id));
         }
 
-        public async Task SaveChangesAsync()
-        {
-            await _dbContext.SaveChangesAsync();
-        }
-
         public async Task<NodeVote> GetVoteAsync(string userId, string nodeId)
         {
             var vote = from v in _dbContext.NodeVotes

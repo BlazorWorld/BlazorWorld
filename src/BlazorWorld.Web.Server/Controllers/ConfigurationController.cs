@@ -2,6 +2,7 @@
 using BlazorWorld.Web.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Server.Controllers
 {
@@ -10,16 +11,16 @@ namespace BlazorWorld.Web.Server.Controllers
     [ApiController]
     public class ConfigurationController : ControllerBase
     {
-        private IConfigurationService _siteConfigurationService;
+        private ISettingService _settingService;
 
-        public ConfigurationController(IConfigurationService siteConfigurationService)
+        public ConfigurationController(ISettingService siteConfigurationService)
         {
-            _siteConfigurationService = siteConfigurationService;
+            _settingService = siteConfigurationService;
         }
 
-        public IActionResult SidebarMenuSettings()
+        public async Task<IActionResult> SidebarMenuSettings()
         {
-            return Ok(_siteConfigurationService.SidebarMenuSettings());
+            return Ok(await _settingService.SidebarMenuSettingsAsync());
         }
     }
 }

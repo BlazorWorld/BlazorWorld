@@ -8,16 +8,16 @@ namespace BlazorWorld.Web.Server.Services
 {
     public class ServerConfigurationService : IWebConfigurationService
     {
-        private IConfigurationService _siteConfigurationService;
+        private ISettingService _settingService;
 
-        public ServerConfigurationService(IConfigurationService siteConfigurationService)
+        public ServerConfigurationService(ISettingService siteConfigurationService)
         {
-            _siteConfigurationService = siteConfigurationService;
+            _settingService = siteConfigurationService;
         }
 
         public async Task<Setting[]> SidebarMenuSettingsAsync()
         {
-            return _siteConfigurationService.SidebarMenuSettings();
+            return await _settingService.SidebarMenuSettingsAsync();
         }
     }
 }

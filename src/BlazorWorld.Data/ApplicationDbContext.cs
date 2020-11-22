@@ -20,7 +20,6 @@ namespace BlazorWorld.Data
 
         // configuration entities
         public DbSet<Setting> Settings { get; set; }
-        public DbSet<Permission> Permissions { get; set; }
 
         // content entities
         public DbSet<Activity> Activities { get; set; }
@@ -82,8 +81,6 @@ namespace BlazorWorld.Data
                 .HasIndex(x => x.IndexedCustomField19);
             modelBuilder.Entity<EntityCustomFields>()
                 .HasIndex(x => x.IndexedCustomField20);
-            modelBuilder.Entity<Permission>()
-                .HasIndex(p => new { p.Module, p.Type, p.Action });
             modelBuilder.Entity<EntityTag>()
                 .HasIndex(x => x.Tag);
             modelBuilder.Entity<EntityTag>()

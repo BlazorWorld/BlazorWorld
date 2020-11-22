@@ -190,47 +190,18 @@ namespace BlazorWorld.Data.Migrations
                     b.ToTable("EntityCustomFields");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Permission", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Action")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Module")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Module", "Type", "Action");
-
-                    b.ToTable("Permissions");
-                });
-
             modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Setting", b =>
                 {
                     b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CreatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Key")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Object")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -328,6 +299,12 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("MessageId")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("NodeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NodeVersionId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NodeVoteId")
                         .HasColumnType("TEXT");
 
@@ -359,6 +336,10 @@ namespace BlazorWorld.Data.Migrations
                     b.HasIndex("InvitationId");
 
                     b.HasIndex("MessageId");
+
+                    b.HasIndex("NodeId");
+
+                    b.HasIndex("NodeVersionId");
 
                     b.HasIndex("NodeVoteId");
 
@@ -474,9 +455,6 @@ namespace BlazorWorld.Data.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Tags")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("TenantId")
                         .HasColumnType("TEXT");
 
@@ -519,9 +497,6 @@ namespace BlazorWorld.Data.Migrations
 
                     b.Property<string>("NodeId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Tags")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
@@ -856,6 +831,14 @@ namespace BlazorWorld.Data.Migrations
                         .WithMany("Tags")
                         .HasForeignKey("MessageId");
 
+                    b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("NodeId");
+
+                    b.HasOne("BlazorWorld.Core.Entities.Content.NodeVersion", null)
+                        .WithMany("Tags")
+                        .HasForeignKey("NodeVersionId");
+
                     b.HasOne("BlazorWorld.Core.Entities.Content.NodeVote", null)
                         .WithMany("Tags")
                         .HasForeignKey("NodeVoteId");
@@ -974,6 +957,16 @@ namespace BlazorWorld.Data.Migrations
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Message", b =>
+                {
+                    b.Navigation("Tags");
+                });
+
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Node", b =>
+                {
+                    b.Navigation("Tags");
+                });
+
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVersion", b =>
                 {
                     b.Navigation("Tags");
                 });

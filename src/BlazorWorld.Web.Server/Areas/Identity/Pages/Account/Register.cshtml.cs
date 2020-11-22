@@ -115,7 +115,7 @@ namespace BlazorWorld.Web.Server.Areas.Identity.Pages.Account
             }
 
             var inviteRequirementMet = true;
-            if (InvitationRequired && !_securityService.IsAdminInConfig(Input.Username))
+            if (InvitationRequired && !(await _securityService.IsAdminInConfigAsync(Input.Username)))
             {
                 if (string.IsNullOrEmpty(Input.InvitationCode))
                     ModelState.AddModelError("code", "Please enter the Invitation Code.");

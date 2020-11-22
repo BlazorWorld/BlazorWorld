@@ -30,7 +30,7 @@ namespace BlazorWorld.Web.Server.Services
         private readonly INodeService _nodeService;
         private readonly IActivityService _activityService;
         private readonly ISecurityService _securityService;
-        private readonly IConfigurationService _configurationService;
+        private readonly ISettingService _settingService;
 
         public ServerNodeService(
             ILogger<ServerNodeService> logger,
@@ -41,7 +41,7 @@ namespace BlazorWorld.Web.Server.Services
             IActivityService activityService,
             ISecurityService securityService,
             IConfiguration configuration,
-            IConfigurationService configurationService)
+            ISettingService configurationService)
         {
             _logger = logger;
             _clientFactory = clientFactory;
@@ -50,7 +50,7 @@ namespace BlazorWorld.Web.Server.Services
             _nodeService = nodeService;
             _activityService = activityService;
             _securityService = securityService;
-            _configurationService = configurationService;
+            _settingService = configurationService;
         }
 
         public async Task<Node> GetAsync(string id)
@@ -62,7 +62,7 @@ namespace BlazorWorld.Web.Server.Services
             int currentPage)
         {
             var pageSize = 10;
-            var pageSizeSetting = _configurationService.PageSizeSettings().FirstOrDefault(
+            var pageSizeSetting = (await _settingService.PageSizeSettingsAsync()).FirstOrDefault(
                 pss => pss.Key == $"{nodeSearch.Module}:{nodeSearch.Type}"
                 );
             if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);
@@ -104,7 +104,7 @@ namespace BlazorWorld.Web.Server.Services
         public async Task<int> GetPageSizeAsync(NodeSearch nodeSearch)
         {
             var pageSize = 10;
-            var pageSizeSetting = _configurationService.PageSizeSettings().FirstOrDefault(
+            var pageSizeSetting = (await _settingService.PageSizeSettingsAsync()).FirstOrDefault(
                 pss => pss.Key == $"{nodeSearch.Module}:{nodeSearch.Type}"
             );
             if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);

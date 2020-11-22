@@ -25,7 +25,8 @@ namespace BlazorWorld.Core.Entities.Content
         public string Path { get; set; }
         public string ParentId { get; set; }
         public string GroupId { get; set; }
-        public string Tags { get; set; }
+        [NotMapped]
+        public string AllTags { get; set; }
 
         // Metrics
         public int Weight { get; set; }

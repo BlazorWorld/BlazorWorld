@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorWorld.Web.Client.Messages\BlazorWorld.Web.Client.Messages.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Client.Services\BlazorWorld.Web.Client.Services.csproj" />
     <ProjectReference Include="..\BlazorWorld.Web.Shared\BlazorWorld.Web.Shared.csproj" />
   </ItemGroup>

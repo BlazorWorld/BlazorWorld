@@ -8,10 +8,9 @@ namespace BlazorWorld.Core.Entities.Configuration
         [Required]
         public string Type { get; set; }
         [Required]
-        public string Object { get; set; }
-        [Required]
         public string Key { get; set; }
         [Required]
         public string Value { get; set; }
+        public string CreatedDate { get; set; }
     }
 }

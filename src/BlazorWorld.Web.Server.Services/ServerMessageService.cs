@@ -1,4 +1,5 @@
 ﻿using BlazorWorld.Core.Entities.Content;
+using BlazorWorld.Services.Configuration;
 using BlazorWorld.Services.Configuration.Models;
 using BlazorWorld.Services.Content;
 using BlazorWorld.Services.Organization;
@@ -16,24 +17,23 @@ namespace BlazorWorld.Web.Server.Messages.Services
     {
         private readonly IGroupService _groupService;
         private readonly IMessageService _messagesService;
-        private readonly ContentAppSettings _contentAppSettings;
+        private readonly ISettingService _settingService;
 
         public ServerMessageService(
             IGroupService groupService,
             IMessageService messagesService,
-            IConfiguration configuration)
+            ISettingService settingService)
         {
             _groupService = groupService;
             _messagesService = messagesService;
-            _contentAppSettings = new ContentAppSettings();
-            configuration.Bind(nameof(ContentAppSettings), _contentAppSettings);
+            _settingService = settingService;
         }
 
         public async Task<Message[]> GetAsync(string groupId, int currentPage)
         {
             var group = await _groupService.GetAsync(groupId);
             var module = group.Module;
-            var pageSize = PageSize(module, "Message");
+            var pageSize = await PageSizeAsync(module, "Message");
             return (await _messagesService.GetPaginatedResultAsync(groupId, currentPage, pageSize)).ToArray();
         }
 
@@ -44,13 +44,13 @@ namespace BlazorWorld.Web.Server.Messages.Services
 
         public async Task<int> GetPageSizeAsync(string module)
         {
-            return PageSize(module, "Message");
+            return await PageSizeAsync(module, "Message");
         }
 
-        private int PageSize(string module, string type)
+        private async Task<int> PageSizeAsync(string module, string type)
         {
             var pageSize = 10;
-            var pageSizeSetting = _contentAppSettings.PageSizeSettings.FirstOrDefault(
+            var pageSizeSetting = (await _settingService.PageSizeSettingsAsync()).FirstOrDefault(
                 pss => pss.Key == $"{module}:{type}"
             );
             if (pageSizeSetting != null) pageSize = int.Parse(pageSizeSetting.Value);

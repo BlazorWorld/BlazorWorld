@@ -2,13 +2,13 @@
   "SecurityAppSettings": {
     "RoleUserSettings": [
       {
-        "Id": "",
+        "Id": "fc266c2f-3788-44c1-9975-20f9858c0a8a",
         "Type": "RoleUser",
         "Key": "Admin",
         "Value": "admin"
       },
       {
-        "Id": "",
+        "Id": "1e39a9da-0926-486c-a330-d2380c40b92b",
         "Type": "RoleUser",
         "Key": "Manager",
         "Value": "admin"
@@ -16,301 +16,301 @@
     ],
     "PermissionSettings": [
       {
-        "Id": "",
+        "Id": "2e156bff-b57e-4e1c-b7dd-74b453eb7450",
         "Type": "Permission",
         "Key": "BlazorWorld.Admin:Menu,View",
         "Value": "Admin"
       },
       {
-        "Id": "",
+        "Id": "4ab20627-6b50-4aef-886f-5c8b892239c3",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Menu,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "4e5e6ca1-ad73-4a95-9570-f769450846b3",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Category,Add",
         "Value": "Admin"
       },
       {
-        "Id": "",
+        "Id": "8b03a85d-fa1e-4b14-9af5-664adf6a0144",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Category,Edit",
         "Value": "Admin"
       },
       {
-        "Id": "",
+        "Id": "5a8ffc48-2cf3-4cf0-945b-08e252880b14",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Category,Delete",
         "Value": "Admin"
       },
       {
-        "Id": "",
+        "Id": "bf8897b4-bf7f-443c-bb54-c56e1bcce22b",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Article,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "76ae23c3-ab40-42fe-aa9a-4dfcdf117c45",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Article,Add",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "da554bcd-10b5-4b80-baa1-fcd9720dbcc3",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Article,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "2fa1e241-2ad3-4d15-8a21-a93f831d156a",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Article,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "15b9e9f3-f526-4d2f-9589-6c094f8c59f1",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Menu,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "1d707865-6552-48fc-a522-e388b8baafc2",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Blog,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "fc22e827-4ba0-4827-87bf-4324a7ac4230",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Blog,Add",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "aa35409d-145f-4161-bab2-2005d6f9f8b5",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Blog,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "3b3813ae-0237-4d5a-b2fb-860c7e1251aa",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Blog,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "cf3cc47c-2f52-4950-81d7-ace9219b5c5c",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Post,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "4c13b619-6ca1-4d57-a139-2bbc575b8d5a",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Post,Add",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "4a9f21e3-1b88-4d92-aa80-d71df47fd015",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Post,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "16649d6d-8720-4212-a891-3eb936aa6cec",
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Post,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "4b10a641-d304-42e4-a42d-f0aa163206a1",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Menu,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "69215263-8b1c-48c7-92e1-2509b7fd263c",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Forum,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "2c9f6f12-e328-4a84-a5aa-623ced451b9b",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Forum,Add",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "7a4f6409-9623-4a75-a91f-d46169024cae",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Forum,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "dcbd4894-976a-4469-9b93-f58fb87ee239",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Forum,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "b6bfd719-683a-47f6-bca4-196d8cb8ec48",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Topic,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "27baf70a-9ea5-41e6-bafb-65b872147a2a",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Topic,Add",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "a8670b41-f876-491a-b747-c67a69c40836",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Topic,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "9c6b3b81-6c8b-4a20-8489-a36027a6315b",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Topic,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "9755ec36-95e5-4555-abac-5a8fe339853a",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Topic,Vote",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "f0d78ade-18df-4639-ada2-0027880414b9",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Post,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "cfa45f34-c9dc-430d-92d8-5c363c83b3be",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Post,Add",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "86ecb99c-6886-4fc3-9c09-297c63dad4ed",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Post,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "b0296dca-60ac-4d65-83c9-1fe5be9e665c",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Post,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "185bff62-c614-4ddb-8334-e97d6327fb81",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Post,Vote",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "24ac5883-c104-46ae-bdbe-039760845884",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Comment,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "5e033864-8d52-405f-80a2-cd123c2224ab",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Comment,Add",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "eedc2652-cb4a-482e-b9da-91e1a070c29c",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Comment,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "6d784f82-c7ad-423a-a439-957193256aad",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Comment,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "8b520325-40b1-48a7-a193-e76737d015b0",
         "Type": "Permission",
         "Key": "BlazorWorld.Forum:Comment,Vote",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "b79e4606-bcb0-447b-a90b-9445be66feda",
         "Type": "Permission",
         "Key": "BlazorWorld.Messages:Menu,View",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "c5932fa8-e46b-4744-95dd-26656f58eb53",
         "Type": "Permission",
         "Key": "BlazorWorld.Profiles:PRofile,View",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "5ee88c15-3014-4af4-a5c3-1b5328acbbe8",
         "Type": "Permission",
         "Key": "BlazorWorld.Profiles:Profile,Add",
         "Value": "User"
       },
       {
-        "Id": "",
+        "Id": "cbd667d3-1905-4e8f-ad16-a9ac2b701f7e",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Menu,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "de17faeb-45c0-4c5e-bf48-b2eef9d8cc57",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Channel,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "386e29d4-4cfa-4793-a5fc-a0882365d3da",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Channel,Add",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "7a6ec6a0-9372-4181-8cbe-a2dc88da678a",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Channel,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "e11196af-bbe6-487d-99a7-7937ba00c599",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Channel,Delete",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "7ef09513-720a-4138-8111-6e5b570a346e",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Video,View",
         "Value": "Guest"
       },
       {
-        "Id": "",
+        "Id": "e37c6431-480d-4e16-98f7-5e2270ed8406",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Video,Add",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "af13f7f2-f473-4689-8721-5c1c89d64ae4",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Video,Edit",
         "Value": "Admin,Manager"
       },
       {
-        "Id": "",
+        "Id": "78a48026-5148-4b0d-a04d-51622c007889",
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Video,Delete",
         "Value": "Admin,Manager"
