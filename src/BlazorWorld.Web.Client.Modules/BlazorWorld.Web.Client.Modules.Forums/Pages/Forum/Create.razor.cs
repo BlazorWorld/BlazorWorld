@@ -36,11 +36,10 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
             }
         }
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
             _editContext = new EditContext(Forum);
             _messages = new ValidationMessageStore(_editContext);
-            base.OnInitialized();
 
             if (!string.IsNullOrEmpty(ParentId))
             {
@@ -48,6 +47,8 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
                 if (node != null)
                     ParentForum = Models.Forum.Create(node);
             }
+
+            await base.OnParametersSetAsync();
         }
 
         protected async Task SubmitAsync()

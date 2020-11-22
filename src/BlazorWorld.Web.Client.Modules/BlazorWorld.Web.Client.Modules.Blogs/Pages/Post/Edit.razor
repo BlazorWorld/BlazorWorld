@@ -5,9 +5,11 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">
+        <li class="breadcrumb-item">
             <NavLink href="@($"/blogs")"><i class="fa fa-pencil-square-o"></i> @Localize["Blogs"]</NavLink>
-            / <NavLink href="@($"/blog/{Blog?.Slug}")">@Blog?.Name</NavLink>
+        </li>
+        <li class="breadcrumb-item">
+            <NavLink href="@($"/blog/{Blog?.Slug}")">@Blog?.Name</NavLink>
         </li>
     </ol>
 </nav>

@@ -5,8 +5,10 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">
-            <NavLink href="/forums"><i class="fa fa-comments"></i> @Localize["Forums"]</NavLink> /
+        <li class="breadcrumb-item">
+            <NavLink href="/forums"><i class="fa fa-comments"></i> @Localize["Forums"]</NavLink>
+        </li>
+        <li class="breadcrumb-item">
             <NavLink href=@($"/forum/{Forum?.Slug}")>
                 @Forum?.Title
             </NavLink>

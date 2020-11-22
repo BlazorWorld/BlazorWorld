@@ -5,19 +5,19 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">
+        <li class="breadcrumb-item">
             <NavLink href="@($"/forums")"><i class="fa fa-comments"></i> @Localize["Forums"]</NavLink>
-            @{ 
-                if (ParentForum != null)
-                {
-                    <span> / 
-                        <NavLink href=@($"/forum/{ParentForum.Slug}")>
-                            @ParentForum.Title
-                        </NavLink>
-                    </span>
-                }
-            }
         </li>
+        @{
+            if (ParentForum != null)
+            {
+                <li class="breadcrumb-item">
+                    <NavLink href=@($"/forum/{ParentForum.Slug}")>
+                        @ParentForum.Title
+                    </NavLink>
+                </li>
+            }
+        }
     </ol>
 </nav>
 
