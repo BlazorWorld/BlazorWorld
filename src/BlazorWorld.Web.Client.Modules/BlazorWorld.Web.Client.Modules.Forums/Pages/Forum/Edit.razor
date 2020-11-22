@@ -23,12 +23,6 @@
                 <ValidationMessage For="@(() => Forum.Slug)" />
             </div>
             <div class="form-group row col-md-10">
-                <InputText class="form-control"
-                           @bind-Value="@Forum.Title"
-                           placeholder="@Localize["Title"]" />
-                <ValidationMessage For="@(() => Forum.Title)" />
-            </div>
-            <div class="form-group row col-md-10">
                 <textarea class="form-control"
                           rows="@Forum.Content.StringToRows(4)"
                           @bind-value="Forum.Content"
