@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BlazorWorld.Data.Identity.Migrations
+namespace BlazorWorld.Data.Identity.Migrations.Sqlite
 {
-    [DbContext(typeof(ApplicationIdentityDbContext))]
-    [Migration("20201122085035_Initial")]
-    partial class Initial
+    [DbContext(typeof(SqliteIdentityDbContext))]
+    [Migration("20201127171222_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

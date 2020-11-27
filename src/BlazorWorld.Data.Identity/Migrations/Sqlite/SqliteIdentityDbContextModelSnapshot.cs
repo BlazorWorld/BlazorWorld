@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BlazorWorld.Data.Identity.Migrations
+namespace BlazorWorld.Data.Identity.Migrations.Sqlite
 {
-    [DbContext(typeof(ApplicationIdentityDbContext))]
-    partial class ApplicationIdentityDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(SqliteIdentityDbContext))]
+    partial class SqliteIdentityDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

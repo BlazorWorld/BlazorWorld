@@ -10,12 +10,20 @@ using System.Threading.Tasks;
 
 namespace BlazorWorld.Data.Identity
 {
-    public class ApplicationIdentityDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>, IPersistedGrantDbContext
+    public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>, IPersistedGrantDbContext
     {
         private readonly IOptions<OperationalStoreOptions> _operationalStoreOptions;
 
-        public ApplicationIdentityDbContext(
-            DbContextOptions<ApplicationIdentityDbContext> options,
+        public AppIdentityDbContext(
+            DbContextOptions<AppIdentityDbContext> options,
+            IOptions<OperationalStoreOptions> operationalStoreOptions)
+            : base(options)
+        {
+            _operationalStoreOptions = operationalStoreOptions;
+        }
+
+        protected AppIdentityDbContext(
+            DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options)
         {

@@ -150,7 +150,7 @@ namespace BlazorWorld.Web.Server
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UpdateBlazorWorldIdentityDatabase();
+            app.UpdateBlazorWorldIdentityDatabase(Configuration);
             app.UpdateBlazorWorldApplicationDatabase();
             services.UseBlazorWorldServices(Configuration);
 

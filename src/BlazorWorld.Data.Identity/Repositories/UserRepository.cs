@@ -6,9 +6,9 @@ namespace BlazorWorld.Data.Identity.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly ApplicationIdentityDbContext _dbContext;
+        private readonly AppIdentityDbContext _dbContext;
 
-        public UserRepository(ApplicationIdentityDbContext dbContext)
+        public UserRepository(AppIdentityDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
+using System;
 
 namespace BlazorWorld.Data.Identity
 {
@@ -13,7 +14,7 @@ namespace BlazorWorld.Data.Identity
     {
         public static void AddBlazorWorldIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            var provider = configuration["IdentityDbProvider"];
+            var provider = configuration["IdentityDbProvider"].ToLower();
             if (string.IsNullOrEmpty(provider))
             {
                 provider = "sqlite";
@@ -21,12 +22,12 @@ namespace BlazorWorld.Data.Identity
             string connectionString = configuration.GetConnectionString("IdentityDbConnection");
             switch (provider.ToLower())
             {
-                case "mssql":
-                    services.AddDbContext<ApplicationIdentityDbContext>(options =>
+                case "sqlserver":
+                    services.AddDbContext<SqlServerIdentityDbContext>(options =>
                         options.UseSqlServer(connectionString));
                     break;
                 case "mysql":
-                    services.AddDbContext<ApplicationIdentityDbContext>(options =>
+                    services.AddDbContext<MySqlIdentityDbContext>(options =>
                         options.UseMySql(connectionString));
                     break;
                 case "sqlite":
@@ -38,32 +39,66 @@ namespace BlazorWorld.Data.Identity
                         var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder { DataSource = identityDbFilename };
                         connectionString = connectionStringBuilder.ToString();
                     }
-                    services.AddDbContext<ApplicationIdentityDbContext>(options =>
+                    services.AddDbContext<SqliteIdentityDbContext>(options =>
                         options.UseSqlite(connectionString));
                     break;
             }
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationIdentityDbContext>();
+                .AddApiAuthorization<ApplicationUser, AppIdentityDbContext>();
         }
 
-        public static void UpdateBlazorWorldIdentityDatabase(this IApplicationBuilder app)
+        public static void UpdateBlazorWorldIdentityDatabase(this IApplicationBuilder app, IConfiguration configuration)
+        {
+            var provider = configuration["IdentityDbProvider"].ToLower();
+            if (string.IsNullOrEmpty(provider))
+            {
+                provider = "sqlite";
+            }
+            switch (provider.ToLower())
+            {
+                case "sqlite":
+                    {
+                        app.ProcessDb<SqliteIdentityDbContext>();
+                        break;
+                    }
+                case "mysql":
+                    {
+                        app.ProcessDb<MySqlIdentityDbContext>();
+                        break;
+                    }
+                case "sqlserver":
+                    {
+                        app.ProcessDb<SqlServerIdentityDbContext>();
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception();
+                    }
+            }
+        }
+
+        private static void ProcessDb<T>(this IApplicationBuilder app) where T : AppIdentityDbContext
         {
             using var serviceScope = app.ApplicationServices
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope();
-            using var context = serviceScope.ServiceProvider.GetService<ApplicationIdentityDbContext>();
+            using var context = serviceScope.ServiceProvider.GetService<T>();
             context.Database.Migrate();
+            // ... perform other startup tasks with db
         }
 
         public static void AddBlazorWorldIdentityRepositories(this IServiceCollection services)
         {
             services.AddTransient<IUserRepository, UserRepository>();
         }
+
+
     }
 }
