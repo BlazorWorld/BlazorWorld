@@ -1,11 +1,12 @@
 ﻿using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
+using BlazorWorld.Data.DbContexts;
 
 namespace BlazorWorld.Data.Repositories
 {
     public class ActivityRepository : Repository, IActivityRepository
     {
-        public ActivityRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public ActivityRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
 

@@ -1,13 +1,14 @@
 ﻿using BlazorWorld.Core.Repositories;
+using BlazorWorld.Data.DbContexts;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Data.Repositories
 {
     public class Repository : IRepository
     {
-        protected readonly ApplicationDbContext _dbContext;
+        protected readonly AppDbContext _dbContext;
 
-        public Repository(ApplicationDbContext dbContext)
+        public Repository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Organization;
 using BlazorWorld.Data;
+using BlazorWorld.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace BlazorWorld.Services.Organization
 {
     public class GroupService : IGroupService
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly AppDbContext _dbContext;
 
-        public GroupService(ApplicationDbContext dbContext)
+        public GroupService(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }

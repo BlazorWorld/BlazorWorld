@@ -2,16 +2,30 @@
 using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Entities.Organization;
+using IdentityServer4.EntityFramework.Extensions;
+using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
-namespace BlazorWorld.Data
+namespace BlazorWorld.Data.DbContexts
 {
-    public class ApplicationDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        public ApplicationDbContext(
-            DbContextOptions<ApplicationDbContext> options)
+        private readonly IOptions<OperationalStoreOptions> _operationalStoreOptions;
+
+        public AppDbContext(
+            DbContextOptions<AppDbContext> options,
+            IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options)
         {
+            _operationalStoreOptions = operationalStoreOptions;
+        }
+
+        protected AppDbContext(DbContextOptions options,
+            IOptions<OperationalStoreOptions> operationalStoreOptions)
+            : base(options)
+        {
+            _operationalStoreOptions = operationalStoreOptions;
         }
 
         // common entities
@@ -38,6 +52,7 @@ namespace BlazorWorld.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value);
 
             modelBuilder.Entity<EntityCustomFields>()
                 .HasIndex(x => x.EntityId);

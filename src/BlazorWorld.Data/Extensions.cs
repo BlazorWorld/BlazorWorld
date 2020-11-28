@@ -1,9 +1,11 @@
 ﻿using BlazorWorld.Core.Repositories;
+using BlazorWorld.Data.DbContexts;
 using BlazorWorld.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace BlazorWorld.Data
 {
@@ -11,43 +13,80 @@ namespace BlazorWorld.Data
     {
         public static void AddBlazorWorldDataProvider(this IServiceCollection services, IConfiguration configuration)
         {
-            var provider = configuration["DefaultApplicationDbProvider"];
+            var provider = configuration["AppDbProvider"];
             if (string.IsNullOrEmpty(provider))
             {
                 provider = "sqlite";
             }
-            string connectionString = configuration.GetConnectionString("DefaultApplicationDbConnection");
+            string connectionString = configuration.GetConnectionString("AppDbConnection");
             switch (provider.ToLower())
             {
-                case "mssql":
-                    services.AddDbContext<ApplicationDbContext>(options =>
+                case "sqlserver":
+                    services.AddDbContext<AppDbContext>(options =>
+                        options.UseSqlServer(connectionString));
+                    services.AddDbContext<SqlServerDbContext>(options =>
                         options.UseSqlServer(connectionString));
                     break;
                 case "mysql":
-                    services.AddDbContext<ApplicationDbContext>(options =>
+                    services.AddDbContext<AppDbContext>(options =>
+                        options.UseMySql(connectionString));
+                    services.AddDbContext<MySqlDbContext>(options =>
                         options.UseMySql(connectionString));
                     break;
                 case "sqlite":
                     if (string.IsNullOrEmpty(connectionString))
                     {
-                        var applicationDbFilename = configuration["ApplicationDbFilename"];
-                        if (string.IsNullOrEmpty(applicationDbFilename))
-                            applicationDbFilename = "blazorworld.db";
-                        var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder { DataSource = applicationDbFilename };
+                        var appDbFilename = configuration["AppDbFilename"];
+                        if (string.IsNullOrEmpty(appDbFilename))
+                            appDbFilename = "blazorworld.db";
+                        var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder { DataSource = appDbFilename };
                         connectionString = connectionStringBuilder.ToString();
                     }
-                    services.AddDbContext<ApplicationDbContext>(options =>
+                    services.AddDbContext<AppDbContext>(options =>
+                        options.UseSqlite(connectionString));
+                    services.AddDbContext<SqliteDbContext>(options =>
                         options.UseSqlite(connectionString));
                     break;
             }
         }
 
-        public static void UpdateBlazorWorldApplicationDatabase(this IApplicationBuilder app)
+        public static void UpdateBlazorWorldDatabase(this IApplicationBuilder app, IConfiguration configuration)
+        {
+            var provider = configuration["AppDbProvider"].ToLower();
+            if (string.IsNullOrEmpty(provider))
+            {
+                provider = "sqlite";
+            }
+            switch (provider.ToLower())
+            {
+                case "sqlite":
+                    {
+                        app.ProcessDb<SqliteDbContext>();
+                        break;
+                    }
+                case "mysql":
+                    {
+                        app.ProcessDb<MySqlDbContext>();
+                        break;
+                    }
+                case "sqlserver":
+                    {
+                        app.ProcessDb<SqlServerDbContext>();
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception();
+                    }
+            }
+        }
+
+        private static void ProcessDb<T>(this IApplicationBuilder app) where T : AppDbContext
         {
             using var serviceScope = app.ApplicationServices
                 .GetRequiredService<IServiceScopeFactory>()
                 .CreateScope();
-            using var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+            using var context = serviceScope.ServiceProvider.GetService<T>();
             context.Database.Migrate();
         }
 

@@ -2,13 +2,12 @@
 using IdentityServer4.EntityFramework.Extensions;
 using IdentityServer4.EntityFramework.Interfaces;
 using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 
-namespace BlazorWorld.Data.Identity
+namespace BlazorWorld.Data.Identity.DbContexts
 {
     public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>, IPersistedGrantDbContext
     {

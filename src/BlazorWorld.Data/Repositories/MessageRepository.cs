@@ -1,16 +1,13 @@
 ﻿using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
-using System;
-using System.Collections.Generic;
+using BlazorWorld.Data.DbContexts;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlazorWorld.Data.Repositories
 {
     public class MessageRepository : Repository, IMessageRepository
     {
-        public MessageRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public MessageRepository(AppDbContext dbContext) : base(dbContext)
         {
 
         }

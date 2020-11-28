@@ -1,5 +1,6 @@
 using BlazorWorld.Core.Entities.Organization;
 using BlazorWorld.Core.Repositories;
+using BlazorWorld.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,9 +9,9 @@ namespace BlazorWorld.Data.Repositories
 {
     public class InvitationRepository : IInvitationRepository
     {
-        public ApplicationDbContext _dbContext { get; set; }
+        public AppDbContext _dbContext { get; set; }
 
-        public InvitationRepository(ApplicationDbContext dbContext)
+        public InvitationRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }

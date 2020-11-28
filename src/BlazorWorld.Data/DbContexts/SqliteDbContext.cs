@@ -1,14 +1,13 @@
 ﻿using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace BlazorWorld.Data.Identity
+namespace BlazorWorld.Data.DbContexts
 {
-    public class SqliteIdentityDbContext : AppIdentityDbContext
+    public class SqliteDbContext : AppDbContext
     {
-        public SqliteIdentityDbContext(
-            DbContextOptions<SqliteIdentityDbContext> options,
+        public SqliteDbContext(
+            DbContextOptions<SqliteDbContext> options,
             IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
         {

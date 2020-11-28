@@ -1,14 +1,13 @@
 ﻿using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace BlazorWorld.Data.Identity
+namespace BlazorWorld.Data.Identity.DbContexts
 {
-    public class MySqlIdentityDbContext : AppIdentityDbContext
+    public class SqlServerIdentityDbContext : AppIdentityDbContext
     {
-        public MySqlIdentityDbContext(
-            DbContextOptions<MySqlIdentityDbContext> options,
+        public SqlServerIdentityDbContext(
+            DbContextOptions<SqlServerIdentityDbContext> options,
             IOptions<OperationalStoreOptions> operationalStoreOptions)
             : base(options, operationalStoreOptions)
         {
@@ -17,7 +16,7 @@ namespace BlazorWorld.Data.Identity
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
 #if DEBUG_EF
-            options.UseMySql("DataSource=");
+            options.UseSqlServer ("DataSource=");
 #endif
         }
     }

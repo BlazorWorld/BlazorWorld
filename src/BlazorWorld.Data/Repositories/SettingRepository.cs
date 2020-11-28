@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Repositories;
+using BlazorWorld.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace BlazorWorld.Data.Repositories
 {
     public class SettingRepository : Repository, ISettingRepository
     {
-        public SettingRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public SettingRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
 

@@ -1,11 +1,10 @@
-﻿using IdentityServer4.Configuration;
+﻿using BlazorWorld.Data.Identity.DbContexts;
 using BlazorWorld.Data.Identity.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 using System;
 
 namespace BlazorWorld.Data.Identity
@@ -23,10 +22,14 @@ namespace BlazorWorld.Data.Identity
             switch (provider.ToLower())
             {
                 case "sqlserver":
+                    services.AddDbContext<AppIdentityDbContext>(options =>
+                        options.UseSqlServer(connectionString));
                     services.AddDbContext<SqlServerIdentityDbContext>(options =>
                         options.UseSqlServer(connectionString));
                     break;
                 case "mysql":
+                    services.AddDbContext<AppIdentityDbContext>(options =>
+                        options.UseMySql(connectionString));
                     services.AddDbContext<MySqlIdentityDbContext>(options =>
                         options.UseMySql(connectionString));
                     break;
@@ -39,6 +42,8 @@ namespace BlazorWorld.Data.Identity
                         var connectionStringBuilder = new Microsoft.Data.Sqlite.SqliteConnectionStringBuilder { DataSource = identityDbFilename };
                         connectionString = connectionStringBuilder.ToString();
                     }
+                    services.AddDbContext<AppIdentityDbContext>(options =>
+                        options.UseSqlite(connectionString));
                     services.AddDbContext<SqliteIdentityDbContext>(options =>
                         options.UseSqlite(connectionString));
                     break;
@@ -91,7 +96,6 @@ namespace BlazorWorld.Data.Identity
                 .CreateScope();
             using var context = serviceScope.ServiceProvider.GetService<T>();
             context.Database.Migrate();
-            // ... perform other startup tasks with db
         }
 
         public static void AddBlazorWorldIdentityRepositories(this IServiceCollection services)

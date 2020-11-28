@@ -1,6 +1,7 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
+using BlazorWorld.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace BlazorWorld.Data.Repositories
 {
     public class NodeRepository : Repository, INodeRepository
     {
-        public NodeRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public NodeRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
 
