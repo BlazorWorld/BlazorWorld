@@ -55,7 +55,7 @@ namespace BlazorWorld.Services.Content
             if (node.CustomFields != null)
             {
                 node.CustomFields.Id = Guid.NewGuid().ToString();
-                node.CustomFields.EntityId = node.Id;
+                node.CustomFields.NodeId = node.Id;
             }
             _nodeRepository.Add(node);
 

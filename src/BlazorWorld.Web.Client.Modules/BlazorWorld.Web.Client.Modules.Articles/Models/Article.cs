@@ -9,7 +9,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Models
         {
             Module = Constants.ArticlesModule;
             Type = Constants.ArticleType;
-            CustomFields = new Core.Entities.Common.EntityCustomFields();
+            CustomFields = new Core.Entities.Common.NodeCustomFields();
         }
 
         public static Article Create(Node node)

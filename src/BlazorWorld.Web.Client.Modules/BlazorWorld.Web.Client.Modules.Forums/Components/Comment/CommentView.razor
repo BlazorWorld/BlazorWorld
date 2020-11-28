@@ -16,7 +16,7 @@
                 <Loading Text="@Comment?.Content" ParentObject="@Comment" />
             </div>
             <div class="small">
-                <VoteButtons NodeId="@Comment?.Id" CanVote="@CanVote" Votes="@Comment?.Votes" />
+                <VoteButtons NodeId="@Comment?.Id" CanVote="@CanVote" Votes="@Comment?.TotalVotes" />
                 @if (CanEditComment)
                 {
                     <a href="javascript:;" class="mr-2" @onclick="Edit">@Localize["Edit"]</a>

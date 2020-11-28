@@ -6,12 +6,12 @@ using System.Text;
 
 namespace BlazorWorld.Core.Entities.Common
 {
-    public class EntityCustomFields
+    public class NodeCustomFields
     {
         [Key]
         public string Id { get; set; }
-        [ForeignKey("Entity")]
-        public string EntityId { get; set; }
+        [ForeignKey("Node")]
+        public string NodeId { get; set; }
         public string CustomField1 { get; set; }
         public string CustomField2 { get; set; }
         public string CustomField3 { get; set; }
