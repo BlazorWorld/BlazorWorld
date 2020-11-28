@@ -18,11 +18,11 @@ namespace BlazorWorld.Services.Security
 
         public SecurityService(
             UserManager<ApplicationUser> userManager,
-            ISettingService configurationService
+            ISettingService settingService
             )
         {
             _userManager = userManager;
-            _settingService = configurationService;
+            _settingService = settingService;
         }
 
         public async Task SetCreatedAsync(Item item, ClaimsPrincipal principal)
@@ -41,8 +41,9 @@ namespace BlazorWorld.Services.Security
 
         public async Task<bool> IsAdminInConfigAsync(string username)
         {
+            Console.WriteLine("RoleUserSettings Count: " + (await _settingService.RoleUserSettingsAsync()).Count());
             var admin = (from ru in await _settingService.RoleUserSettingsAsync()
-                         where ru.Type == Roles.Admin
+                         where ru.Key == Roles.Admin
                          select ru.Value).FirstOrDefault();
             var adminUsers = admin.Split(',');
             return adminUsers.Contains(username);

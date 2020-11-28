@@ -19,6 +19,14 @@ namespace BlazorWorld.Services
     {
         public static void AddBlazorWorldServices(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddTransient<ISettingService, SettingService>();
+
+            // security
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IAppEmailSender, EmailSender>();
+            services.AddTransient<ISecurityService, SecurityService>();
+            services.AddTransient<IInvitationService, InvitationService>();
+
             // content
             services.AddTransient<IActivityService, ActivityService>();
             services.AddTransient<INodeService, NodeService>();
@@ -29,12 +37,6 @@ namespace BlazorWorld.Services
             // organization
             services.AddTransient<IGroupService, GroupService>();
 
-            // security
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IAppEmailSender, EmailSender>();
-            services.AddTransient<ISecurityService, SecurityService>();
-            services.AddTransient<ISettingService, SettingService>();
-            services.AddTransient<IInvitationService, InvitationService>();
 
             services.Configure<AuthMessageSenderOptions>(configuration);
         }
