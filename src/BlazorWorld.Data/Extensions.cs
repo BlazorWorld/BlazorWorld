@@ -28,10 +28,11 @@ namespace BlazorWorld.Data
                         options.UseSqlServer(connectionString));
                     break;
                 case "mysql":
+                    var serverVersion = ServerVersion.AutoDetect(connectionString);
                     services.AddDbContext<AppDbContext>(options =>
-                        options.UseMySql(connectionString));
+                        options.UseMySql(connectionString, serverVersion));
                     services.AddDbContext<MySqlDbContext>(options =>
-                        options.UseMySql(connectionString));
+                        options.UseMySql(connectionString, serverVersion));
                     break;
                 case "sqlite":
                     if (string.IsNullOrEmpty(connectionString))
