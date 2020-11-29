@@ -29,7 +29,7 @@ namespace BlazorWorld.Services.Content
         public async Task<List<Message>> GetPaginatedResultAsync(string groupId, int currentPage, int pageSize = 10)
         {
             var data = Get(groupId);
-            return await data.Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
+            return await data.Skip(currentPage * pageSize).Take(pageSize).ToListAsync();
         }
 
         public async Task<int> GetCountAsync(string groupId)
