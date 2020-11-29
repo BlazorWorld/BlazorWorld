@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorWorld.Data.Migrations.MySql
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20201129020725_InitialCreate")]
+    [Migration("20201129121117_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

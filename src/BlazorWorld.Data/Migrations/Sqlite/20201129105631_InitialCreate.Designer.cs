@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorWorld.Data.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteDbContext))]
-    [Migration("20201129015654_InitialCreate")]
+    [Migration("20201129105631_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
