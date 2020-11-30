@@ -4,12 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorWorld.Core.Entities.Content
 {
-    public class EntityTag
+    public class NodeTag : Entity
     {
-        [Key]
-        public string Id { get; set; }
-        [ForeignKey("Entity")]
-        public string EntityId { get; set; }
+        [ForeignKey("Node")]
+        public string NodeId { get; set; }
         [Required]
         public string Tag { get; set; }
     }

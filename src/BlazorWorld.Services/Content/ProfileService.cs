@@ -27,9 +27,9 @@ namespace BlazorWorld.Services.Content
                 Module = "BlazorWorld.Profiles",
                 Type = "Profile"
             };
-            profile.CustomFields = new EntityCustomFields();
+            profile.CustomFields = new NodeCustomFields();
             profile.CustomFields.Id = Guid.NewGuid().ToString();
-            profile.CustomFields.EntityId = profile.Id;
+            profile.CustomFields.NodeId = profile.Id;
             await Add(profile);
         }
 

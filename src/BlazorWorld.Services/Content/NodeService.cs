@@ -38,7 +38,7 @@ namespace BlazorWorld.Services.Content
         public async Task<List<Node>> GetPaginatedResultAsync(NodeSearch nodeSearch, int currentPage, int pageSize = 10)
         {
             var data = _nodeRepository.Get(nodeSearch);
-            var output = await data.Skip((currentPage - 1) * pageSize).Take(pageSize).ToListAsync();
+            var output = await data.Skip(currentPage * pageSize).Take(pageSize).ToListAsync();
             return output;
         }
 
@@ -55,7 +55,7 @@ namespace BlazorWorld.Services.Content
             if (node.CustomFields != null)
             {
                 node.CustomFields.Id = Guid.NewGuid().ToString();
-                node.CustomFields.EntityId = node.Id;
+                node.CustomFields.NodeId = node.Id;
             }
             _nodeRepository.Add(node);
 

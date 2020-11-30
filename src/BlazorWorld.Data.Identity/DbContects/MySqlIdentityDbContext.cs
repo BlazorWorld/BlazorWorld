@@ -16,7 +16,7 @@ namespace BlazorWorld.Data.Identity.DbContexts
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
 #if DEBUG_EF
-            options.UseMySql("DataSource=");
+            options.UseMySql("DataSource=", MySqlServerVersion.LatestSupportedServerVersion);
 #endif
         }
     }

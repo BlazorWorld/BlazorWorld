@@ -25,6 +25,13 @@ namespace BlazorWorld.Core.Entities.Content
         public string Path { get; set; }
         public string ParentId { get; set; }
         public string GroupId { get; set; }
+
+        public NodeCustomFields CustomFields { get; set; }
+        public ICollection<NodeReaction> Reactions { get; set; }
+        public ICollection<NodeTag> Tags { get; set; }
+        public ICollection<NodeVersion> Versions { get; set; }
+        public ICollection<NodeVote> Votes { get; set; }
+
         [NotMapped]
         public string AllTags { get; set; }
 
@@ -36,7 +43,7 @@ namespace BlazorWorld.Core.Entities.Content
         public int DownVotes { get; set; }
         public double Hot { get; set; }
 
-        public int Votes
+        public int TotalVotes
         {
             get
             {
