@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.ResponseCaching;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -162,6 +163,11 @@ namespace BlazorWorld.Web.Server
                         Public = true,
                         MaxAge = TimeSpan.FromSeconds(10)
                     };
+                var responseCachingFeature = context.Features.Get<IResponseCachingFeature>();
+                if (responseCachingFeature != null)
+                {
+                    responseCachingFeature.VaryByQueryKeys = new[] { "*" };
+                }
                 context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
                     new string[] { "Accept-Encoding" };
 
