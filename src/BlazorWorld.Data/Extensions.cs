@@ -94,6 +94,7 @@ namespace BlazorWorld.Data
         public static void AddBlazorWorldApplicationRepositories(this IServiceCollection services)
         {
             services.AddTransient<IActivityRepository, ActivityRepository>();
+            services.AddTransient<IEmailRepository, EmailRepository>();
             services.AddTransient<IInvitationRepository, InvitationRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddTransient<INodeRepository, NodeRepository>();

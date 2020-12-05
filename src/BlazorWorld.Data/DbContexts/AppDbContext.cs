@@ -37,6 +37,7 @@ namespace BlazorWorld.Data.DbContexts
 
         // content entities
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<Email> Emails { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Node> Nodes { get; set; }
         public DbSet<NodeVersion> NodeVersions { get; set; }
