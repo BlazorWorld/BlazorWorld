@@ -65,6 +65,8 @@ namespace BlazorWorld.Services.Security
             // Disable click tracking.
             // See https://sendgrid.com/docs/User_Guide/Settings/tracking.html
             msg.SetClickTracking(false, false);
+           
+            var response = await client.SendEmailAsync(msg);
 
             var emailItem = new Email()
             {
@@ -72,13 +74,15 @@ namespace BlazorWorld.Services.Security
                 FromName = from.Name,
                 To = email,
                 Message = message,
-                DateSent = DateTimeOffset.UtcNow.ToString("s")
+                DateSent = DateTimeOffset.UtcNow.ToString("s"),
+                ResponseStatusCode = response.StatusCode.ToString(),
+                ResponseHeaders = response.Headers.ToString(),
+                ResponseBody = response.Body.ReadAsStringAsync().Result.ToString()
             };
-
             _emailRepository.Add(emailItem);
             await _emailRepository.SaveChangesAsync();
-            
-            return await client.SendEmailAsync(msg);
+
+            return response;
         }
     }
 }

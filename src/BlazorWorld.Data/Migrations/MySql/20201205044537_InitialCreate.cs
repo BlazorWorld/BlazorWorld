@@ -68,6 +68,26 @@ namespace BlazorWorld.Data.Migrations.MySql
                 });
 
             migrationBuilder.CreateTable(
+                name: "Emails",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
+                    FromEmail = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    FromName = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    To = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    DateSent = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Subject = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Message = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ResponseStatusCode = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ResponseHeaders = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    ResponseBody = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Emails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GroupMembers",
                 columns: table => new
                 {
@@ -602,6 +622,9 @@ namespace BlazorWorld.Data.Migrations.MySql
 
             migrationBuilder.DropTable(
                 name: "DeviceCodes");
+
+            migrationBuilder.DropTable(
+                name: "Emails");
 
             migrationBuilder.DropTable(
                 name: "EntityCustomFields");

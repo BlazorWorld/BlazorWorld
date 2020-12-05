@@ -515,6 +515,43 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                     b.ToTable("Badges");
                 });
 
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Email", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DateSent")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FromEmail")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FromName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ResponseBody")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ResponseHeaders")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ResponseStatusCode")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Subject")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("To")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Emails");
+                });
+
             modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Group", b =>
                 {
                     b.Property<string>("Id")

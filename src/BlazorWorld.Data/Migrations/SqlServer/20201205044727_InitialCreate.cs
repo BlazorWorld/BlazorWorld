@@ -68,6 +68,26 @@ namespace BlazorWorld.Data.Migrations.SqlServer
                 });
 
             migrationBuilder.CreateTable(
+                name: "Emails",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FromEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FromName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    To = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateSent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResponseStatusCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResponseHeaders = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResponseBody = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Emails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GroupMembers",
                 columns: table => new
                 {
@@ -603,6 +623,9 @@ namespace BlazorWorld.Data.Migrations.SqlServer
 
             migrationBuilder.DropTable(
                 name: "DeviceCodes");
+
+            migrationBuilder.DropTable(
+                name: "Emails");
 
             migrationBuilder.DropTable(
                 name: "EntityCustomFields");

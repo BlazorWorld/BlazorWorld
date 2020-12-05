@@ -68,6 +68,26 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                 });
 
             migrationBuilder.CreateTable(
+                name: "Emails",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    FromEmail = table.Column<string>(type: "TEXT", nullable: true),
+                    FromName = table.Column<string>(type: "TEXT", nullable: true),
+                    To = table.Column<string>(type: "TEXT", nullable: true),
+                    DateSent = table.Column<string>(type: "TEXT", nullable: true),
+                    Subject = table.Column<string>(type: "TEXT", nullable: true),
+                    Message = table.Column<string>(type: "TEXT", nullable: true),
+                    ResponseStatusCode = table.Column<string>(type: "TEXT", nullable: true),
+                    ResponseHeaders = table.Column<string>(type: "TEXT", nullable: true),
+                    ResponseBody = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Emails", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "GroupMembers",
                 columns: table => new
                 {
@@ -602,6 +622,9 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
             migrationBuilder.DropTable(
                 name: "DeviceCodes");
+
+            migrationBuilder.DropTable(
+                name: "Emails");
 
             migrationBuilder.DropTable(
                 name: "EntityCustomFields");

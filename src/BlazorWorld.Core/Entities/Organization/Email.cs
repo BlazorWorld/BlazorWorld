@@ -15,5 +15,8 @@ namespace BlazorWorld.Core.Entities.Organization
         public string DateSent { get; set; }
         public string Subject { get; set; }
         public string Message { get; set; }
+        public string ResponseStatusCode { get; set; }
+        public string ResponseHeaders { get; set; }
+        public string ResponseBody { get; set; }
     }
 }

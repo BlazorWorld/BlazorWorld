@@ -55,7 +55,10 @@ namespace BlazorWorld.Services.Configuration
                 {
                     if (!string.IsNullOrEmpty(setting.CreatedDate) && setting.CreatedDate.CompareTo(existingSetting.CreatedDate) > 0)
                     {
-                        _settingRepository.Update(setting);
+                        existingSetting.Type = setting.Type;
+                        existingSetting.Key = setting.Key;
+                        existingSetting.Value = setting.Value;
+                        _settingRepository.Update(existingSetting);
                     }
                 }
             }
