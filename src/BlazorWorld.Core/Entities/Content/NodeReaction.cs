@@ -1,13 +1,14 @@
 ﻿using BlazorWorld.Core.Entities.Common;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorWorld.Core.Entities.Content
 {
-    public class Reaction : Entity
+    public class NodeReaction : Entity
     {
-        [Required]
+        [ForeignKey("Node")]
         // Applies to Activities, Messages, and Nodes
-        public string ContentId { get; set; }
+        public string NodeId { get; set; }
         [Required]
         public string UserId { get; set; }
         [Required]

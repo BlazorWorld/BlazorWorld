@@ -34,7 +34,7 @@
         </div>
 
         <div class="card-footer">
-            <VoteButtons NodeId="@Post?.Id" CanVote="@CanVote" Votes="@Post?.Votes" />
+            <VoteButtons NodeId="@Post?.Id" CanVote="@CanVote" Votes="@Post?.TotalVotes" />
             <a href="javascript:;"
                @onclick="ToggleShowComments"
                class="card-link">

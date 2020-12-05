@@ -58,6 +58,12 @@
     ],
     "PageSizeSettings": [
       {
+        "Id": "091a8c07-f83c-4279-8ddb-7b8216e9fee7",
+        "Type": "PageSize",
+        "Key": "BlazorWorld.Articles:Category",
+        "Value": "10"
+      },
+      {
         "Id": "3d9b2d6a-c0d2-40bd-b19b-93ceedd95c39",
         "Type": "PageSize",
         "Key": "BlazorWorld.Articles:Article",
@@ -66,7 +72,7 @@
       {
         "Id": "b0e30360-e454-4c90-80b7-333f71a1e66d",
         "Type": "PageSize",
-        "Key": "BlazorWorld.Articles:Comments",
+        "Key": "BlazorWorld.Articles:Comment",
         "Value": "10"
       },
       {

@@ -9,7 +9,7 @@ namespace BlazorWorld.Web.Client.Modules.Profiles.Models
         {
             Module = Constants.ProfilesModule;
             Type = Constants.ProfileType;
-            CustomFields = new Core.Entities.Common.EntityCustomFields();
+            CustomFields = new Core.Entities.Common.NodeCustomFields();
         }
 
         public static Profile Create(Node node)

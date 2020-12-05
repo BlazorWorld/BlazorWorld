@@ -16,7 +16,7 @@ namespace BlazorWorld.Data.Migrations.Sqlite
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Common.EntityCustomFields", b =>
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Common.NodeCustomFields", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -81,9 +81,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                     b.Property<string>("CustomField9")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("EntityId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("IndexedCustomField1")
                         .HasColumnType("TEXT");
 
@@ -144,9 +141,10 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                     b.Property<string>("IndexedCustomField9")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.Property<string>("NodeId")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("EntityId");
+                    b.HasKey("Id");
 
                     b.HasIndex("IndexedCustomField1");
 
@@ -188,6 +186,9 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasIndex("IndexedCustomField9");
 
+                    b.HasIndex("NodeId")
+                        .IsUnique();
+
                     b.ToTable("EntityCustomFields");
                 });
 
@@ -197,9 +198,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Key")
@@ -215,8 +213,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomFieldsId");
 
                     b.ToTable("Settings");
                 });
@@ -237,9 +233,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GroupId")
@@ -267,92 +260,9 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasIndex("CreatedBy");
 
-                    b.HasIndex("CustomFieldsId");
-
                     b.HasIndex("NodeId");
 
                     b.ToTable("Activities");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.EntityTag", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ActivityId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("BadgeId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EntityId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("GroupId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("GroupMemberId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("InvitationId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MessageId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NodeId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NodeVersionId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NodeVoteId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ReactionId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("SettingId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("SiteId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Tag")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
-
-                    b.HasIndex("BadgeId");
-
-                    b.HasIndex("EntityId");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("GroupMemberId");
-
-                    b.HasIndex("InvitationId");
-
-                    b.HasIndex("MessageId");
-
-                    b.HasIndex("NodeId");
-
-                    b.HasIndex("NodeVersionId");
-
-                    b.HasIndex("NodeVoteId");
-
-                    b.HasIndex("ReactionId");
-
-                    b.HasIndex("SettingId");
-
-                    b.HasIndex("SiteId");
-
-                    b.HasIndex("Tag");
-
-                    b.ToTable("EntityTags");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Message", b =>
@@ -367,9 +277,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GroupId")
@@ -392,8 +299,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomFieldsId");
-
                     b.HasIndex("GroupId");
 
                     b.ToTable("Messages");
@@ -414,9 +319,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("DescendantCount")
@@ -474,8 +376,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomFieldsId");
-
                     b.HasIndex("GroupId");
 
                     b.HasIndex("ParentId");
@@ -485,76 +385,12 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                     b.ToTable("Nodes");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVersion", b =>
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NodeId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomFieldsId");
-
-                    b.HasIndex("NodeId");
-
-                    b.ToTable("NodeVersions");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVote", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NodeId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<short>("Score")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomFieldsId");
-
-                    b.HasIndex("NodeId");
-
-                    b.HasIndex("NodeId", "UserId");
-
-                    b.ToTable("NodeVotes");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Reaction", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ContentId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ReactionType")
@@ -567,13 +403,80 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContentId");
+                    b.HasIndex("NodeId");
 
-                    b.HasIndex("CustomFieldsId");
-
-                    b.HasIndex("ContentId", "UserId");
+                    b.HasIndex("NodeId", "UserId");
 
                     b.ToTable("Reactions");
+                });
+
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeTag", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NodeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tag")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NodeId");
+
+                    b.HasIndex("Tag");
+
+                    b.ToTable("EntityTags");
+                });
+
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVersion", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NodeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NodeId");
+
+                    b.ToTable("NodeVersions");
+                });
+
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVote", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NodeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<short>("Score")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NodeId");
+
+                    b.HasIndex("NodeId", "UserId");
+
+                    b.ToTable("NodeVotes");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Badge", b =>
@@ -585,9 +488,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastUpdatedBy")
@@ -610,8 +510,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomFieldsId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Badges");
@@ -626,9 +524,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsOpen")
@@ -663,8 +558,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomFieldsId");
-
                     b.ToTable("Groups");
                 });
 
@@ -677,9 +570,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("GroupId")
@@ -707,8 +597,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomFieldsId");
-
                     b.HasIndex("GroupId");
 
                     b.HasIndex("GroupId", "UserId");
@@ -725,9 +613,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -752,8 +637,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomFieldsId");
-
                     b.HasIndex("Email");
 
                     b.ToTable("Invitations");
@@ -762,9 +645,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
             modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Site", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CustomFieldsId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -780,8 +660,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomFieldsId");
 
                     b.HasIndex("TenantId");
 
@@ -891,223 +769,52 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                     b.ToTable("PersistedGrants");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Setting", b =>
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Common.NodeCustomFields", b =>
                 {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
+                    b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
+                        .WithOne("CustomFields")
+                        .HasForeignKey("BlazorWorld.Core.Entities.Common.NodeCustomFields", "NodeId");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Activity", b =>
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>
                 {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
+                    b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
+                        .WithMany("Reactions")
+                        .HasForeignKey("NodeId");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.EntityTag", b =>
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeTag", b =>
                 {
-                    b.HasOne("BlazorWorld.Core.Entities.Content.Activity", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("ActivityId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Organization.Badge", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("BadgeId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Organization.Group", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("GroupId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Organization.GroupMember", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("GroupMemberId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Organization.Invitation", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("InvitationId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Content.Message", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("MessageId");
-
                     b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
                         .WithMany("Tags")
                         .HasForeignKey("NodeId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Content.NodeVersion", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("NodeVersionId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Content.NodeVote", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("NodeVoteId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Content.Reaction", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("ReactionId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Configuration.Setting", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("SettingId");
-
-                    b.HasOne("BlazorWorld.Core.Entities.Organization.Site", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("SiteId");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Message", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Node", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVersion", b =>
                 {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
+                    b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
+                        .WithMany("Versions")
+                        .HasForeignKey("NodeId");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVote", b =>
                 {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Reaction", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Badge", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Group", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.GroupMember", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Invitation", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Site", b =>
-                {
-                    b.HasOne("BlazorWorld.Core.Entities.Common.EntityCustomFields", "CustomFields")
-                        .WithMany()
-                        .HasForeignKey("CustomFieldsId");
-
-                    b.Navigation("CustomFields");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Setting", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Activity", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Message", b =>
-                {
-                    b.Navigation("Tags");
+                    b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
+                        .WithMany("Votes")
+                        .HasForeignKey("NodeId");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Node", b =>
                 {
-                    b.Navigation("Tags");
-                });
+                    b.Navigation("CustomFields");
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVersion", b =>
-                {
-                    b.Navigation("Tags");
-                });
+                    b.Navigation("Reactions");
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVote", b =>
-                {
                     b.Navigation("Tags");
-                });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Reaction", b =>
-                {
-                    b.Navigation("Tags");
-                });
+                    b.Navigation("Versions");
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Badge", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Group", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.GroupMember", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Invitation", b =>
-                {
-                    b.Navigation("Tags");
-                });
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Organization.Site", b =>
-                {
-                    b.Navigation("Tags");
+                    b.Navigation("Votes");
                 });
 #pragma warning restore 612, 618
         }

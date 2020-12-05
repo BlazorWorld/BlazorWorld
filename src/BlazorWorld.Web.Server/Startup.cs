@@ -16,11 +16,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.ResponseCaching;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Linq;
@@ -66,30 +66,30 @@ namespace BlazorWorld.Web.Server
             services.AddSignalR();
             services.AddControllersWithViews();
             services.AddApiAuthorization();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Blazorworld API",
-                    Description = "Social Publishing System API",
-                    TermsOfService = new Uri("https://blazorworld.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Jase Banico",
-                        Email = string.Empty,
-                        Url = new Uri("https://github.com/jasebanico"),
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "GPL",
-                        Url = new Uri("https://www.gnu.org/licenses/gpl-3.0.html"),
-                    }
-                });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo
+            //    {
+            //        Version = "v1",
+            //        Title = "Blazorworld API",
+            //        Description = "Social Publishing System API",
+            //        TermsOfService = new Uri("https://blazorworld.com/terms"),
+            //        Contact = new OpenApiContact
+            //        {
+            //            Name = "Jase Banico",
+            //            Email = string.Empty,
+            //            Url = new Uri("https://github.com/jasebanico"),
+            //        },
+            //        License = new OpenApiLicense
+            //        {
+            //            Name = "GPL",
+            //            Url = new Uri("https://www.gnu.org/licenses/gpl-3.0.html"),
+            //        }
+            //    });
+            //    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            //    c.IncludeXmlComments(xmlPath);
+            //});
             services.AddResponseCompression(opts => // for SignalR
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
@@ -112,7 +112,7 @@ namespace BlazorWorld.Web.Server
         {
             // BlazorWorld configurations
             app.UseResponseCompression(); // for SignalR
-            UseSwagger(app);
+            //UseSwagger(app);
 
             if (env.IsDevelopment())
             {
@@ -163,6 +163,11 @@ namespace BlazorWorld.Web.Server
                         Public = true,
                         MaxAge = TimeSpan.FromSeconds(10)
                     };
+                var responseCachingFeature = context.Features.Get<IResponseCachingFeature>();
+                if (responseCachingFeature != null)
+                {
+                    responseCachingFeature.VaryByQueryKeys = new[] { "*" };
+                }
                 context.Response.Headers[Microsoft.Net.Http.Headers.HeaderNames.Vary] =
                     new string[] { "Accept-Encoding" };
 
@@ -186,13 +191,13 @@ namespace BlazorWorld.Web.Server
             });
         }
 
-        private void UseSwagger(IApplicationBuilder app)
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlazorWorld API V1");
-            });
-        }
+        //private void UseSwagger(IApplicationBuilder app)
+        //{
+        //    app.UseSwagger();
+        //    app.UseSwaggerUI(c =>
+        //    {
+        //        c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlazorWorld API V1");
+        //    });
+        //}
     }
 }

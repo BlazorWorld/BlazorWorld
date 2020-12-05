@@ -10,7 +10,5 @@ namespace BlazorWorld.Core.Entities.Common
     {
         [Key]
         public string Id { get; set; }
-        public EntityCustomFields CustomFields { get; set; }
-        public EntityTag[] Tags { get; set; }
     }
 }

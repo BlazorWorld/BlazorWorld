@@ -11,7 +11,7 @@ namespace BlazorWorld.Core.Entities.Content
 {
     public class NodeVersion : Entity
     {
-        [Required]
+        [ForeignKey("Node")]
         public string NodeId { get; set; }
         [Required]
         public int Version { get; set; }
