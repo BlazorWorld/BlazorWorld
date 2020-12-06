@@ -70,6 +70,7 @@ namespace BlazorWorld.Services.Security
 
             var emailItem = new Email()
             {
+                Id = Guid.NewGuid().ToString(),
                 FromEmail = from.Email,
                 FromName = from.Name,
                 To = email,
