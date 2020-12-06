@@ -36,10 +36,11 @@ namespace BlazorWorld.Data.Repositories
                         )
                         select n;
 
-            if (search.OrderBy != null && search.OrderBy.Length > 0)
+            var orderByItems = search.OrderByItems();
+            if (orderByItems.Length > 0)
             {
                 IOrderedQueryable<Core.Entities.Content.Node> sortedNodes = null;
-                switch (search.OrderBy[0])
+                switch (orderByItems[0])
                 {
                     case (OrderBy.Title):
                         sortedNodes = nodes.OrderBy(i => i.Title);
@@ -64,11 +65,11 @@ namespace BlazorWorld.Data.Repositories
                         break;
                 }
 
-                if (search.OrderBy.Length > 1)
+                if (orderByItems.Length > 1)
                 {
-                    for (int i = 1; i < search.OrderBy.Length; i++)
+                    for (int i = 1; i < orderByItems.Length; i++)
                     {
-                        switch (search.OrderBy[i])
+                        switch (orderByItems[i])
                         {
                             case (OrderBy.Title):
                                 sortedNodes = sortedNodes.ThenBy(i => i.Title);

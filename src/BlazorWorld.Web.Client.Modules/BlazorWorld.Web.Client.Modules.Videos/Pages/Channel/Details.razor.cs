@@ -67,12 +67,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
                     Module = Constants.VideosModule,
                     Type = Constants.VideoType,
                     ParentId = Channel.Id,
-                    OrderBy = new string[]
-                    {
-                            OrderBy.Weight,
-                            OrderBy.Latest,
-                            OrderBy.Title
-                    }
+                    OrderBy = $"{OrderBy.Weight},{OrderBy.Latest},{OrderBy.Title}"
                 }
             };
             await Videos.InitAsync();

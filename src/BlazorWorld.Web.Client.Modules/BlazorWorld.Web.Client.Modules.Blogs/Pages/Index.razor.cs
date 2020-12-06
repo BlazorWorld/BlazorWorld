@@ -31,10 +31,7 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages
                 {
                     Module = Constants.BlogsModule,
                     Type = Constants.BlogType,
-                    OrderBy = new string[]
-                    {
-                        OrderBy.Title
-                    },
+                    OrderBy = $"{OrderBy.Title}",
                     TruncateContent = 140
                 }
             };

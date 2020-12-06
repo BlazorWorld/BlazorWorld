@@ -40,8 +40,8 @@ namespace BlazorWorld.Web.Client.Services
                 Type = type,
                 Slug = slug
             };
-            var request = $"{API_URL}/GetPaginatedResult";
-            var response = await PublicHttpClient.PostAsJsonAsync<NodeSearch>(request, nodeSearch);
+            var request = $"{API_URL}/GetPaginatedResult?{nodeSearch.ToQueryString()}";
+            var response = await PublicHttpClient.GetAsync(request);
             var jsonString = await response.Content.ReadAsStringAsync();
             var items = System.Text.Json.JsonSerializer.Deserialize<Node[]>(jsonString, _jsonSerializerOptions);
             return items.FirstOrDefault();
@@ -51,8 +51,8 @@ namespace BlazorWorld.Web.Client.Services
             NodeSearch nodeSearch,
             int currentPage)
         {
-            var request = $"{API_URL}/GetPaginatedResult?currentPage={currentPage}";
-            var response = await PublicHttpClient.PostAsJsonAsync<NodeSearch>(request, nodeSearch);
+            var request = $"{API_URL}/GetPaginatedResult?currentPage={currentPage}&{nodeSearch.ToQueryString()}";
+            var response = await PublicHttpClient.GetAsync(request);
             var jsonString = await response.Content.ReadAsStringAsync();
             var result = System.Text.Json.JsonSerializer.Deserialize<Node[]>(jsonString, _jsonSerializerOptions);
             return result;
@@ -60,16 +60,16 @@ namespace BlazorWorld.Web.Client.Services
 
         public async Task<int> GetCountAsync(NodeSearch nodeSearch)
         {
-            var request = $"{API_URL}/GetCount";
-            var response = await PublicHttpClient.PostAsJsonAsync<NodeSearch>(request, nodeSearch);
+            var request = $"{API_URL}/GetCount?{nodeSearch.ToQueryString()}";
+            var response = await PublicHttpClient.GetAsync(request);
             var count = await response.Content.ReadAsStringAsync();
             return int.Parse(count);
         }
 
         public async Task<int> GetPageSizeAsync(NodeSearch nodeSearch)
         {
-            var request = $"{API_URL}/GetPageSize";
-            var response = await PublicHttpClient.PostAsJsonAsync<NodeSearch>(request, nodeSearch);
+            var request = $"{API_URL}/GetPageSize?{nodeSearch.ToQueryString()}";
+            var response = await PublicHttpClient.GetAsync(request);
             var pageSize = await response.Content.ReadAsStringAsync();
             int result;
             int.TryParse(pageSize, out result);
@@ -94,8 +94,8 @@ namespace BlazorWorld.Web.Client.Services
                 Type = type,
                 Slug = slug
             };
-            var request = $"{API_URL}/GetPaginatedResult";
-            var response = await AuthorizedHttpClient.PostAsJsonAsync<NodeSearch>(request, nodeSearch);
+            var request = $"{API_URL}/GetPaginatedResult?{nodeSearch.ToQueryString()}";
+            var response = await AuthorizedHttpClient.GetAsync(request);
             var jsonString = await response.Content.ReadAsStringAsync();
             var items = System.Text.Json.JsonSerializer.Deserialize<Node[]>(jsonString, _jsonSerializerOptions);
             return items.FirstOrDefault();
@@ -105,16 +105,16 @@ namespace BlazorWorld.Web.Client.Services
             NodeSearch nodeSearch,
             int currentPage)
         {
-            var request = $"{API_URL}/GetPaginatedResult?currentPage={currentPage}";
-            var response = await AuthorizedHttpClient.PostAsJsonAsync<NodeSearch>(request, nodeSearch);
+            var request = $"{API_URL}/GetPaginatedResult?currentPage={currentPage}&{nodeSearch.ToQueryString()}";
+            var response = await AuthorizedHttpClient.GetAsync(request);
             var jsonString = await response.Content.ReadAsStringAsync();
             return System.Text.Json.JsonSerializer.Deserialize<Node[]>(jsonString, _jsonSerializerOptions);
         }
 
         public async Task<int> SecureGetCountAsync(NodeSearch nodeSearch)
         {
-            var request = $"{API_URL}/GetCount";
-            var response = await AuthorizedHttpClient.PostAsJsonAsync<NodeSearch>(request, nodeSearch);
+            var request = $"{API_URL}/GetCount?{nodeSearch.ToQueryString()}";
+            var response = await AuthorizedHttpClient.GetAsync(request);
             var count = await response.Content.ReadAsStringAsync();
             return int.Parse(count);
         }

@@ -19,12 +19,12 @@ namespace BlazorWorld.Web.Client.Shell
         }
 
         public NodeSearch NodeSearch { get; set; }
-        public int CurrentPage { get; set; } = 1;
+        public int CurrentPage { get; set; } = 0;
         public int Count { get; set; }
         public int PageSize { get; set; }
-        public bool ShowPrevious => CurrentPage > 1;
+        public bool ShowPrevious => CurrentPage > 0;
         public bool ShowNext => CurrentPage < TotalPages;
-        public bool ShowFirst => CurrentPage != 1;
+        public bool ShowFirst => CurrentPage != 0;
         public bool ShowLast => CurrentPage != TotalPages;
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
         public Node[] Data { get; set; }

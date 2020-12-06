@@ -44,12 +44,7 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Blog
                     Module = Constants.BlogsModule,
                     Type = Constants.PostType,
                     ParentId = Blog.Id,
-                    OrderBy = new string[]
-                    {
-                            OrderBy.Weight,
-                            OrderBy.Latest,
-                            OrderBy.Title
-                    },
+                    OrderBy = $"{OrderBy.Weight},{OrderBy.Latest},{OrderBy.Title}",
                     TruncateContent = 140
                 }
             };

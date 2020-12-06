@@ -57,11 +57,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
                 Module = Constants.ArticlesModule,
                 Type = Constants.CategoryType,
                 ParentId = Category.Id,
-                OrderBy = new string[]
-                {
-                    OrderBy.Weight,
-                    OrderBy.Title
-                }
+                OrderBy = $"{OrderBy.Weight},{OrderBy.Title}"
             };
             var nodes = await NodeService.GetAsync(nodeSearch, 0);
             Categories = nodes.ConvertTo<Models.Category>();
@@ -73,12 +69,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
                     Module = Constants.ArticlesModule,
                     Type = Constants.ArticleType,
                     ParentId = Category.Id,
-                    OrderBy = new string[]
-                    {
-                            OrderBy.Weight,
-                            OrderBy.Latest,
-                            OrderBy.Title
-                    },
+                    OrderBy = $"{OrderBy.Weight},{OrderBy.Latest},{OrderBy.Title}",
                     TruncateContent = 140
                 }
             };

@@ -33,12 +33,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages
                 {
                     Module = Constants.VideosModule,
                     Type = Constants.ChannelType,
-                    OrderBy = new string[]
-                    {
-                            OrderBy.Weight,
-                            OrderBy.Latest,
-                            OrderBy.Title
-                    }
+                    OrderBy = $"{OrderBy.Weight},{OrderBy.Latest},{OrderBy.Title}"
                 }
             };
             await Channels.InitAsync();

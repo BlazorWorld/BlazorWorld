@@ -59,9 +59,9 @@ namespace BlazorWorld.Web.Server.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("GetPaginatedResult")]
+        [HttpGet("GetPaginatedResult")]
         public async Task<IActionResult> GetPaginatedResultAsync(
-            [FromBody]NodeSearch nodeSearch,
+            [FromQuery]NodeSearch nodeSearch,
             int currentPage)
         {
             var pageSize = 10;
@@ -84,9 +84,9 @@ namespace BlazorWorld.Web.Server.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("GetPageSize")]
+        [HttpGet("GetPageSize")]
         public IActionResult GetPageSize(
-            [FromBody]NodeSearch nodeSearch)
+            [FromQuery]NodeSearch nodeSearch)
         {
             var pageSize = 10;
             var pageSizeSetting = _contentAppSettings.PageSizeSettings.FirstOrDefault(
@@ -97,8 +97,8 @@ namespace BlazorWorld.Web.Server.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("GetCount")]
-        public async Task<IActionResult> GetCountAsync([FromBody]NodeSearch nodeSearch)
+        [HttpGet("GetCount")]
+        public async Task<IActionResult> GetCountAsync([FromQuery]NodeSearch nodeSearch)
         {
             return Ok(await _nodeService.GetCountAsync(nodeSearch));
         }

@@ -57,10 +57,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
             {
                 Module = Constants.ArticlesModule,
                 Type = Constants.CategoryType,
-                OrderBy = new string[]
-                        {
-                            OrderBy.Title
-                        }
+                OrderBy = $"{OrderBy.Title}"
             };
             var nodes = await NodeService.GetAsync(nodeSearch, 0);
             Categories = nodes.ToArray().ConvertTo<Models.Category>();

@@ -31,10 +31,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages
                 {
                     Module = Constants.ForumsModule,
                     Type = Constants.ForumType,
-                    OrderBy = new string[]
-                    {
-                        OrderBy.Title
-                    },
+                    OrderBy = $"{OrderBy.Title}",
                     RootOnly = true,
                     TruncateContent = 140
                 }

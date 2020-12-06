@@ -50,11 +50,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Components.Post
                     Module = Constants.ForumsModule,
                     Type = Constants.CommentType,
                     ParentId = Post.Id,
-                    OrderBy = new string[]
-                    {
-                        OrderBy.Hot,
-                        OrderBy.Latest
-                    }
+                    OrderBy = $"{OrderBy.Hot},{OrderBy.Latest}"
                 }
             };
             await Comments.InitAsync();

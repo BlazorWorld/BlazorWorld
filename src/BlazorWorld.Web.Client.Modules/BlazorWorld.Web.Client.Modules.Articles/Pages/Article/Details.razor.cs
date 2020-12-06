@@ -49,8 +49,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
                 Constants.ArticleType,
                 Actions.Delete
             );
-            var catgoryNode = await NodeService.GetAsync(Article.CategoryId);
-            Category = Models.Category.Create(node);
+            var categoryNode = await NodeService.GetAsync(Article.CategoryId);
+            Category = Models.Category.Create(categoryNode);
         }
 
         public void Delete()

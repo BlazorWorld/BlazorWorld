@@ -59,10 +59,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
                 {
                     Module = Constants.ForumsModule,
                     Type = Constants.ForumType,
-                    OrderBy = new string[]
-                    {
-                        OrderBy.Title
-                    },
+                    OrderBy = $"{OrderBy.Title}",
                     ParentId = node.Id
                 }
             };
@@ -82,11 +79,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
                     Module = Constants.ForumsModule,
                     Type = Constants.TopicType,
                     ParentId = node.Id,
-                    OrderBy = new string[]
-                    {
-                        OrderBy.Hot,
-                        OrderBy.Latest
-                    },
+                    OrderBy = $"{OrderBy.Hot},{OrderBy.Latest}",
                     TruncateContent = 140
                 }
             };

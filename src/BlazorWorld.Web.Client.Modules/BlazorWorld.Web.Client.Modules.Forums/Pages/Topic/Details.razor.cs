@@ -49,11 +49,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
                     Module = Constants.ForumsModule,
                     Type = Constants.PostType,
                     ParentId = Topic.Id,
-                    OrderBy = new string[]
-                    {
-                        OrderBy.Hot,
-                        OrderBy.Latest
-                    },
+                    OrderBy = $"{OrderBy.Hot},{OrderBy.Latest}",
                     TruncateContent = 140
                 }
             };
