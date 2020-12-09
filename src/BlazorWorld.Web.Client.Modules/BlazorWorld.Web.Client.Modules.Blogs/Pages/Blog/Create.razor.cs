@@ -38,7 +38,8 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Blog
             var existingArticle = await NodeService.GetBySlugAsync(
                 Constants.BlogsModule,
                 Constants.BlogType,
-                Blog.Slug);
+                Blog.Slug,
+                true);
 
             if (existingArticle == null)
             {

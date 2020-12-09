@@ -48,7 +48,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
                 Message = $"Updated a forum: {Forum.Name}."
             };
             await NodeService.UpdateAsync(contentActivity);
-            NavigationManager.NavigateTo($"forum/{Forum.Slug}");
+            NavigationManager.NavigateTo($"forum/{Forum.Slug}", true);
         }
     }
 }

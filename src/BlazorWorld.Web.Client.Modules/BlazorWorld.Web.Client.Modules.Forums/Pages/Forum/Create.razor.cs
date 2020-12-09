@@ -57,7 +57,8 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Forum
             var existingForum = await NodeService.GetBySlugAsync(
                 Constants.ForumsModule,
                 Constants.ForumType,
-                Forum.Name);
+                Forum.Name,
+                true);
 
             if (existingForum == null)
             {

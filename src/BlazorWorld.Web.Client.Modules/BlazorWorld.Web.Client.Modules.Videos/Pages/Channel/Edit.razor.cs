@@ -42,7 +42,8 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Pages.Channel
             var existingChannel = await NodeService.GetBySlugAsync(
                 Constants.VideosModule,
                 Constants.ChannelType,
-                Channel.Slug);
+                Channel.Slug,
+                true);
 
             if (existingChannel == null)
             {

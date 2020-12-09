@@ -64,7 +64,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
             var node = await NodeService.GetBySlugAsync(
                 Constants.ArticlesModule,
                 Constants.CategoryType,
-                Slug);
+                Slug,
+                true);
             Category = Models.Category.Create(node);
         }
 
@@ -73,7 +74,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
             var existingCategory = await NodeService.GetBySlugAsync(
                 Constants.ArticlesModule,
                 Constants.CategoryType,
-                Category.Slug);
+                Category.Slug,
+                true);
 
             if (existingCategory == null || existingCategory.Id == Category.Id)
             {
@@ -83,7 +85,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
                     Message = $"Added a new article category: {Category.Name}."
                 };
                 await NodeService.UpdateAsync(contentActivity);
-                NavigationManager.NavigateTo($"articles/{Category.Slug}");
+                NavigationManager.NavigateTo($"articles/{Category.Slug}", true);
             }
             else
             {

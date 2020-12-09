@@ -2,6 +2,7 @@
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Shared.Models;
 using BlazorWorld.Web.Shared.Services;
+using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -32,7 +33,8 @@ namespace BlazorWorld.Web.Client.Services
         public async Task<Node> GetBySlugAsync(
             string module,
             string type,
-            string slug)
+            string slug,
+            bool noStore = false)
         {
             var nodeSearch = new NodeSearch()
             {
@@ -40,8 +42,13 @@ namespace BlazorWorld.Web.Client.Services
                 Type = type,
                 Slug = slug
             };
-            var request = $"{API_URL}/GetPaginatedResult?{nodeSearch.ToQueryString()}";
-            var response = await PublicHttpClient.GetAsync(request);
+            var requestUri = $"{API_URL}/GetPaginatedResult?{nodeSearch.ToQueryString()}";
+            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+            if (noStore)
+                request.SetBrowserRequestCache(BrowserRequestCache.NoStore);
+            var response = await PublicHttpClient.SendAsync(request);
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                return null;
             var jsonString = await response.Content.ReadAsStringAsync();
             var items = System.Text.Json.JsonSerializer.Deserialize<Node[]>(jsonString, _jsonSerializerOptions);
             return items.FirstOrDefault();

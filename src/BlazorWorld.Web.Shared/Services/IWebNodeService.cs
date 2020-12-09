@@ -9,10 +9,9 @@ namespace BlazorWorld.Web.Shared.Services
     public interface IWebNodeService
     {
         Task<Node> GetAsync(string id);
-        Task<Node> GetBySlugAsync(string module, string type, string slug);
-        Task<Node[]> GetAsync(
-            NodeSearch nodeSearch,
-            int currentPage);
+        Task<Node> GetBySlugAsync(string module, string type, string slug,
+            bool noStore = false);
+        Task<Node[]> GetAsync(NodeSearch nodeSearch, int currentPage);
         Task<int> GetCountAsync(NodeSearch nodeSearch);
         Task<int> GetPageSizeAsync(NodeSearch nodeSearch);
         Task<Node> SecureGetAsync(string id);

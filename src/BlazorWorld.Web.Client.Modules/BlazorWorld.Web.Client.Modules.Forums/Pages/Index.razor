@@ -26,7 +26,7 @@ else
         <div class="card shadow mt-2 mb-2">
             <div class="card-body">
                 <p class="card-text">
-                    <NavLink href=@($"/forum/{forum.Name}")>@forum.Title</NavLink>.
+                    <NavLink href=@($"/forum/{forum.Slug}")>@forum.Title</NavLink>.
                     @forum.Content [@forum.ChildCount @Localize["entries"]]
                 </p>
             </div>

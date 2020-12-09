@@ -9,7 +9,7 @@
             <NavLink href="/forums"><i class="fa fa-comments"></i> @Localize["Forums"]</NavLink>
         </li>
         <li class="breadcrumb-item">
-            <NavLink href=@($"/forum/{Forum?.Name}")>@Forum?.Title</NavLink>
+            <NavLink href=@($"/forum/{Forum?.Slug}")>@Forum?.Title</NavLink>
         </li>
     </ol>
 </nav>

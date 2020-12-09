@@ -76,7 +76,8 @@ namespace BlazorWorld.Web.Server.Services
         public async Task<Node> GetBySlugAsync(
             string module,
             string type,
-            string slug)
+            string slug,
+            bool noStore = false)
         {
             var nodeSearch = new NodeSearch()
             {

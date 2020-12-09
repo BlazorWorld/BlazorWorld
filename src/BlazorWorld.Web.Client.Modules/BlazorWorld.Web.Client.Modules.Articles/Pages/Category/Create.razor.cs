@@ -84,7 +84,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Category
             var existingCategory = await NodeService.GetBySlugAsync(
                 Constants.ArticlesModule,
                 Constants.CategoryType,
-                Category.Slug);
+                Category.Slug,
+                true);
 
             if (existingCategory == null)
             {

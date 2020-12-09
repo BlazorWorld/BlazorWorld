@@ -80,6 +80,9 @@ namespace BlazorWorld.Web.Server.Controllers
                 foreach (var result in results)
                     result.Content = Helper.Truncate(result.Content, nodeSearch.TruncateContent);
 
+            if (!string.IsNullOrEmpty(nodeSearch.Slug) && results.Count == 0)
+                return NotFound();
+
             return Ok(results);
         }
 

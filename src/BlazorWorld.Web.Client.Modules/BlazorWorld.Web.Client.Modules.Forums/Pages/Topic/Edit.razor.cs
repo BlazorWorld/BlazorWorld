@@ -34,7 +34,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Pages.Topic
                 Message = $"Updated a new forum topic."
             };
             await NodeService.UpdateAsync(contentActivity);
-            NavigationManager.NavigateTo($"forum/topic/{Topic.Id}");
+            NavigationManager.NavigateTo($"forum/topic/{Topic.Id}", true);
         }
     }
 }

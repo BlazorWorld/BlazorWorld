@@ -52,7 +52,8 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Post
             var existingPost = await NodeService.GetBySlugAsync(
                 Constants.BlogsModule,
                 Constants.PostType,
-                Post.Slug);
+                Post.Slug,
+                true);
 
             if (existingPost == null || existingPost.Id == Post.Id)
             {
@@ -62,7 +63,7 @@ namespace BlazorWorld.Web.Client.Modules.Blogs.Pages.Post
                     Message = $"Updated a post: {Post.Title}."
                 };
                 await NodeService.UpdateAsync(contentActivity);
-                NavigationManager.NavigateTo($"blog/post/{Post.Slug}");
+                NavigationManager.NavigateTo($"blog/post/{Post.Slug}", true);
             }
             else
             {

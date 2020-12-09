@@ -74,7 +74,8 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
             var existingArticle = await NodeService.GetBySlugAsync(
                 Constants.ArticlesModule,
                 Constants.ArticleType,
-                Article.Slug);
+                Article.Slug,
+                true);
 
             if (existingArticle == null || existingArticle.Id == Article.Id)
             {
@@ -84,7 +85,7 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages.Article
                     Message = $"Updated an article: {Article.Title}."
                 };
                 await NodeService.UpdateAsync(contentActivity);
-                NavigationManager.NavigateTo($"article/{Article.Slug}");
+                NavigationManager.NavigateTo($"article/{Article.Slug}", true);
             }
             else
             {
