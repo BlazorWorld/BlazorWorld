@@ -26,6 +26,7 @@ namespace BlazorWorld.Web.Client.Shell.Components
 
         protected override async Task OnParametersSetAsync()
         {
+            Elements = new List<Element>();
             if (!string.IsNullOrEmpty(Text))
             {
                 var texts = Regex.Split(Text, "({{.*?}})");
