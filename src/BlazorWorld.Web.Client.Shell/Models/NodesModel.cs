@@ -23,9 +23,9 @@ namespace BlazorWorld.Web.Client.Shell
         public int Count { get; set; }
         public int PageSize { get; set; }
         public bool ShowPrevious => CurrentPage > 0;
-        public bool ShowNext => CurrentPage < TotalPages;
+        public bool ShowNext => CurrentPage < (TotalPages - 1);
         public bool ShowFirst => CurrentPage != 0;
-        public bool ShowLast => CurrentPage != TotalPages;
+        public bool ShowLast => CurrentPage != (TotalPages - 1);
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
         public Node[] Data { get; set; }
         public bool IsLoggedIn { get; set; } = false;

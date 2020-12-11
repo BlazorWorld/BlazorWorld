@@ -96,15 +96,13 @@ else
             var article = Models.Article.Create(node);
             <ArticleCard Article="@article" />
         }
-        @{
-            if (Articles.ShowNext)
-            {
-                <button class="btn btn-primary btn-sm mt-2 mb-2 mr-2" @onclick="Articles.NextAsync">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    @Localize["More Articles"]
-                </button>
-            }
-        }
     </div>
+    @if (Articles.ShowNext)
+    {
+        <button class="btn btn-primary btn-sm mt-2 mb-2 mr-2" @onclick="Articles.NextAsync">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            @Localize["More Articles"]
+        </button>
+    }
 }
 

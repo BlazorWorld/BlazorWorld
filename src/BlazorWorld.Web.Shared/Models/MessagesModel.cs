@@ -24,9 +24,9 @@ namespace BlazorWorld.Web.Shared.Models
         public int Count { get; set; }
         public int PageSize { get; set; }
         public bool ShowPrevious => CurrentPage > 0;
-        public bool ShowNext => CurrentPage < TotalPages;
+        public bool ShowNext => CurrentPage < (TotalPages - 1);
         public bool ShowFirst => CurrentPage != 1;
-        public bool ShowLast => CurrentPage != TotalPages;
+        public bool ShowLast => CurrentPage != (TotalPages - 1);
         public int TotalPages => (int)Math.Ceiling(decimal.Divide(Count, PageSize));
         public Message[] Data { get; set; }
         public bool IsLoggedIn { get; set; } = false;
