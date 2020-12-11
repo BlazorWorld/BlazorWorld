@@ -23,15 +23,17 @@ namespace BlazorWorld.Data.Identity
             {
                 case "sqlserver":
                     services.AddDbContext<AppIdentityDbContext>(options =>
-                        options.UseSqlServer(connectionString));
+                        options.UseSqlServer(connectionString), ServiceLifetime.Transient);
                     services.AddDbContext<SqlServerIdentityDbContext>(options =>
-                        options.UseSqlServer(connectionString));
+                        options.UseSqlServer(connectionString), ServiceLifetime.Transient);
                     break;
                 case "mysql":
                     services.AddDbContext<AppIdentityDbContext>(options =>
-                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion));
+                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion),
+                        ServiceLifetime.Transient);
                     services.AddDbContext<MySqlIdentityDbContext>(options =>
-                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion));
+                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion),
+                        ServiceLifetime.Transient);
                     break;
                 case "sqlite":
                     if (string.IsNullOrEmpty(connectionString))
@@ -43,9 +45,9 @@ namespace BlazorWorld.Data.Identity
                         connectionString = connectionStringBuilder.ToString();
                     }
                     services.AddDbContext<AppIdentityDbContext>(options =>
-                        options.UseSqlite(connectionString));
+                        options.UseSqlite(connectionString), ServiceLifetime.Transient);
                     services.AddDbContext<SqliteIdentityDbContext>(options =>
-                        options.UseSqlite(connectionString));
+                        options.UseSqlite(connectionString), ServiceLifetime.Transient);
                     break;
             }
 

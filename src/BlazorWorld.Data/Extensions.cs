@@ -23,15 +23,17 @@ namespace BlazorWorld.Data
             {
                 case "sqlserver":
                     services.AddDbContext<AppDbContext>(options =>
-                        options.UseSqlServer(connectionString));
+                        options.UseSqlServer(connectionString), ServiceLifetime.Transient);
                     services.AddDbContext<SqlServerDbContext>(options =>
-                        options.UseSqlServer(connectionString));
+                        options.UseSqlServer(connectionString), ServiceLifetime.Transient);
                     break;
                 case "mysql":
                     services.AddDbContext<AppDbContext>(options =>
-                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion));
+                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion),
+                        ServiceLifetime.Transient);
                     services.AddDbContext<MySqlDbContext>(options =>
-                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion));
+                        options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion),
+                        ServiceLifetime.Transient);
                     break;
                 case "sqlite":
                     if (string.IsNullOrEmpty(connectionString))
@@ -43,9 +45,9 @@ namespace BlazorWorld.Data
                         connectionString = connectionStringBuilder.ToString();
                     }
                     services.AddDbContext<AppDbContext>(options =>
-                        options.UseSqlite(connectionString));
+                        options.UseSqlite(connectionString), ServiceLifetime.Transient);
                     services.AddDbContext<SqliteDbContext>(options =>
-                        options.UseSqlite(connectionString));
+                        options.UseSqlite(connectionString), ServiceLifetime.Transient);
                     break;
             }
         }
