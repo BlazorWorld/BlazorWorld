@@ -28,6 +28,18 @@
         "Value": "Guest"
       },
       {
+        "Id": "d1bf9810-35bc-46df-916e-dd1040d13e20",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Config,Add",
+        "Value": "Admin"
+      },
+      {
+        "Id": "fb39daf2-18c7-4892-8245-db453b0f5d0e",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Articles:Config,Edit",
+        "Value": "Admin"
+      },
+      {
         "Id": "4e5e6ca1-ad73-4a95-9570-f769450846b3",
         "Type": "Permission",
         "Key": "BlazorWorld.Articles:Category,Add",
@@ -74,6 +86,18 @@
         "Type": "Permission",
         "Key": "BlazorWorld.Blogs:Menu,View",
         "Value": "Guest"
+      },
+      {
+        "Id": "10f806d3-2da6-4345-8f2c-e5c81f8617b3",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Config,Add",
+        "Value": "Admin"
+      },
+      {
+        "Id": "d82578a7-3140-4e06-8e9e-2772618c3681",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Blogs:Config,Edit",
+        "Value": "Admin"
       },
       {
         "Id": "1d707865-6552-48fc-a522-e388b8baafc2",
@@ -128,6 +152,18 @@
         "Type": "Permission",
         "Key": "BlazorWorld.Forums:Menu,View",
         "Value": "Guest"
+      },
+      {
+        "Id": "448dd5ec-a6e6-4b95-a4aa-36d4334def53",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forums:Config,Add",
+        "Value": "Admin"
+      },
+      {
+        "Id": "6288da98-7962-4a57-8689-8bc42c22cfb9",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Forums:Config,Edit",
+        "Value": "Admin"
       },
       {
         "Id": "69215263-8b1c-48c7-92e1-2509b7fd263c",
@@ -266,6 +302,18 @@
         "Type": "Permission",
         "Key": "BlazorWorld.Videos:Menu,View",
         "Value": "Guest"
+      },
+      {
+        "Id": "41c3ab7d-ae32-4f3e-88d7-a2b222d1bef0",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Config,Add",
+        "Value": "Admin"
+      },
+      {
+        "Id": "622b008d-0114-4c5a-882d-9395bf67a394",
+        "Type": "Permission",
+        "Key": "BlazorWorld.Videos:Config,Edit",
+        "Value": "Admin"
       },
       {
         "Id": "de17faeb-45c0-4c5e-bf48-b2eef9d8cc57",

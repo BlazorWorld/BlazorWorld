@@ -3,7 +3,17 @@
 
 <PageTitle Title="@Localize["Articles"]" />
 
-<h3><i class="fas fa-newspaper"></i> @Localize["Articles"]</h3>
+<div class="jumbotron">
+    <h1 class="h3"><i class="fas fa-newspaper"></i> @Localize["Articles"]</h1>
+    <RichText Text="@Config.Content" ParentObject="@Config" />
+    @if (CanEditConfig)
+    {
+        <NavLink href="/articles/config/edit" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            @Localize["Edit"]
+        </NavLink>
+    }
+</div>
 
 @if (CanAddCategory)
 {
@@ -33,16 +43,14 @@
                     var article = Models.Article.Create(node);
                     <ArticleCard Article="@article" />
                 }
-                @{
-                    if (Articles[category.Id].ShowNext)
-                    {
-                        <button class="btn btn-primary btn-sm mt-2 mb-2 mr-2" @onclick="Articles[category.Id].NextAsync">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            @Localize["More Articles"]
-                        </button>
-                    }
-                }
             </div>
+            @if (Articles[category.Id].ShowNext)
+            {
+                <button class="btn btn-primary btn-sm mt-2 mb-2 mr-2" @onclick="Articles[category.Id].NextAsync">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    @Localize["More Articles"]
+                </button>
+            }
         }
     }
 }

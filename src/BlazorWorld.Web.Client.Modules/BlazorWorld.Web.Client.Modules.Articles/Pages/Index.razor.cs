@@ -1,5 +1,6 @@
 ﻿using BlazorWorld.Core.Constants;
 using BlazorWorld.Core.Entities.Configuration;
+using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Helper;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Web.Client.Modules.Articles.Models;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Web.Client.Modules.Articles.Pages
@@ -23,12 +25,22 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages
         protected IWebSecurityService SecurityService { get; set; }
         [CascadingParameter]
         Task<AuthenticationState> AuthenticationStateTask { get; set; }
+        private bool CanEditConfig { get; set; } = false;
         private bool CanAddCategory { get; set; } = false;
+        private Node Config { get; set; } = new Node();
         private Models.Category[] Categories { get; set; }
         private Dictionary<string, ArticlesModel> Articles { get; set; } = new Dictionary<string, ArticlesModel>();
 
         protected override async Task OnParametersSetAsync()
         {
+            var configSearch = new NodeSearch()
+            {
+                Module = Constants.ArticlesModule,
+                Type = Constants.ConfigType
+            };
+            var configNodes = (await NodeService.GetAsync(configSearch, 0));
+            if (configNodes.Length > 0)
+                Config = configNodes[0];
             var nodeSearch = new NodeSearch()
             {
                 Module = Constants.ArticlesModule,
@@ -58,6 +70,13 @@ namespace BlazorWorld.Web.Client.Modules.Articles.Pages
             }
 
             var loggedInUserId = (await AuthenticationStateTask).LoggedInUserId();
+            CanEditConfig = await SecurityService.AllowedAsync(
+                loggedInUserId,
+                null,
+                Constants.ArticlesModule,
+                Constants.ConfigType,
+                Actions.Edit
+            );
             CanAddCategory = await SecurityService.AllowedAsync(
                 loggedInUserId,
                 null,
