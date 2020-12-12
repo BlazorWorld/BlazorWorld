@@ -3,7 +3,17 @@
 
 <PageTitle Title="@Localize["Forums"]" />
 
-<h1 class="h3"><i class="fa fa-comments"></i> @Localize["Forums"]</h1>
+<div class="jumbotron">
+    <h1 class="h3"><i class="fas fa-comments"></i> @Localize["Forums"]</h1>
+    <RichText Text="@Config.Content" ParentObject="@Config" />
+    @if (CanEditConfig)
+    {
+        <NavLink href="/articles/config/edit" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            @Localize["Edit"]
+        </NavLink>
+    }
+</div>
 
 @if (CanAddForum)
 {
