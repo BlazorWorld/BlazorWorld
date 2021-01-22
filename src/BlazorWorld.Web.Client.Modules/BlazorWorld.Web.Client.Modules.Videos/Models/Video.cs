@@ -9,7 +9,7 @@ namespace BlazorWorld.Web.Client.Modules.Videos.Models
         {
             Module = Constants.VideosModule;
             Type = Constants.VideoType;
-            CustomFields = new Core.Entities.Common.NodeCustomFields();
+            CustomFields = new Core.Entities.Content.NodeCustomFields();
         }
 
         public static Video Create(Node node)

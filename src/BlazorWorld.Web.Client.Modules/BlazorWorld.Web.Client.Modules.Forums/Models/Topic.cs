@@ -10,7 +10,7 @@ namespace BlazorWorld.Web.Client.Modules.Forums.Models
         {
             Module = Constants.ForumsModule;
             Type = Constants.TopicType;
-            CustomFields = new Core.Entities.Common.NodeCustomFields();
+            CustomFields = new Core.Entities.Content.NodeCustomFields();
         }
 
         public static Topic Create(Node node)
