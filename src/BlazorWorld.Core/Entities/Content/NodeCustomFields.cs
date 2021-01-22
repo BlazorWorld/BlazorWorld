@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace BlazorWorld.Core.Entities.Common
+namespace BlazorWorld.Core.Entities.Content
 {
     public class NodeCustomFields
     {

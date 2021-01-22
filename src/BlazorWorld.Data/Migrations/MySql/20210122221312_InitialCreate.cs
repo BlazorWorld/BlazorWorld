@@ -170,6 +170,20 @@ namespace BlazorWorld.Data.Migrations.MySql
                 });
 
             migrationBuilder.CreateTable(
+                name: "NodeLinks",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
+                    FromNodeId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true),
+                    ToNodeId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true),
+                    Type = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NodeLinks", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Nodes",
                 columns: table => new
                 {
@@ -252,7 +266,7 @@ namespace BlazorWorld.Data.Migrations.MySql
                 });
 
             migrationBuilder.CreateTable(
-                name: "EntityCustomFields",
+                name: "NodeCustomFields",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
@@ -300,9 +314,9 @@ namespace BlazorWorld.Data.Migrations.MySql
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EntityCustomFields", x => x.Id);
+                    table.PrimaryKey("PK_NodeCustomFields", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EntityCustomFields_Nodes_NodeId",
+                        name: "FK_NodeCustomFields_Nodes_NodeId",
                         column: x => x.NodeId,
                         principalTable: "Nodes",
                         principalColumn: "Id",
@@ -310,7 +324,7 @@ namespace BlazorWorld.Data.Migrations.MySql
                 });
 
             migrationBuilder.CreateTable(
-                name: "EntityTags",
+                name: "NodeTags",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
@@ -319,9 +333,9 @@ namespace BlazorWorld.Data.Migrations.MySql
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EntityTags", x => x.Id);
+                    table.PrimaryKey("PK_NodeTags", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EntityTags_Nodes_NodeId",
+                        name: "FK_NodeTags_Nodes_NodeId",
                         column: x => x.NodeId,
                         principalTable: "Nodes",
                         principalColumn: "Id",
@@ -416,122 +430,6 @@ namespace BlazorWorld.Data.Migrations.MySql
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField1",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField10",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField10");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField11",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField11");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField12",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField12");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField13",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField13");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField14",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField14");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField15",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField15");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField16",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField16");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField17",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField17");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField18",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField18");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField19",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField19");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField2",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField2");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField20",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField20");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField3",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField3");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField4",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField5",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField5");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField6",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField6");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField7",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField7");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField8",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField8");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_IndexedCustomField9",
-                table: "EntityCustomFields",
-                column: "IndexedCustomField9");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityCustomFields_NodeId",
-                table: "EntityCustomFields",
-                column: "NodeId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityTags_NodeId",
-                table: "EntityTags",
-                column: "NodeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EntityTags_Tag",
-                table: "EntityTags",
-                column: "Tag");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_GroupMembers_GroupId",
                 table: "GroupMembers",
                 column: "GroupId");
@@ -552,6 +450,122 @@ namespace BlazorWorld.Data.Migrations.MySql
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField1",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField10",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField10");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField11",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField11");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField12",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField12");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField13",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField13");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField14",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField14");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField15",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField15");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField16",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField16");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField17",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField17");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField18",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField18");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField19",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField19");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField2",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField2");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField20",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField20");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField3",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField3");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField4",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField5",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField5");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField6",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField6");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField7",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField7");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField8",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField8");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_IndexedCustomField9",
+                table: "NodeCustomFields",
+                column: "IndexedCustomField9");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeCustomFields_NodeId",
+                table: "NodeCustomFields",
+                column: "NodeId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeLinks_FromNodeId_Type",
+                table: "NodeLinks",
+                columns: new[] { "FromNodeId", "Type" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeLinks_ToNodeId_Type",
+                table: "NodeLinks",
+                columns: new[] { "ToNodeId", "Type" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Nodes_GroupId",
                 table: "Nodes",
                 column: "GroupId");
@@ -565,6 +579,16 @@ namespace BlazorWorld.Data.Migrations.MySql
                 name: "IX_Nodes_Slug",
                 table: "Nodes",
                 column: "Slug");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeTags_NodeId",
+                table: "NodeTags",
+                column: "NodeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeTags_Tag",
+                table: "NodeTags",
+                column: "Tag");
 
             migrationBuilder.CreateIndex(
                 name: "IX_NodeVersions_NodeId",
@@ -627,12 +651,6 @@ namespace BlazorWorld.Data.Migrations.MySql
                 name: "Emails");
 
             migrationBuilder.DropTable(
-                name: "EntityCustomFields");
-
-            migrationBuilder.DropTable(
-                name: "EntityTags");
-
-            migrationBuilder.DropTable(
                 name: "GroupMembers");
 
             migrationBuilder.DropTable(
@@ -643,6 +661,15 @@ namespace BlazorWorld.Data.Migrations.MySql
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "NodeCustomFields");
+
+            migrationBuilder.DropTable(
+                name: "NodeLinks");
+
+            migrationBuilder.DropTable(
+                name: "NodeTags");
 
             migrationBuilder.DropTable(
                 name: "NodeVersions");

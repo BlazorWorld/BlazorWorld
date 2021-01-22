@@ -19,183 +19,6 @@ namespace BlazorWorld.Data.Migrations.SqlServer
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Common.NodeCustomFields", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CustomField1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField10")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField11")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField12")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField13")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField14")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField15")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField16")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField17")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField18")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField19")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField20")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField4")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField5")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField6")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField7")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField8")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomField9")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IndexedCustomField1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField10")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField11")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField12")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField13")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField14")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField15")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField16")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField17")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField18")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField19")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField2")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField20")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField3")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField4")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField5")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField6")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField7")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField8")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("IndexedCustomField9")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("NodeId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IndexedCustomField1");
-
-                    b.HasIndex("IndexedCustomField10");
-
-                    b.HasIndex("IndexedCustomField11");
-
-                    b.HasIndex("IndexedCustomField12");
-
-                    b.HasIndex("IndexedCustomField13");
-
-                    b.HasIndex("IndexedCustomField14");
-
-                    b.HasIndex("IndexedCustomField15");
-
-                    b.HasIndex("IndexedCustomField16");
-
-                    b.HasIndex("IndexedCustomField17");
-
-                    b.HasIndex("IndexedCustomField18");
-
-                    b.HasIndex("IndexedCustomField19");
-
-                    b.HasIndex("IndexedCustomField2");
-
-                    b.HasIndex("IndexedCustomField20");
-
-                    b.HasIndex("IndexedCustomField3");
-
-                    b.HasIndex("IndexedCustomField4");
-
-                    b.HasIndex("IndexedCustomField5");
-
-                    b.HasIndex("IndexedCustomField6");
-
-                    b.HasIndex("IndexedCustomField7");
-
-                    b.HasIndex("IndexedCustomField8");
-
-                    b.HasIndex("IndexedCustomField9");
-
-                    b.HasIndex("NodeId")
-                        .IsUnique()
-                        .HasFilter("[NodeId] IS NOT NULL");
-
-                    b.ToTable("EntityCustomFields");
-                });
-
             modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Setting", b =>
                 {
                     b.Property<string>("Id")
@@ -389,6 +212,206 @@ namespace BlazorWorld.Data.Migrations.SqlServer
                     b.ToTable("Nodes");
                 });
 
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeCustomFields", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CustomField1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField11")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField12")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField13")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField14")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField15")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField16")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField17")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField18")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField19")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField20")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomField9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IndexedCustomField1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField10")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField11")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField12")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField13")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField14")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField15")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField16")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField17")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField18")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField19")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField2")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField20")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField3")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField4")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField5")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField6")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField7")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField8")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("IndexedCustomField9")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("NodeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IndexedCustomField1");
+
+                    b.HasIndex("IndexedCustomField10");
+
+                    b.HasIndex("IndexedCustomField11");
+
+                    b.HasIndex("IndexedCustomField12");
+
+                    b.HasIndex("IndexedCustomField13");
+
+                    b.HasIndex("IndexedCustomField14");
+
+                    b.HasIndex("IndexedCustomField15");
+
+                    b.HasIndex("IndexedCustomField16");
+
+                    b.HasIndex("IndexedCustomField17");
+
+                    b.HasIndex("IndexedCustomField18");
+
+                    b.HasIndex("IndexedCustomField19");
+
+                    b.HasIndex("IndexedCustomField2");
+
+                    b.HasIndex("IndexedCustomField20");
+
+                    b.HasIndex("IndexedCustomField3");
+
+                    b.HasIndex("IndexedCustomField4");
+
+                    b.HasIndex("IndexedCustomField5");
+
+                    b.HasIndex("IndexedCustomField6");
+
+                    b.HasIndex("IndexedCustomField7");
+
+                    b.HasIndex("IndexedCustomField8");
+
+                    b.HasIndex("IndexedCustomField9");
+
+                    b.HasIndex("NodeId")
+                        .IsUnique()
+                        .HasFilter("[NodeId] IS NOT NULL");
+
+                    b.ToTable("NodeCustomFields");
+                });
+
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeLink", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FromNodeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ToNodeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromNodeId", "Type");
+
+                    b.HasIndex("ToNodeId", "Type");
+
+                    b.ToTable("NodeLinks");
+                });
+
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>
                 {
                     b.Property<string>("Id")
@@ -432,7 +455,7 @@ namespace BlazorWorld.Data.Migrations.SqlServer
 
                     b.HasIndex("Tag");
 
-                    b.ToTable("EntityTags");
+                    b.ToTable("NodeTags");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVersion", b =>
@@ -810,11 +833,11 @@ namespace BlazorWorld.Data.Migrations.SqlServer
                     b.ToTable("PersistedGrants");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Common.NodeCustomFields", b =>
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeCustomFields", b =>
                 {
                     b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
                         .WithOne("CustomFields")
-                        .HasForeignKey("BlazorWorld.Core.Entities.Common.NodeCustomFields", "NodeId");
+                        .HasForeignKey("BlazorWorld.Core.Entities.Content.NodeCustomFields", "NodeId");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>

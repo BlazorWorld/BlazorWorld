@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorWorld.Data.Migrations.MySql
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20201205044537_InitialCreate")]
+    [Migration("20210122221312_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,182 +18,6 @@ namespace BlazorWorld.Data.Migrations.MySql
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
-
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Common.NodeCustomFields", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField1")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField10")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField11")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField12")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField13")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField14")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField15")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField16")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField17")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField18")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField19")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField2")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField20")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField3")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField4")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField5")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField6")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField7")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField8")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CustomField9")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField1")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField10")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField11")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField12")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField13")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField14")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField15")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField16")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField17")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField18")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField19")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField2")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField20")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField3")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField4")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField5")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField6")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField7")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField8")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("IndexedCustomField9")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.Property<string>("NodeId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IndexedCustomField1");
-
-                    b.HasIndex("IndexedCustomField10");
-
-                    b.HasIndex("IndexedCustomField11");
-
-                    b.HasIndex("IndexedCustomField12");
-
-                    b.HasIndex("IndexedCustomField13");
-
-                    b.HasIndex("IndexedCustomField14");
-
-                    b.HasIndex("IndexedCustomField15");
-
-                    b.HasIndex("IndexedCustomField16");
-
-                    b.HasIndex("IndexedCustomField17");
-
-                    b.HasIndex("IndexedCustomField18");
-
-                    b.HasIndex("IndexedCustomField19");
-
-                    b.HasIndex("IndexedCustomField2");
-
-                    b.HasIndex("IndexedCustomField20");
-
-                    b.HasIndex("IndexedCustomField3");
-
-                    b.HasIndex("IndexedCustomField4");
-
-                    b.HasIndex("IndexedCustomField5");
-
-                    b.HasIndex("IndexedCustomField6");
-
-                    b.HasIndex("IndexedCustomField7");
-
-                    b.HasIndex("IndexedCustomField8");
-
-                    b.HasIndex("IndexedCustomField9");
-
-                    b.HasIndex("NodeId")
-                        .IsUnique();
-
-                    b.ToTable("EntityCustomFields");
-                });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Setting", b =>
                 {
@@ -388,6 +212,205 @@ namespace BlazorWorld.Data.Migrations.MySql
                     b.ToTable("Nodes");
                 });
 
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeCustomFields", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField1")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField10")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField11")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField12")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField13")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField14")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField15")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField16")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField17")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField18")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField19")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField2")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField20")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField3")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField4")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField5")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField6")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField7")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField8")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("CustomField9")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField1")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField10")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField11")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField12")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField13")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField14")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField15")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField16")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField17")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField18")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField19")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField2")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField20")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField3")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField4")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField5")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField6")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField7")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField8")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("IndexedCustomField9")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("NodeId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IndexedCustomField1");
+
+                    b.HasIndex("IndexedCustomField10");
+
+                    b.HasIndex("IndexedCustomField11");
+
+                    b.HasIndex("IndexedCustomField12");
+
+                    b.HasIndex("IndexedCustomField13");
+
+                    b.HasIndex("IndexedCustomField14");
+
+                    b.HasIndex("IndexedCustomField15");
+
+                    b.HasIndex("IndexedCustomField16");
+
+                    b.HasIndex("IndexedCustomField17");
+
+                    b.HasIndex("IndexedCustomField18");
+
+                    b.HasIndex("IndexedCustomField19");
+
+                    b.HasIndex("IndexedCustomField2");
+
+                    b.HasIndex("IndexedCustomField20");
+
+                    b.HasIndex("IndexedCustomField3");
+
+                    b.HasIndex("IndexedCustomField4");
+
+                    b.HasIndex("IndexedCustomField5");
+
+                    b.HasIndex("IndexedCustomField6");
+
+                    b.HasIndex("IndexedCustomField7");
+
+                    b.HasIndex("IndexedCustomField8");
+
+                    b.HasIndex("IndexedCustomField9");
+
+                    b.HasIndex("NodeId")
+                        .IsUnique();
+
+                    b.ToTable("NodeCustomFields");
+                });
+
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeLink", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("FromNodeId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("ToNodeId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromNodeId", "Type");
+
+                    b.HasIndex("ToNodeId", "Type");
+
+                    b.ToTable("NodeLinks");
+                });
+
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>
                 {
                     b.Property<string>("Id")
@@ -431,7 +454,7 @@ namespace BlazorWorld.Data.Migrations.MySql
 
                     b.HasIndex("Tag");
 
-                    b.ToTable("EntityTags");
+                    b.ToTable("NodeTags");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeVersion", b =>
@@ -809,11 +832,11 @@ namespace BlazorWorld.Data.Migrations.MySql
                     b.ToTable("PersistedGrants");
                 });
 
-            modelBuilder.Entity("BlazorWorld.Core.Entities.Common.NodeCustomFields", b =>
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeCustomFields", b =>
                 {
                     b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
                         .WithOne("CustomFields")
-                        .HasForeignKey("BlazorWorld.Core.Entities.Common.NodeCustomFields", "NodeId");
+                        .HasForeignKey("BlazorWorld.Core.Entities.Content.NodeCustomFields", "NodeId");
                 });
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>

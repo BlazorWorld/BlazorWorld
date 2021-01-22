@@ -1,5 +1,4 @@
-﻿using BlazorWorld.Core.Entities.Common;
-using BlazorWorld.Core.Entities.Configuration;
+﻿using BlazorWorld.Core.Entities.Configuration;
 using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Entities.Organization;
 using IdentityServer4.EntityFramework.Extensions;
@@ -28,10 +27,6 @@ namespace BlazorWorld.Data.DbContexts
             _operationalStoreOptions = operationalStoreOptions;
         }
 
-        // common entities
-        public DbSet<NodeCustomFields> EntityCustomFields { get; set; }
-        public DbSet<NodeTag> EntityTags { get; set; }
-
         // configuration entities
         public DbSet<Setting> Settings { get; set; }
 
@@ -40,6 +35,9 @@ namespace BlazorWorld.Data.DbContexts
         public DbSet<Email> Emails { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Node> Nodes { get; set; }
+        public DbSet<NodeCustomFields> NodeCustomFields { get; set; }
+        public DbSet<NodeLink> NodeLinks { get; set; }
+        public DbSet<NodeTag> NodeTags { get; set; }
         public DbSet<NodeVersion> NodeVersions { get; set; }
         public DbSet<NodeVote> NodeVotes { get; set; }
         public DbSet<NodeReaction> Reactions { get; set; }
@@ -109,6 +107,10 @@ namespace BlazorWorld.Data.DbContexts
                 .HasIndex(x => x.IndexedCustomField19);
             modelBuilder.Entity<NodeCustomFields>()
                 .HasIndex(x => x.IndexedCustomField20);
+            modelBuilder.Entity<NodeLink>()
+                .HasIndex(x => new { x.FromNodeId, x.Type });
+            modelBuilder.Entity<NodeLink>()
+                .HasIndex(x => new { x.ToNodeId, x.Type });
             modelBuilder.Entity<NodeReaction>()
                 .HasIndex(x => x.NodeId);
             modelBuilder.Entity<NodeReaction>()
