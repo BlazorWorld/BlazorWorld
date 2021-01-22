@@ -31,7 +31,15 @@ namespace BlazorWorld.Services.Content
 
         public async Task<Core.Entities.Content.Node> GetAsync(string id)
         {
-            return await _nodeRepository.GetAsync(id);
+            return await _nodeRepository.GetAsync(n => n.Id == id);
+        }
+
+        public async Task<Node> GetBySlugAsync(string module, string type, string slug)
+        {
+            return await _nodeRepository.GetAsync(n =>
+                n.Module == module &&
+                n.Type == type &&
+                n.Slug == slug);
         }
 
         // https://www.mikesdotnetting.com/article/328/simple-paging-in-asp-net-core-razor-pages
@@ -57,14 +65,14 @@ namespace BlazorWorld.Services.Content
                 node.CustomFields.Id = Guid.NewGuid().ToString();
                 node.CustomFields.NodeId = node.Id;
             }
-            _nodeRepository.Add(node);
+            await _nodeRepository.AddAsync(node);
 
             var path = node.ParentId;
             if (!string.IsNullOrEmpty(node.ParentId))
             {
-                var parent = await _nodeRepository.GetAsync(node.ParentId);
+                var parent = await GetAsync(node.ParentId);
                 parent.ChildCount++;
-                _nodeRepository.Update(parent);
+                await _nodeRepository.UpdateAsync(parent);
                 if (!string.IsNullOrEmpty(parent.Path))
                     path = $"{parent.Path},{node.ParentId}";
             }
@@ -75,7 +83,7 @@ namespace BlazorWorld.Services.Content
                 foreach (var ancestorNode in nodes)
                 {
                     ancestorNode.DescendantCount++;
-                    _nodeRepository.Update(ancestorNode);
+                    await _nodeRepository.UpdateAsync(ancestorNode);
                 }
             }
 
@@ -93,7 +101,7 @@ namespace BlazorWorld.Services.Content
                 var ids = path.Split(',');
                 foreach (var id in ids)
                 {
-                    var ancestorNode = await _nodeRepository.GetAsync(id);
+                    var ancestorNode = await _nodeRepository.GetAsync(n => n.Id == id);
                     if (ancestorNode != null) nodes.Add(ancestorNode);
                 }
             }
@@ -103,7 +111,7 @@ namespace BlazorWorld.Services.Content
 
         public async Task UpdateAsync(Node node)
         {
-            _nodeRepository.Update(node);
+            await _nodeRepository.UpdateAsync(node);
             await _nodeRepository.SaveChangesAsync();
         }
 
@@ -111,7 +119,7 @@ namespace BlazorWorld.Services.Content
         {
             _nodeRepository.Delete(id);
 
-            var node = await _nodeRepository.GetAsync(id);
+            var node = await _nodeRepository.GetAsync(n => n.Id == id);
 
             if (node.ChildCount > 0)
             {
@@ -120,9 +128,9 @@ namespace BlazorWorld.Services.Content
 
             if (!string.IsNullOrEmpty(node.ParentId))
             {
-                var parent = await _nodeRepository.GetAsync(node.ParentId);
+                var parent = await _nodeRepository.GetAsync(n => n.Id == node.ParentId);
                 parent.ChildCount--;
-                _nodeRepository.Update(parent);
+                await _nodeRepository.UpdateAsync(parent);
             }
             if (!string.IsNullOrEmpty(node.Path))
             {
@@ -130,7 +138,7 @@ namespace BlazorWorld.Services.Content
                 foreach (var ancestorNode in nodes)
                 {
                     ancestorNode.DescendantCount--;
-                    _nodeRepository.Update(ancestorNode);
+                    await _nodeRepository.UpdateAsync(ancestorNode);
                 }
             }
 
@@ -185,7 +193,7 @@ namespace BlazorWorld.Services.Content
 
         private async Task<int> UpdateHotAsync(NodeVote vote, bool isUndo)
         {
-            var node = await _nodeRepository.GetAsync(vote.NodeId);
+            var node = await _nodeRepository.GetAsync(n => n.Id == vote.NodeId);
             if (vote.Score > 0) node.UpVotes = node.UpVotes + (isUndo? -1 : 1) * vote.Score;
             if (vote.Score < 0) node.DownVotes = node.DownVotes + (isUndo ? 1 : -1) * vote.Score;
             var hot = Hot(node.UpVotes, node.DownVotes, node.CreatedDate);

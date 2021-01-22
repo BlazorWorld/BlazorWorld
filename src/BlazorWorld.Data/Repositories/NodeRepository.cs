@@ -3,7 +3,10 @@ using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BlazorWorld.Data.Repositories
@@ -14,12 +17,11 @@ namespace BlazorWorld.Data.Repositories
         {
         }
 
-        public async Task<Node> GetAsync(string id)
+        public async Task<Node> GetAsync(Expression<Func<Node, bool>> predicate)
         {
-            return await (from n in _dbContext.Nodes
-                          .Include(n => n.CustomFields)
-                          where n.Id == id
-                          select n).FirstOrDefaultAsync();
+            var node = await _dbContext.Nodes.SingleOrDefaultAsync(predicate);
+            if (node != null) await SetLinksAsync(node);
+            return node;
         }
 
         public IQueryable<Node> Get(NodeSearch search)
@@ -102,13 +104,15 @@ namespace BlazorWorld.Data.Repositories
             return nodes;
         }
 
-        public void Add(Node node)
+        public async Task AddAsync(Node node)
         {
+            await AddOrUpdateLinksAsync(node);
             _dbContext.Nodes.Add(node);
         }
 
-        public void Update(Node node)
+        public async Task UpdateAsync(Node node)
         {
+            await AddOrUpdateLinksAsync(node);
             _dbContext.Nodes.Update(node);
         }
 
@@ -116,6 +120,65 @@ namespace BlazorWorld.Data.Repositories
         {
             _dbContext.Remove(_dbContext.Nodes.Single(i => i.Id == id));
         }
+
+        #region Links
+
+        private async Task SetLinksAsync(Node node)
+        {
+            var links = await _dbContext.NodeLinks.Where(nl => nl.FromNodeId == node.Id).ToListAsync();
+            var linkDictionary = new Dictionary<string, string>();
+            foreach (var link in links)
+            {
+                if (!linkDictionary.ContainsKey(link.Type))
+                    linkDictionary.Add(link.Type, string.Empty);
+                if (!string.IsNullOrEmpty(linkDictionary[link.Type]))
+                    linkDictionary[link.Type] += ',';
+                linkDictionary[link.Type] += link.ToNodeId;
+            }
+
+            node.Links = string.Join(";", linkDictionary.Select(l => $"{l.Key}:{l.Value}"));
+        }
+
+        private async Task ClearLinksAsync(string id)
+        {
+            var links = await _dbContext.NodeLinks.Where(nl => nl.FromNodeId == id).ToListAsync();
+            foreach (var link in links)
+            {
+                _dbContext.NodeLinks.Remove(link);
+            }
+        }
+
+        private async Task AddOrUpdateLinksAsync(Node node)
+        {
+            await ClearLinksAsync(node.Id);
+            var linkSets = node.Links.Split(';');
+            foreach (var linkSet in linkSets)
+            {
+                var linkSetFields = linkSet.Split(':');
+                var type = linkSetFields[0].Trim();
+                var links = linkSetFields[1].Split(',');
+                foreach (var linkedNodeId in links)
+                {
+                    AddLink(type, node.Id, linkedNodeId.Trim());
+                }
+            }
+        }
+
+        private void AddLink(string type, string fromId, string toId)
+        {
+            var nodeLink = new NodeLink()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Type = type,
+                FromNodeId = fromId,
+                ToNodeId = toId
+            };
+            _dbContext.NodeLinks.Add(nodeLink);
+        }
+
+        #endregion
+
+        #region Votes
 
         public async Task<NodeVote> GetVoteAsync(string userId, string nodeId)
         {
@@ -134,5 +197,7 @@ namespace BlazorWorld.Data.Repositories
         {
             _dbContext.NodeVotes.Remove(vote);
         }
+
+        #endregion
     }
 }

@@ -32,9 +32,6 @@ namespace BlazorWorld.Core.Entities.Content
         public ICollection<NodeVersion> Versions { get; set; }
         public ICollection<NodeVote> Votes { get; set; }
 
-        [NotMapped]
-        public string AllTags { get; set; }
-
         // Metrics
         public int Weight { get; set; }
         public int ChildCount { get; set; }
@@ -42,6 +39,13 @@ namespace BlazorWorld.Core.Entities.Content
         public int UpVotes { get; set; }
         public int DownVotes { get; set; }
         public double Hot { get; set; }
+
+        [NotMapped]
+        public string Parent { get; set; }
+        [NotMapped]
+        public string Links { get; set; } // format: type:link1,link2,...;type:link1,link2,...;...
+        [NotMapped]
+        public string AllTags { get; set; }
 
         public int TotalVotes
         {

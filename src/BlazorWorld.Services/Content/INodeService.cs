@@ -8,6 +8,7 @@ namespace BlazorWorld.Services.Content
     public interface INodeService
     {
         Task<Node> GetAsync(string id);
+        Task<Node> GetBySlugAsync(string module, string type, string slug);
         Task<List<Node>> GetPaginatedResultAsync(NodeSearch nodeSearch, int currentPage, int pageSize = 10);
         Task<int> GetCountAsync(NodeSearch nodeSearch);
         Task<string> AddAsync(Node node);

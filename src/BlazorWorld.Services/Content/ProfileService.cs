@@ -30,18 +30,18 @@ namespace BlazorWorld.Services.Content
             profile.CustomFields = new NodeCustomFields();
             profile.CustomFields.Id = Guid.NewGuid().ToString();
             profile.CustomFields.NodeId = profile.Id;
-            await Add(profile);
+            await AddAsync(profile);
         }
 
-        public async Task Add(Node profile)
+        public async Task AddAsync(Node profile)
         {
-            _nodeRepository.Add(profile);
+            await _nodeRepository.AddAsync(profile);
             await _nodeRepository.SaveChangesAsync();
         }
 
-        public async Task Update(Node profile)
+        public async Task UpdateAsync(Node profile)
         {
-            _nodeRepository.Update(profile);
+            await _nodeRepository.UpdateAsync(profile);
             await _nodeRepository.SaveChangesAsync();
         }
 

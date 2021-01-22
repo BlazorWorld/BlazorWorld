@@ -7,7 +7,7 @@ namespace BlazorWorld.Services.Content
     public interface IProfileService
     {
         Task Add(ApplicationUser user);
-        Task Add(Node profile);
-        Task Update(Node profile);
+        Task AddAsync(Node profile);
+        Task UpdateAsync(Node profile);
     }
 }
