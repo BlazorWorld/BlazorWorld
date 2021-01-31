@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -23,6 +24,8 @@ namespace BlazorWorld.Core.Helper
                 var convertProperty = convertProperties.FirstOrDefault(prop => prop.Name == property.Name);
                 if (convertProperty != null)
                 {
+                    Console.WriteLine(property.Name);
+                    Debug.WriteLine(property.Name);
                     convertProperty.SetValue(convert, Convert.ChangeType(entityProperty.GetValue(entity), convertProperty.PropertyType));
                 }
             }

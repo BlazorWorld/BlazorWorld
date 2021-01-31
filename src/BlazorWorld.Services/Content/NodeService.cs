@@ -194,7 +194,7 @@ namespace BlazorWorld.Services.Content
         private async Task<int> UpdateHotAsync(NodeVote vote, bool isUndo)
         {
             var node = await _nodeRepository.GetAsync(n => n.Id == vote.NodeId);
-            if (vote.Score > 0) node.UpVotes = node.UpVotes + (isUndo? -1 : 1) * vote.Score;
+            if (vote.Score > 0) node.UpVotes = node.UpVotes + (isUndo ? -1 : 1) * vote.Score;
             if (vote.Score < 0) node.DownVotes = node.DownVotes + (isUndo ? 1 : -1) * vote.Score;
             var hot = Hot(node.UpVotes, node.DownVotes, node.CreatedDate);
             node.Hot = hot;

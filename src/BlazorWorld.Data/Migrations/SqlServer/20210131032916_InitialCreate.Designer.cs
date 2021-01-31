@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorWorld.Data.Migrations.SqlServer
 {
     [DbContext(typeof(SqlServerDbContext))]
-    [Migration("20210122221208_InitialCreate")]
+    [Migration("20210131032916_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace BlazorWorld.Data.Migrations.SqlServer
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Setting", b =>
                 {
@@ -397,15 +397,22 @@ namespace BlazorWorld.Data.Migrations.SqlServer
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FromNodeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("NodeId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ToNodeId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NodeId");
 
                     b.HasIndex("FromNodeId", "Type");
 
@@ -842,6 +849,13 @@ namespace BlazorWorld.Data.Migrations.SqlServer
                         .HasForeignKey("BlazorWorld.Core.Entities.Content.NodeCustomFields", "NodeId");
                 });
 
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeLink", b =>
+                {
+                    b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
+                        .WithMany("Links")
+                        .HasForeignKey("NodeId");
+                });
+
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>
                 {
                     b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
@@ -873,6 +887,8 @@ namespace BlazorWorld.Data.Migrations.SqlServer
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Node", b =>
                 {
                     b.Navigation("CustomFields");
+
+                    b.Navigation("Links");
 
                     b.Navigation("Reactions");
 

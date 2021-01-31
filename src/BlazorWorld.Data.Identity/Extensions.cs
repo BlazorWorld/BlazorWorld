@@ -1,11 +1,13 @@
 ﻿using BlazorWorld.Data.Identity.DbContexts;
 using BlazorWorld.Data.Identity.Repositories;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Security.Claims;
 
 namespace BlazorWorld.Data.Identity
 {
@@ -58,6 +60,11 @@ namespace BlazorWorld.Data.Identity
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, AppIdentityDbContext>();
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+            services.Configure<IdentityOptions>(options =>
+                options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
+            services.AddApiAuthorization();
         }
 
         public static void UpdateBlazorWorldIdentityDatabase(this IApplicationBuilder app, IConfiguration configuration)
@@ -89,6 +96,13 @@ namespace BlazorWorld.Data.Identity
                         throw new Exception();
                     }
             }
+        }
+
+        public static void UseBlazorWorldIdentity(this IApplicationBuilder app)
+        {
+            app.UseIdentityServer();
+            app.UseAuthentication();
+            app.UseAuthorization();
         }
 
         private static void ProcessDb<T>(this IApplicationBuilder app) where T : AppIdentityDbContext

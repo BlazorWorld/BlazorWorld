@@ -40,30 +40,34 @@ namespace BlazorWorld.Services.Configuration
 
         private async Task LoadSettingsAsync(Setting[] settings)
         {
-            foreach (var setting in settings)
+            if (settings != null)
             {
-                var existingSetting = await _settingRepository.GetAsync(setting.Id);
-                if (existingSetting == null)
+                foreach (var setting in settings)
                 {
-                    if (string.IsNullOrEmpty(setting.CreatedDate))
+                    var existingSetting = await _settingRepository.GetAsync(setting.Id);
+                    if (existingSetting == null)
                     {
-                        setting.CreatedDate = DateTimeOffset.UtcNow.ToString("s");
+                        if (string.IsNullOrEmpty(setting.CreatedDate))
+                        {
+                            setting.CreatedDate = DateTimeOffset.UtcNow.ToString("s");
+                        }
+                        _settingRepository.Add(setting);
                     }
-                    _settingRepository.Add(setting);
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(setting.CreatedDate) && setting.CreatedDate.CompareTo(existingSetting.CreatedDate) > 0)
+                    else
                     {
-                        existingSetting.Type = setting.Type;
-                        existingSetting.Key = setting.Key;
-                        existingSetting.Value = setting.Value;
-                        _settingRepository.Update(existingSetting);
+                        if (!string.IsNullOrEmpty(setting.CreatedDate) && setting.CreatedDate.CompareTo(existingSetting.CreatedDate) > 0)
+                        {
+                            existingSetting.Type = setting.Type;
+                            existingSetting.Key = setting.Key;
+                            existingSetting.Value = setting.Value;
+                            _settingRepository.Update(existingSetting);
+                        }
                     }
                 }
-            }
 
-            await _settingRepository.SaveChangesAsync();
+                await _settingRepository.SaveChangesAsync();
+
+            }
         }
 
         private async Task<Setting[]> GetByTypeAsync(string type)
