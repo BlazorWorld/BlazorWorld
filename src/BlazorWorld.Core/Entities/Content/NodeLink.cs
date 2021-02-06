@@ -15,5 +15,7 @@ namespace BlazorWorld.Core.Entities.Content
         [Required]
         public string ToNodeId { get; set; }
         public string Type { get; set; }
+        public string CreatedDate { get; set; }
+        public int Weight { get; set; }
     }
 }

@@ -24,9 +24,14 @@ namespace BlazorWorld.Core.Helper
                 var convertProperty = convertProperties.FirstOrDefault(prop => prop.Name == property.Name);
                 if (convertProperty != null)
                 {
-                    Console.WriteLine(property.Name);
-                    Debug.WriteLine(property.Name);
-                    convertProperty.SetValue(convert, Convert.ChangeType(entityProperty.GetValue(entity), convertProperty.PropertyType));
+                    try
+                    {
+                        convertProperty.SetValue(convert, Convert.ChangeType(entityProperty.GetValue(entity), convertProperty.PropertyType));
+                    }
+                    catch
+                    {
+                        convertProperty.SetValue(convert, entityProperty.GetValue(entity));
+                    }
                 }
             }
 

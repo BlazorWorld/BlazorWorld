@@ -14,7 +14,6 @@
 	<ProjectReference Include="..\BlazorWorld.Core\BlazorWorld.Core.csproj" />
 	<ProjectReference Include="..\BlazorWorld.Data\BlazorWorld.Data.csproj" />
 	<ProjectReference Include="..\BlazorWorld.Data.Identity\BlazorWorld.Data.Identity.csproj" />
-	<ProjectReference Include="..\BlazorWorld.Web.Shared\BlazorWorld.Web.Shared.csproj" />
   </ItemGroup>
 
 </Project>

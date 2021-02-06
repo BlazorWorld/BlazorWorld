@@ -394,6 +394,9 @@ namespace BlazorWorld.Data.Migrations.SqlServer
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FromNodeId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -407,6 +410,9 @@ namespace BlazorWorld.Data.Migrations.SqlServer
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

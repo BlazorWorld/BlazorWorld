@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorWorld.Core\BlazorWorld.Core.csproj" />
-    <ProjectReference Include="..\BlazorWorld.Web.Shared\BlazorWorld.Web.Shared.csproj" />
   </ItemGroup>
 
 </Project>

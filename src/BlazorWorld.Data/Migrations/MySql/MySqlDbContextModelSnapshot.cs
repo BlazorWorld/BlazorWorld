@@ -391,6 +391,9 @@ namespace BlazorWorld.Data.Migrations.MySql
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("FromNodeId")
                         .IsRequired()
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
@@ -404,6 +407,9 @@ namespace BlazorWorld.Data.Migrations.MySql
 
                     b.Property<string>("Type")
                         .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
