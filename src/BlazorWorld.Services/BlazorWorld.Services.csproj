@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.2" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.4" />
     <PackageReference Include="SendGrid" Version="9.22.0" />
   </ItemGroup>
 
