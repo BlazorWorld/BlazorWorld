@@ -3,6 +3,7 @@ using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,14 @@ namespace BlazorWorld.Data.Repositories
 
         public async Task<Node> GetAsync(Expression<Func<Node, bool>> predicate)
         {
-            var node = await _dbContext.Nodes.SingleOrDefaultAsync(predicate);
+            var node = await _dbContext.Nodes
+                .Include(i => i.CustomFields)
+                .Include(i => i.Reactions)
+                .Include(i => i.Tags)
+                .Include(i => i.Versions)
+                .Include(i => i.Votes)
+                .SingleOrDefaultAsync(predicate);
+
             if (node != null) await SetLinksAsync(node);
             return node;
         }
