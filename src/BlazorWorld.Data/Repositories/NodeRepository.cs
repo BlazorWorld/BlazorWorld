@@ -3,6 +3,7 @@ using BlazorWorld.Core.Entities.Content;
 using BlazorWorld.Core.Repositories;
 using BlazorWorld.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,14 @@ namespace BlazorWorld.Data.Repositories
 
         public async Task<Node> GetAsync(Expression<Func<Node, bool>> predicate)
         {
-            var node = await _dbContext.Nodes.SingleOrDefaultAsync(predicate);
+            var node = await _dbContext.Nodes
+                .Include(i => i.CustomFields)
+                .Include(i => i.Reactions)
+                .Include(i => i.Tags)
+                .Include(i => i.Versions)
+                .Include(i => i.Votes)
+                .SingleOrDefaultAsync(predicate);
+
             if (node != null) await SetLinksAsync(node);
             return node;
         }
@@ -106,13 +114,13 @@ namespace BlazorWorld.Data.Repositories
 
         public async Task AddAsync(Node node)
         {
-            await AddOrUpdateLinksAsync(node);
+            if (!string.IsNullOrEmpty(node.AllLinks)) await AddOrUpdateLinksAsync(node);
             _dbContext.Nodes.Add(node);
         }
 
         public async Task UpdateAsync(Node node)
         {
-            await AddOrUpdateLinksAsync(node);
+            if (!string.IsNullOrEmpty(node.AllLinks)) await AddOrUpdateLinksAsync(node);
             _dbContext.Nodes.Update(node);
         }
 
@@ -125,9 +133,9 @@ namespace BlazorWorld.Data.Repositories
 
         private async Task SetLinksAsync(Node node)
         {
-            var links = await _dbContext.NodeLinks.Where(nl => nl.FromNodeId == node.Id).ToListAsync();
+            node.Links = await _dbContext.NodeLinks.Where(nl => nl.FromNodeId == node.Id).ToListAsync();
             var linkDictionary = new Dictionary<string, string>();
-            foreach (var link in links)
+            foreach (var link in node.Links)
             {
                 if (!linkDictionary.ContainsKey(link.Type))
                     linkDictionary.Add(link.Type, string.Empty);
@@ -136,7 +144,7 @@ namespace BlazorWorld.Data.Repositories
                 linkDictionary[link.Type] += link.ToNodeId;
             }
 
-            node.Links = string.Join(";", linkDictionary.Select(l => $"{l.Key}:{l.Value}"));
+            node.AllLinks = string.Join(";", linkDictionary.Select(l => $"{l.Key}:{l.Value}"));
         }
 
         private async Task ClearLinksAsync(string id)
@@ -151,7 +159,7 @@ namespace BlazorWorld.Data.Repositories
         private async Task AddOrUpdateLinksAsync(Node node)
         {
             await ClearLinksAsync(node.Id);
-            var linkSets = node.Links.Split(';');
+            var linkSets = node.AllLinks.Split(';');
             foreach (var linkSet in linkSets)
             {
                 var linkSetFields = linkSet.Split(':');

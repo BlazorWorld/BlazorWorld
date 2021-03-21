@@ -45,9 +45,6 @@ namespace BlazorWorld.Web.Server
             services.AddBlazorWorldIdentity(Configuration);
             services.AddBlazorWorldDataProvider(Configuration);
 
-            services.AddAuthentication()
-            .AddIdentityServerJwt();
-
             // BlazorWorld service additions
             // https://docs.microsoft.com/en-us/aspnet/core/security/blazor/webassembly/hosted-with-identity-server?view=aspnetcore-3.1&tabs=visual-studio
             services.Configure<IdentityOptions>(options =>
