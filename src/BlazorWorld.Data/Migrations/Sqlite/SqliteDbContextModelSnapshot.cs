@@ -14,7 +14,7 @@ namespace BlazorWorld.Data.Migrations.Sqlite
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("BlazorWorld.Core.Entities.Configuration.Setting", b =>
                 {
@@ -390,16 +390,29 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("CreatedDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("FromNodeId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NodeId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ToNodeId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("Weight")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("NodeId");
 
                     b.HasIndex("FromNodeId", "Type");
 
@@ -836,6 +849,13 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                         .HasForeignKey("BlazorWorld.Core.Entities.Content.NodeCustomFields", "NodeId");
                 });
 
+            modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeLink", b =>
+                {
+                    b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
+                        .WithMany("Links")
+                        .HasForeignKey("NodeId");
+                });
+
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.NodeReaction", b =>
                 {
                     b.HasOne("BlazorWorld.Core.Entities.Content.Node", null)
@@ -867,6 +887,8 @@ namespace BlazorWorld.Data.Migrations.Sqlite
             modelBuilder.Entity("BlazorWorld.Core.Entities.Content.Node", b =>
                 {
                     b.Navigation("CustomFields");
+
+                    b.Navigation("Links");
 
                     b.Navigation("Reactions");
 

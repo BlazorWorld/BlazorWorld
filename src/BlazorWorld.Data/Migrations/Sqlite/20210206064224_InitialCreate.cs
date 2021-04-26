@@ -170,20 +170,6 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                 });
 
             migrationBuilder.CreateTable(
-                name: "NodeLinks",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
-                    FromNodeId = table.Column<string>(type: "TEXT", nullable: true),
-                    ToNodeId = table.Column<string>(type: "TEXT", nullable: true),
-                    Type = table.Column<string>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_NodeLinks", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Nodes",
                 columns: table => new
                 {
@@ -317,6 +303,29 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                     table.PrimaryKey("PK_NodeCustomFields", x => x.Id);
                     table.ForeignKey(
                         name: "FK_NodeCustomFields_Nodes_NodeId",
+                        column: x => x.NodeId,
+                        principalTable: "Nodes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NodeLinks",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    FromNodeId = table.Column<string>(type: "TEXT", nullable: false),
+                    ToNodeId = table.Column<string>(type: "TEXT", nullable: false),
+                    Type = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedDate = table.Column<string>(type: "TEXT", nullable: true),
+                    Weight = table.Column<int>(type: "INTEGER", nullable: false),
+                    NodeId = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NodeLinks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_NodeLinks_Nodes_NodeId",
                         column: x => x.NodeId,
                         principalTable: "Nodes",
                         principalColumn: "Id",
@@ -559,6 +568,11 @@ namespace BlazorWorld.Data.Migrations.Sqlite
                 name: "IX_NodeLinks_FromNodeId_Type",
                 table: "NodeLinks",
                 columns: new[] { "FromNodeId", "Type" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NodeLinks_NodeId",
+                table: "NodeLinks",
+                column: "NodeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_NodeLinks_ToNodeId_Type",
