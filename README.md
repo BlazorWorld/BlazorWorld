@@ -19,17 +19,17 @@ Sample site can be found at https://blazorworld.com.
 
 - Go to src/BlazorWorld.Web.Server and update appsettings.json.
 - Set the following field values:
--- SiteName: name of your community site
--- Application DB (content data)
---- AppDbProvider: specify if your backend DB is sqlite, mysql, or sqlserver.
---- AppDbFilename: if your DB is sqlite, this is the DB file.
---- ConnectionString/AppDbConnection: connection string for Application DB. Not needed for sqlite.
--- Identity DB (user data) 
---- IdentityDbProvider: just like AppDbProvider, specify if sqlite, mysql, or sqlserver.
---- IdentityDbFilename: For sqlite.
---- ConnectionString/IdentityDbConnection: connection string for Identity DB. Not needed for sqlite.
--- ContactUsEmail: email address used for user emails (email validation, reset password)
--- SendGridKey: key for using SendGrid for user emails
+  - SiteName: name of your community site
+  - Application DB (content data)
+    - AppDbProvider: specify if your backend DB is sqlite, mysql, or sqlserver.
+    - AppDbFilename: if your DB is sqlite, this is the DB file.
+    - ConnectionString/AppDbConnection: connection string for Application DB. Not needed for sqlite.
+  - Identity DB (user data) 
+    - IdentityDbProvider: just like AppDbProvider, specify if sqlite, mysql, or sqlserver.
+    - IdentityDbFilename: For sqlite.
+    - ConnectionString/IdentityDbConnection: connection string for Identity DB. Not needed for sqlite.
+  - ContactUsEmail: email address used for user emails (email validation, reset password)
+  - SendGridKey: key for using SendGrid for user emails
 
 Docker pipeline:
 - Build the image using 'docker build -t blazorworld .'
@@ -41,14 +41,14 @@ Docker pipeline:
 - These settings are persisted in the database. It will be updated if the settings have a more recent update date.
 - Settings have the following format: Id, Type, Key, Value
 - The following settings are available:
--- content-appsettings.json
---- RoleWeight: Sets how much votes a particular role adds
---- PageSize: Sets how many entries are displayed for the particular node type
--- security-appsettings.json
---- RoleUser: For automatically setting the roles for specific usernames
---- Permission: Sets which roles are allowed for specific actions for a node type. Format for the key is 'module:node-type,action'
--- site-appsettings.json
---- SideBarMenu: Sets the sidebar menu items. Format for the value is 'order,,icon,module,visibility'
+  - content-appsettings.json
+    - RoleWeight: Sets how much votes a particular role adds
+    - PageSize: Sets how many entries are displayed for the particular node type
+  - security-appsettings.json
+    - RoleUser: For automatically setting the roles for specific usernames
+    - Permission: Sets which roles are allowed for specific actions for a node type. Format for the key is 'module:node-type,action'
+  - site-appsettings.json
+    - SideBarMenu: Sets the sidebar menu items. Format for the value is 'order,,icon,module,visibility'
 
 ## Building Your Own Modules
 
@@ -58,17 +58,17 @@ BlazorWorld is a modular system. It is designed to make it easy for developers t
 
 - Add your project folder in BlazorWorld.Web.Client.Modules.
 - Module project is structured as follows:
--- Models: Content classes, inherited from Node class.
--- Components: Razor files that display specific node types in pages. Services such as NodeService and UserService are injected.
--- Pages: Razor files that work with one or more nodes, each representing an action (Create, Details, Edit)
+  - Models: Content classes, inherited from Node class.
+  - Components: Razor files that display specific node types in pages. Services such as NodeService and UserService are injected.
+  - Pages: Razor files that work with one or more nodes, each representing an action (Create, Details, Edit)
 
 ### Services
 
 #### NodeService
 
 - NodeService provides most of the actions needed to manage your content nodes.
--- GetAsync, GetBySlugAsync, GetCountAsync, GetPageSizeAsync, SecureGetAsync, SecureGetCountAsync: retrieves content or page size
--- AddAsync, UpdateAsync, DeleteAsync: act on your content nodes
+  - GetAsync, GetBySlugAsync, GetCountAsync, GetPageSizeAsync, SecureGetAsync, SecureGetCountAsync: retrieves content or page size
+  - AddAsync, UpdateAsync, DeleteAsync: act on your content nodes
 
 #### SecurityService
 
