@@ -15,6 +15,7 @@ It currently has the following modules:
 ## Demo Site
 
 Sample site can be found at https://blazorworld.com.
+Features overview https://blazorworld.com/article/blazorworld-features-overview
 
 ## Quick Setup
 
