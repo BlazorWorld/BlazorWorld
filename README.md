@@ -10,8 +10,10 @@ BlazorWorld is a social publishing system built with Blazor. It is a modular pla
 - Create and share content through various modules: Articles, Blogs, Forums, Profiles, Videos
 - Supports rich text, through Markdown, and embedding social media (YouTube, Imgur, Instagram)
 - Build custom content modules with Blazor using its services and components
-- Use SQL Server, MySQL, or SQLite for backend DB
+- Style your UI using Bootstrap and SB Admin 2.
 - Other modules in the plan (subject to demand): Events/Calendar, Files, Messages (private and group chat), Tasks/Projects, Wikis
+- Use SQL Server, MySQL, or SQLite for backend DB
+- Fully open sourced, licensed under GPL v3.0.
 
 ## Demo Site
 
