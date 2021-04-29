@@ -62,7 +62,7 @@ First user:
     - RoleWeight: Sets how much votes a particular role adds
     - PageSize: Sets how many entries are displayed for the particular node type
   - security-appsettings.json
-    - RoleUser: For automatically setting the roles for specific usernames
+    - RoleUser: For automatically setting the roles for specific usernames (such as admin role for the admin username.)
     - Permission: Sets which roles are allowed for specific actions for a node type. Format for the key is 'module:node-type,action'
   - site-appsettings.json
     - SideBarMenu: Sets the sidebar menu items. Format for the value is 'order,,icon,module,visibility'
