@@ -71,7 +71,7 @@ BlazorWorld is a modular system. It is designed to make it easy for developers t
 
 - Add your project folder in BlazorWorld.Web.Client.Modules.
 - Module project is structured as follows:
-  - Models: Content classes, inherited from Node class.
+  - Models: Content classes, inherited from Node class (with standard fields such as title and content), and related classes for extension (CustomFields, Links, Reactions, Tags, Versions, and Votes.)
   - Components: Razor files that display specific node types in pages. Services such as NodeService and UserService are injected.
   - Pages: Razor files that work with one or more nodes, each representing an action (Create, Details, Edit)
 
