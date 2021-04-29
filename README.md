@@ -1,4 +1,5 @@
-# BlazorWorld: content, communication, collaboration, community
+# BlazorWorld
+## Content, Communication, Collaboration, Community, powered by Blazor
 
 ## About
 
