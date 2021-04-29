@@ -14,8 +14,12 @@ It currently has the following modules:
 
 ## Demo Site
 
-Sample site can be found at https://blazorworld.com.
-Features overview https://blazorworld.com/article/blazorworld-features-overview
+- Sample site can be found at https://blazorworld.com.
+- Features
+  - Articles: Features overview https://blazorworld.com/article/blazorworld-features-overview
+  - Blog: BlazorWorld's story https://blazorworld.com/blog/post/welcome-to-blazorworld
+  - Forums: Awesome Blazor links as forum https://blazorworld.com/forum/general
+  - Videos: Carl Franklin's Blazor Train videos https://blazorworld.com/videos/carl-franklins-blazor-train
 
 ## Quick Setup
 
