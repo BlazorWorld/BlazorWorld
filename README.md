@@ -28,7 +28,7 @@ Other modules in the plan (subject to demand):
   - Forums: Awesome Blazor links as forum https://blazorworld.com/forum/general
   - Videos: Carl Franklin's Blazor Train videos https://blazorworld.com/videos/carl-franklins-blazor-train
 
-## Quick Setup
+## Basic Setup
 
 - Go to src/BlazorWorld.Web.Server and update appsettings.json.
 - Set the following field values:
