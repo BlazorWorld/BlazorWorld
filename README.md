@@ -101,3 +101,7 @@ BlazorWorld.Web.Client.Shell has a number of components that modules can use for
 - RichText: displays embedded social content or Markdown text
 - Username
 - VoteButtons: up/down arrows (like Reddit)
+
+### Theme
+
+BlazorWorld uses StartBootstrap SB Admin 2 theme. https://github.com/StartBootstrap/startbootstrap-sb-admin-2
