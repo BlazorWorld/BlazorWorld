@@ -12,6 +12,13 @@ It currently has the following modules:
 - Profiles
 - Videos
 
+Other modules in the plan (subject to demand):
+- Events/Calendar
+- Files
+- Messages (private and group chat)
+- Tasks/Projects
+- Wikis
+
 ## Demo Site
 
 - Sample site can be found at https://blazorworld.com.
