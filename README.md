@@ -48,6 +48,10 @@ Docker pipeline:
 - Build the image using 'docker build -t blazorworld .'
 - Start the container 'docker run -p 5000:5000 blazorworld'
 
+First user:
+- Create the first user with 'admin' as the username.
+- This will automatically assign admin priveleges to the account.
+
 ## Other Settings
 
 - Go to src/BlazorWorld.Web.Server/Settings for more customization.
