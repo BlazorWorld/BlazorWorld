@@ -1,0 +1,108 @@
+﻿@page "/articles/{Slug}"
+@inject IStringLocalizer<Resource> Localize
+
+<PageTitle Title="@Category?.Name" />
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" aria-current="page">
+            <NavLink href="@($"/articles")"><i class="fas fa-newspaper"></i> @Localize["Articles"]</NavLink>
+        </li>
+        @{
+            if (ParentCategory != null)
+            {
+                <li class="breadcrumb-item" aria-current="page">
+                    <NavLink href=@($"/articles/{ParentCategory.Slug}")>
+                        @ParentCategory.Name
+                    </NavLink>
+                </li>
+            }
+        }
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="h3">@Category?.Name</h1>
+    <RichText Text="@Category?.Description" ParentObject="@Category" />
+    @if (CanEditCategory)
+    {
+        <NavLink href="@($"/articles/category/edit/{Category?.Slug}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+            <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+            @Localize["Edit"]
+        </NavLink>
+    }
+
+    @if (CanDeleteCategory)
+    {
+        <a href="javascript:;"
+           @onclick="Delete"
+           class="btn btn-danger btn-sm mt-2 mb-2 mr-2">
+            <i class="fas fa-trash-alt"></i> @Localize["Delete"]
+        </a>
+    }
+</div>
+
+<Modal @ref="ConfirmModal"
+       Title="@Localize["Delete Category"]"
+       Text="@Localize["Do you want to delete this category?"]"
+       ConfirmButtonText="@Localize["Delete"]"
+       CancelButtonText="@Localize["Cancel"]"
+       OnConfirm="DeleteConfirmedAsync" />
+
+@if (CanAddCategory)
+{
+    <NavLink href="@($"/articles/category/new/{Category?.Slug}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+        <i class="fas fa-plus" aria-hidden="true"></i>
+        @Localize["New Category"]
+    </NavLink>
+}
+
+@if (Categories == null)
+{
+    <Loading />
+}
+else
+{
+    if (Categories.Count() > 0)
+    {
+        <div class="card mt-2 mb-2">
+            <div class="card-body">
+                <p class="card-text flex-row row">
+                    @foreach (var category in Categories)
+                    {
+                        <NavLink href=@($"/articles/{category.Slug}") class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            @category.Name
+                        </NavLink>
+                    }
+                </p>
+            </div>
+        </div>
+    }
+}
+
+@if (CanAddArticle)
+{
+    <NavLink href="@($"/article/new/{Category?.Slug}")" class="btn btn-primary btn-sm mt-2 mb-2 mr-2">
+        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+        @Localize["New Article"]
+    </NavLink>
+}
+
+@if (Articles != null)
+{
+    <div class="d-flex flex-wrap">
+        @foreach (var node in Articles.Data)
+        {
+            var article = Models.Article.Create(node);
+            <ArticleCard Article="@article" />
+        }
+    </div>
+    @if (Articles.ShowNext)
+    {
+        <button class="btn btn-primary btn-sm mt-2 mb-2 mr-2" @onclick="Articles.NextAsync">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            @Localize["More Articles"]
+        </button>
+    }
+}
+

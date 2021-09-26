@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlazorHero.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:BlazorHero.Infrastructure.Services.Storage.JsonConverters.TimespanJsonConverter">
+            <summary>
+            The new Json.NET doesn't support Timespan at this time
+            https://github.com/dotnet/corefx/issues/38641
+            </summary>
+        </member>
+        <member name="F:BlazorHero.Infrastructure.Services.Storage.JsonConverters.TimespanJsonConverter.TimeSpanFormatString">
+            <summary>
+            Format: Days.Hours:Minutes:Seconds:Milliseconds
+            </summary>
+        </member>
+        <member name="P:BlazorHero.Infrastructure.Services.Storage.StorageOptions.ServerStorageOptions.JsonSerializerOptions">
+            <summary>
+            Options for <see cref="N:System.Text.Json"/>.
+            </summary>
+        </member>
+        <member name="P:BlazorHero.Infrastructure.Services.Storage.StorageOptions.ServerStorageOptions.JsonSerializerSettings">
+            <summary>
+            Settings for <see cref="N:Newtonsoft.Json"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

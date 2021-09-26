@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlazorHero.Shared</name>
+    </assembly>
+    <members>
+        <member name="M:BlazorHero.Shared.Constants.Permission.Permissions.GetRegisteredPermissions">
+            <summary>
+            Returns a list of Permissions.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

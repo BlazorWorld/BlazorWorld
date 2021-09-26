@@ -1,4 +1,0 @@
-﻿dotnet ef migrations add InitialCreate --context SqliteDbContext --output-dir Migrations/Sqlite --startup-project ../BlazorWorld.Web.Server --configuration DebugEf -v
-dotnet ef migrations add InitialCreate --context MySqlDbContext --output-dir Migrations/MySql --startup-project ../BlazorWorld.Web.Server --configuration DebugEf -v
-dotnet ef migrations add InitialCreate --context SqlServerDbContext --output-dir Migrations/SqlServer --startup-project ../BlazorWorld.Web.Server --configuration DebugEf -v
-dotnet tool update --global dotnet-ef

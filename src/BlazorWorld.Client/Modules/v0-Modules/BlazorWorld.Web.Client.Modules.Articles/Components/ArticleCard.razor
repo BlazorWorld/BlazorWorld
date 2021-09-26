@@ -1,0 +1,14 @@
+﻿<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-no-pad-left">
+    <div class="card shadow  mt-2 mb-2">
+        <div class="card-body">
+            <h2 class="h4">
+                <small>
+                    <NavLink href="@($"/article/{Article.Slug}")">@Article.Title</NavLink>
+                </small>
+            </h2>
+            <Created CreatedBy="@Article.CreatedBy" CreatedDate="@Article.CreatedDate" />
+            @Article.Summary
+            <ReadMore Link="@($"/article/{Article.Slug}")" />
+        </div>
+    </div>
+</div>

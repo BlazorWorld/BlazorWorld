@@ -1,0 +1,77 @@
+﻿@page "/article/edit/{Slug}"
+@using BlazorWorld.Web.Client.Shell
+@using Microsoft.AspNetCore.Components.Forms
+@inject IStringLocalizer<Resource> Localize
+
+<PageTitle Title="@Localize["Edit Article"]" />
+
+<div class="card shadow mt-2 mb-2">
+    <div class="card-body container">
+        <h2 class="h4">@Localize["Edit Article"]</h2>
+
+        <EditForm class="mt-4" OnValidSubmit="SubmitAsync" Model="@Article">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            @{
+                if (!string.IsNullOrEmpty(ValidationMessage))
+                {
+                    <div class="alert alert-danger alert-dismissible row" role="alert">
+                        @Localize[ValidationMessage]
+                    </div>
+                }
+            }
+
+            @{
+                if (Categories != null)
+                {
+                    <div class="form-group row col-md-4">
+                        <select class="form-control" @bind="@Article.CategoryId">
+                            @foreach (var category in Categories)
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        </select>
+                    </div>
+                }
+            }
+            <div class="form-group row col-md-4">
+                <InputText class="form-control"
+                           @bind-Value="Article.Title"
+                           placeholder="@Localize["Title"]" />
+                <ValidationMessage For="@(() => Article.Title)" />
+            </div>
+            <div class="form-group row col-md-4">
+                <input class="form-control"
+                       @bind="Weight"
+                       placeholder="@Localize["Weight (optional)"]" />
+                <ValidationMessage For="@(() => Article.Weight)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <textarea class="form-control"
+                          rows="@Article.Summary.StringToRows(3)"
+                          @bind-value="Article.Summary"
+                          @bind-value:event="oninput"
+                          placeholder="@Localize["Summary"]" />
+                <ValidationMessage For="@(() => Article.Summary)" />
+            </div>
+            <div class="form-group row col-md-10">
+                <textarea class="form-control"
+                          rows="@Article.Content.StringToRows(6)"
+                          @bind-value="Article.Content"
+                          @bind-value:event="oninput"
+                          placeholder="@Localize["Content"]" />
+                <ValidationMessage For="@(() => Article.Content)" />
+            </div>
+            <div class="form-group row col-md-4">
+                <NavLink href="@($"/article/{Article.Slug}")"
+                         class="btn btn-danger btn-sm mt-2 mb-2 mr-2">
+                    <i class="fa fa-times" aria-hidden="true"></i> @Localize["Cancel"]
+                </NavLink>
+                <button type="submit" ref="createButton" id="btnSave" class="btn btn-success btn-sm mt-2 mb-2 mr-2" value="save">
+                    <i class="fa fa-check" aria-hidden="true"></i> @Localize["Save"]
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

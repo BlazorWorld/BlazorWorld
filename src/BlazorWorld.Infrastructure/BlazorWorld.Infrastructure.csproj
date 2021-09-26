@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>BlazorWorld.Infrastructure</RootNamespace>
+    <AssemblyName>BlazorWorld.Infrastructure</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\BlazorWorld.Application\BlazorWorld.Application.csproj" />
+    <ProjectReference Include="..\BlazorWorld.Domain\BlazorWorld.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

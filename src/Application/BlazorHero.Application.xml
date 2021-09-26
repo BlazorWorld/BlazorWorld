@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BlazorHero.Application</name>
+    </assembly>
+    <members>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.ClearAsync">
+            <summary>
+            Clears all data from server storage.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.GetItemAsync``1(System.String)">
+            <summary>
+            Retrieve the specified data from server storage and deserialize it to the specified type.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the server storage slot to use</param>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.GetItemAsStringAsync(System.String)">
+            <summary>
+            Retrieve the specified data from server storage as a <see cref="T:System.String"/>.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.KeyAsync(System.Int32)">
+            <summary>
+            Return the name of the key at the specified <paramref name="index"/>.
+            </summary>
+            <param name="index"></param>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.ContainKeyAsync(System.String)">
+            <summary>
+            Checks if the <paramref name="key"/> exists in server storage, but does not check its value.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.LengthAsync">
+            <summary>
+            The number of items stored in server storage.
+            </summary>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.RemoveItemAsync(System.String)">
+            <summary>
+            Remove the data with the specified <paramref name="key"/>.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.SetItemAsync``1(System.String,``0)">
+            <summary>
+            Sets or updates the <paramref name="data"/> in server storage with the specified <paramref name="key"/>.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <param name="data">The data to be saved</param>
+            <returns>A <see cref="T:System.Threading.Tasks.ValueTask"/> representing the completion of the operation.</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.IServerStorageService.SetItemAsStringAsync(System.String,System.String)">
+            <summary>
+            Sets or updates the <paramref name="data"/> in server storage with the specified <paramref name="key"/>. Does not serialize the value before storing.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <param name="data">The string to be saved</param>
+            <returns></returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.Clear">
+            <summary>
+            Clears all data from server storage.
+            </summary>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.GetItem``1(System.String)">
+            <summary>
+            Retrieve the specified data from server storage as a <typeparamref name="T"/>.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the server storage slot to use</param>
+            <returns>The data from the specified <paramref name="key"/> as a <typeparamref name="T"/></returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.GetItemAsString(System.String)">
+            <summary>
+            Retrieve the specified data from server storage as a <see cref="T:System.String"/>.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <returns>The data associated with the specified <paramref name="key"/> as a <see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.Key(System.Int32)">
+            <summary>
+            Return the name of the key at the specified <paramref name="index"/>.
+            </summary>
+            <param name="index"></param>
+            <returns>The name of the key at the specified <paramref name="index"/></returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.ContainKey(System.String)">
+            <summary>
+            Checks if the <paramref name="key"/> exists in server storage, but does not check its value.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <returns>Boolean indicating if the specified <paramref name="key"/> exists</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.Length">
+            <summary>
+            The number of items stored in server storage.
+            </summary>
+            <returns>The number of items stored in server storage</returns>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.RemoveItem(System.String)">
+            <summary>
+            Remove the data with the specified <paramref name="key"/>.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.SetItem``1(System.String,``0)">
+            <summary>
+            Sets or updates the <paramref name="data"/> in server storage with the specified <paramref name="key"/>.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <param name="data">The data to be saved</param>
+        </member>
+        <member name="M:BlazorHero.Application.Interfaces.Services.Storage.ISyncServerStorageService.SetItemAsString(System.String,System.String)">
+            <summary>
+            Sets or updates the <paramref name="data"/> in server storage with the specified <paramref name="key"/>. Does not serialize the value before storing.
+            </summary>
+            <param name="key">A <see cref="T:System.String"/> value specifying the name of the storage slot to use</param>
+            <param name="data">The string to be saved</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
